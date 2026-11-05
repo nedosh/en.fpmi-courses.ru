@@ -1,0 +1,2947 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-10-18">
+
+<title>Vector spaces – FPMI Courses</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/favicon.ico" rel="icon">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-18b92d25f2a0372079463917332f47f0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-90af2ae3f5f11ccb077ed1c2d3900ada.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/quarto-contrib/mn-problems-1.0.0/mn-problems.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/mn-theorems-1.0.0/mn-theorems.css" rel="stylesheet">
+<script src="../../../../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+div.callout-thumbs-up.callout {
+  border-left-color: #008000;
+}
+div.callout-thumbs-up.callout-style-default .callout-header {
+  background-color: rgba(0, 128, 0, 0.13);
+}
+div.callout-thumbs-up .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-thumbs-up.callout-style-default .callout-icon::before, div.callout-thumbs-up.callout-titled .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23008000" class="bi bi-exclamation-triangle" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/></svg>');
+}
+div.callout-enum-item.callout {
+  border-left-color: #008000;
+}
+div.callout-enum-item.callout-style-default .callout-header {
+  background-color: rgba(0, 128, 0, 0.13);
+}
+div.callout-enum-item .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-enum-item.callout-style-default .callout-icon::before, div.callout-enum-item.callout-titled .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23008000" class="bi bi-exclamation-triangle" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/></svg>');
+}
+div.callout-todo.callout {
+  border-left-color: pink;
+}
+div.callout-todo.callout-style-default .callout-header {
+  background-color: rgb(from pink r g b / 13%);
+}
+div.callout-todo .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.callout-titled .callout-icon::before {
+  content: '📝';
+  background-image: none;
+}
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/logo.png" alt="" class="navbar-logo light-content">
+    <img src="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/logo.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../../../index.html">
+    <span class="navbar-title">FPMI Courses</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-courses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Courses</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-courses">    
+        <li>
+    <a class="dropdown-item" href="../../../../courses/index.html">
+ <span class="dropdown-text">All courses (37)</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../../courses/04-probability/index.html">
+ <span class="dropdown-text">Probability (4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/01-analysis/index.html">
+ <span class="dropdown-text">Analysis (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/02-algebra/index.html">
+ <span class="dropdown-text">Algebra (4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/03-discrete-cs/index.html">
+ <span class="dropdown-text">Discrete Mathematics and CS (9)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/05-programming-systems/index.html">
+ <span class="dropdown-text">Programming and Systems (7)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/06-data-computing/index.html">
+ <span class="dropdown-text">Data and Computing (5)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-curriculum" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Curriculum</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-curriculum">    
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/I.html">
+ <span class="dropdown-text">Semester I (7)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/II.html">
+ <span class="dropdown-text">Semester II (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/III.html">
+ <span class="dropdown-text">Semester III (9)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/IV.html">
+ <span class="dropdown-text">Semester IV (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/V.html">
+ <span class="dropdown-text">Semester V (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/VI.html">
+ <span class="dropdown-text">Semester VI (4)</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../../../about.html">
+ <span class="dropdown-text">About the project</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../editorial-policy.html">
+ <span class="dropdown-text">Material status and editorial policy</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://mipt.ru/education/schools/fpmi"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:web" style="font-size: 1.25em;" aria-label="Icon web from mdi Iconify.design set." title="FPMI website"></iconify-icon></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../courses/02-algebra/LA/contents/060_LinSpaces.html">2. Linear spaces</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
+<div style="font-weight: bold; font-size: 1.1em;">
+<p>Linear Algebra</p>
+</div>
+</div></div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/02-algebra/LA/overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/02-algebra/LA/contents/050_SLE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Systems of linear equations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/02-algebra/LA/contents/060_LinSpaces.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">2. Linear spaces</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/02-algebra/LA/contents/070_LinMaps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Linear maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/02-algebra/LA/contents/080_LinTransStruct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Structure of linear transformations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/02-algebra/LA/contents/090_BilinForms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Bilinear forms</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/02-algebra/LA/contents/100_InnerProduct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Inner product</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#examples-of-spaces.-basis-and-dimension" id="toc-examples-of-spaces.-basis-and-dimension" class="nav-link" data-scroll-target="#examples-of-spaces.-basis-and-dimension"><span class="header-section-number">2</span> Examples of spaces. Basis and dimension</a></li>
+  <li><a href="#sum-and-intersection-of-subspaces" id="toc-sum-and-intersection-of-subspaces" class="nav-link" data-scroll-target="#sum-and-intersection-of-subspaces"><span class="header-section-number">3</span> Sum and intersection of subspaces</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<!--
+  Explicit RequireJS path mapping for "plotly", used by every hand-built
+  interactive widget on this site via require(["plotly"], function(Plotly){...}).
+
+  There was never a require.config() call anywhere setting this up -- it
+  only ever worked because Plotly's own UMD bundle, loaded elsewhere on the
+  same page via a plain <script src> for a simple (non-widget) fig.show()
+  figure, self-registers as an anonymous AMD module when window.define
+  exists (Quarto's RequireJS loader, used for MathJax), and RequireJS
+  happens to attribute that anonymous module to the "plotly" name if the
+  timing/script-load-order lines up. That's pure luck, not a real mapping --
+  a page with only widget figures (no plain fig.show() figure to "donate"
+  its Plotly load) had nothing to claim from, and any change to script load
+  order/timing (e.g. removing an unrelated script elsewhere on the page)
+  can flip which pending require() call an anonymous define() gets
+  attributed to, breaking it silently. Explicit config removes the guesswork.
+
+  Two separate failure modes found in practice, both fixed here:
+
+  (A) A page with ONLY hand-built widgets (no {python} cell at all -- e.g.
+  specials/030/020_quantile_function_fig.qmd) never gets Quarto's own
+  <script src=".../requirejs@.../require.min.js"> in <head> in the first
+  place: that tag is only emitted when the page has a Jupyter code cell.
+  window.require is simply undefined there, so the widget's own
+  require(["plotly"], ...) throws "require is not defined" unconditionally
+  -- not a network flake, 100% of the time regardless of connection quality.
+  Fixed below by synchronously document.write-ing a local copy of
+  require.min.js when window.require isn't already present -- document.write
+  from an inline <script> during initial HTML parsing inserts into the parse
+  stream immediately, so by the next statement window.require is guaranteed
+  defined, still fully synchronously (no defer/async race).
+
+  (B) A page with BOTH a plain fig.show() figure AND a hand-built widget:
+  RequireJS *is* already in <head> here, so this file's require.config()
+  below does run against a real window.require. But the Jupyter-generated
+  embed script for the fig.show() figure -- which appears later in <body>,
+  wherever that Python cell sits -- unconditionally calls
+  require.undef("plotly") followed by its OWN require.config() pointing at
+  a *different* version on the *same* external CDN (observed:
+  cdn.plot.ly/plotly-2.35.2.min vs. the 3.4.0 configured here), clobbering
+  this file's mapping before the widget's own require(["plotly"], ...) ever
+  runs. Both that Jupyter-set path and this file's own local path hit the
+  same real-world failure: cdn.plot.ly answers anywhere from ~1.5s to a full
+  10s+ timeout under real network conditions (measured directly). A
+  requirejs.onError handler below catches exactly the resulting timeout on
+  the "plotly" module -- regardless of which of the two require.config()
+  calls most recently set its path -- and retries once against the local
+  bundle.
+-->
+<script>
+if (typeof window.require === "undefined") {
+  document.write('<script src="/site_libs/quarto-contrib/mn-plotly-1.0.0/require.min.js"><\/script>');
+}
+</script>
+<script>
+if (window.require && window.require.config) {
+  window.require.config({
+    paths: { plotly: "/site_libs/quarto-contrib/mn-plotly-1.0.0/plotly.min" },
+    // shim.exports: after the script loads, hand require(["plotly"],...)
+    // callers the *global* window.Plotly instead of trusting whatever (if
+    // anything) the script itself passed to define() -- Plotly's own UMD
+    // wrapper reliably sets window.Plotly regardless of AMD context (also
+    // used directly by every plain fig.show() figure on this site, whose
+    // own generated embed script never goes through RequireJS at all), but
+    // its anonymous define() call is not reliably attributed to the
+    // "plotly" request specifically when this same URL is also loaded via
+    // a separate plain <script src> elsewhere on the page (a simple,
+    // non-widget figure) -- shim sidesteps that ambiguity entirely.
+    shim: { plotly: { exports: "Plotly" } }
+  });
+  // See failure mode (B) above: a later Jupyter-generated fig.show() embed
+  // script can still call its own require.undef("plotly") +
+  // require.config({paths: {plotly: <external CDN>}}) after this runs,
+  // pointing "plotly" back at an unreliable external host. This handler
+  // fires on ANY module load timeout; when it's specifically "plotly", drop
+  // whatever path is currently registered (however it got there) and retry
+  // once against the local bundle instead of the external CDN.
+  //
+  // Deliberately never re-throws: once the retry above is issued, the
+  // ORIGINAL failed network request for the external CDN copy can still
+  // land afterwards and fire a second, by-then-harmless onError (verified:
+  // requireType "scripterror", after the retry has already resolved the
+  // widget's real require(["plotly"], callback) via RequireJS's own
+  // pending-callback bookkeeping) -- throwing there would surface a
+  // spurious uncaught exception for something already fixed. console.warn
+  // keeps that visible in devtools without it looking like a live failure.
+  window.require.onError = function (err) {
+    if (err.requireModules && err.requireModules.indexOf("plotly") !== -1) {
+      if (err.requireType === "timeout") {
+        window.require.undef("plotly");
+        window.require.config({ paths: { plotly: "/site_libs/quarto-contrib/mn-plotly-1.0.0/plotly.min" } });
+        window.require(["plotly"]);
+      } else {
+        console.warn("plotly require() error after fallback (likely a stale network request):", err);
+      }
+    } else {
+      throw err;
+    }
+  };
+}
+</script>
+
+<!--
+  window.fpmiWithMathJax(cb): same rationale as the FPMI homepage loader (_home_widgets/loader.qmd)'s
+  copy of this helper (see there for the original), extended to course
+  pages. Quarto only emits a <script defer src=".../mathjax@3/.../tex-*.js">
+  tag in <head> at all when it sees real markdown math OUTSIDE any
+  ```{=html}``` block on the page -- a hand-built widget's math lives
+  entirely inside \(...\)/\[...\] strings in JS-generated DOM content
+  (e.g. a dynamically updated status line), which Quarto's static math
+  scanner never looks inside, so a page whose ONLY math is like that (no
+  prose math of its own) gets no MathJax script at all. Confirmed on an
+  already-shipped widget (030/020_quantile_function_fig.qmd's #qf-status)
+  that had silently never rendered its \(...\) as real math since it was
+  written -- not a new bug, just never noticed because the broken math was
+  inside dynamically-generated text rather than the static page body.
+
+  Three cases this handles, in order:
+  1. window.MathJax already fully started (page had prose math elsewhere,
+     Quarto's own <script defer> already ran) -- just wait on the
+     documented startup.promise signal and fire cb.
+  2. Quarto's own MathJax <script defer> tag IS present in <head> but
+     hasn't executed/initialized yet (defer runs after DOM parsing, and
+     this include-before-body block runs earlier, during parsing) -- poll
+     briefly for window.MathJax to appear rather than racing to load a
+     SECOND copy, which would either double-load or (depending on load
+     order) silently no-op.
+  3. No MathJax script present at all (case A above) -- fetch it ourselves,
+     same URL/approach as loader.qmd.
+-->
+<script>
+window.fpmiWithMathJax = window.fpmiWithMathJax || function (cb) {
+  if (window.MathJax && window.MathJax.startup) { window.MathJax.startup.promise.then(cb); return; }
+  if (window.__fpmiMathJaxQueue) { window.__fpmiMathJaxQueue.push(cb); return; }
+  window.__fpmiMathJaxQueue = [cb];
+  function flushQueue() {
+    var q = window.__fpmiMathJaxQueue;
+    window.__fpmiMathJaxQueue = null;
+    q.forEach(function (f) { f(); });
+  }
+  var hasMathJaxTag = !!document.querySelector('script[src*="mathjax"]');
+  if (hasMathJaxTag) {
+    // Case 2: Quarto's own deferred MathJax script is already in <head> --
+    // poll for it to finish initializing instead of loading a duplicate.
+    var waited = 0;
+    var poll = setInterval(function () {
+      waited += 50;
+      if (window.MathJax && window.MathJax.startup) {
+        clearInterval(poll);
+        window.MathJax.startup.promise.then(flushQueue);
+      } else if (waited > 10000) {
+        // Should never happen (the tag is already there, defer always runs
+        // before window.onload) -- bail rather than poll forever.
+        clearInterval(poll);
+        console.warn("fpmiWithMathJax: gave up waiting for Quarto's own MathJax script to initialize");
+      }
+    }, 50);
+    return;
+  }
+  // Case 3: no MathJax anywhere on the page -- fetch it ourselves. SVG
+  // output specifically (not CHTML, despite Quarto's own injected tag
+  // using CHTML): confirmed Plotly's own $...$ annotation/tick-label math
+  // rendering hard-requires the SVG output jax and throws
+  // 'Output Jax "svg" is not defined' if only CHTML is loaded (its
+  // internal math path calls MathJax.tex2svg specifically, independent of
+  // whatever jax Quarto's page-level script configured) -- same reason
+  // the FPMI homepage loader (_home_widgets/loader.qmd)'s original copy of this helper uses tex-svg.js.
+  var s = document.createElement("script");
+  s.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js";
+  s.onload = function () {
+    window.MathJax.startup.promise.then(flushQueue);
+  };
+  document.head.appendChild(s);
+};
+</script>
+<!--
+  window.fpmiGraph: shared toolkit for the hand-built Plotly *graph diagrams*
+  (vertices + edges) used by the algorithms courses (courses/11-DM-CS/AA/...
+  specials). Plotly has no native graph/network primitives, so every widget
+  used to re-implement the same edge-polyline/marker/annotation plumbing by
+  hand -- and, since a plain `mode:"lines"` polyline can't carry an arrowhead
+  or per-edge hover, all of them ended up as staticPlot line drawings with
+  no direction on directed graphs and no hover at all. This helper gives
+  every widget, from one `spec`:
+
+    * one scatter trace PER EDGE (so an individual edge can be restyled --
+      hover-highlight, per-step emphasis, transitions -- and can have its own
+      hover text via an invisible midpoint marker), optionally curved
+      (`bend`) so a pair of opposite arcs u->v / v->u stays readable;
+    * arrowheads for `directed` edges via layout.annotations in data
+      coordinates, shortened so the head lands on the vertex rim, not under
+      the marker;
+    * a soft halo under each vertex, $...$ MathJax labels via annotations
+      (never mode:"markers+text" -- see project memory: Plotly's marker text
+      is raw SVG <text>, which can't hold MathJax output), and hover labels;
+    * hover-highlight: hovering a vertex lifts its incident edges and dims
+      the rest (plotly_hover/unhover + Plotly.restyle on the edge traces);
+    * animated transitions between algorithm steps (Plotly.animate on a
+      trace layout that stays structurally identical across steps -- the
+      trace count must not change, so per-step differences are expressed
+      purely as style: color/width/opacity/dash);
+    * a step player (prev / next / autoplay, keyboard arrows) that builds its
+      own controls, and a path tracer that grows a highlighted polyline along
+      a vertex sequence over time (Hamiltonian paths, tours, Euler walks).
+
+  Draw order inside `data`: edges (one trace each) -> edge midpoints (hover
+  only) -> halo -> vertices -> optional path trace. Trace indices are
+  returned in `built.meta` so callers never hard-code them.
+-->
+<script>
+(function () {
+  if (window.fpmiGraph) return;
+  var G = {};
+
+  // Every UI string this helper generates itself (default edge-weight hover
+  // text, the step-player's button labels) is project-agnostic: it reads
+  // `document.documentElement.lang` (set by each project's own `_quarto.yml`
+  // `lang:` field) and falls back to Russian, the language every existing
+  // call site (mnedoshivin, math-notes_CU_2, math-notes_FPMI_2) was written
+  // for -- so this stays a silent no-op everywhere except an `lang="en"`
+  // project such as mnedoshivin_en.
+  var IS_EN = (document.documentElement.lang || "").toLowerCase().indexOf("en") === 0;
+  var WEIGHT_WORD = IS_EN ? "weight" : "вес";
+
+  G.colors = {
+    vert: "#eaf2fb", vertLine: "#1e3a8a", vertText: "#0b0b0b",
+    sel: "#2a78d6", selText: "#ffffff",
+    accent: "#f5a623", accentLine: "#8a5a00",
+    done: "#a8a29e", edge: "#78716c", edgeFaded: "#d6d3d1",
+    red: "#b91c1c", redSoft: "#fca5a5", green: "#556B2F", greenSoft: "#bbf7d0",
+    bg: "#fcfcfb"
+  };
+
+  // Plotly may arrive through RequireJS (course pages, see
+  // plotly-require-config.html), through the homepage's own
+  // fpmiWithPlotly loader, or already be a global -- accept all three.
+  G.withPlotly = function (cb) {
+    if (window.Plotly && window.Plotly.newPlot) { cb(window.Plotly); return; }
+    if (window.fpmiWithPlotly) { window.fpmiWithPlotly(cb); return; }
+    if (window.require) { window.require(["plotly"], cb); return; }
+    console.warn("fpmiGraph: no Plotly loader available on this page");
+  };
+  // MathJax must exist BEFORE Plotly builds any $...$ annotation (Plotly
+  // stamps data-math="N" at build time and never retries), hence the order.
+  G.ready = function (cb) {
+    var run = function () { G.withPlotly(cb); };
+    if (window.fpmiWithMathJax) { window.fpmiWithMathJax(run); } else { run(); }
+  };
+
+  // ── geometry ───────────────────────────────────────────────────────────────
+  // Quadratic curve from p0 to p1 bulging `bend` data units to the left of
+  // the p0->p1 direction (negative bends right). n+1 points.
+  G.curve = function (p0, p1, bend, n) {
+    n = n || 16;
+    var dx = p1[0] - p0[0], dy = p1[1] - p0[1];
+    var len = Math.sqrt(dx * dx + dy * dy) || 1;
+    var nx = -dy / len, ny = dx / len;
+    var cx = (p0[0] + p1[0]) / 2 + nx * bend, cy = (p0[1] + p1[1]) / 2 + ny * bend;
+    var pts = [];
+    for (var i = 0; i <= n; i++) {
+      var t = i / n, a = (1 - t) * (1 - t), b = 2 * (1 - t) * t, c = t * t;
+      pts.push([a * p0[0] + b * cx + c * p1[0], a * p0[1] + b * cy + c * p1[1]]);
+    }
+    return pts;
+  };
+  G.circle = function (cx, cy, r, n) {
+    n = n || 64;
+    var x = [], y = [];
+    for (var i = 0; i <= n; i++) { var a = 2 * Math.PI * i / n; x.push(cx + r * Math.cos(a)); y.push(cy + r * Math.sin(a)); }
+    return { x: x, y: y };
+  };
+  // "$v_{1}$" from "v1", "$s'$" from "s'", plain "s" from "s".
+  G.texLabel = function (id) {
+    var m = /^([A-Za-z]+)(\d+)('*)$/.exec(id);
+    if (m) return "$" + m[1] + "_{" + m[2] + "}" + m[3] + "$";
+    return /^[A-Za-z]'*$/.test(id) ? "$" + id + "$" : id;
+  };
+  // Unicode subscript fallback for hover text (Plotly hover can't do MathJax).
+  var SUB = { "0": "₀", "1": "₁", "2": "₂", "3": "₃", "4": "₄", "5": "₅", "6": "₆", "7": "₇", "8": "₈", "9": "₉" };
+  G.plainLabel = function (id) {
+    var m = /^([A-Za-z]+)(\d+)('*)$/.exec(id);
+    if (!m) return id;
+    return m[1] + m[2].split("").map(function (c) { return SUB[c] || c; }).join("") + m[3];
+  };
+
+  function assign(dst) {
+    for (var i = 1; i < arguments.length; i++) { var s = arguments[i]; if (s) for (var k in s) if (Object.prototype.hasOwnProperty.call(s, k)) dst[k] = s[k]; }
+    return dst;
+  }
+  function normEdge(e) {
+    if (Array.isArray(e)) { var o = { u: e[0], v: e[1] }; if (e[2] && typeof e[2] === "object") assign(o, e[2]); else if (e[2] !== undefined) o.weight = e[2]; return o; }
+    return assign({}, e);
+  }
+
+  // ── build ──────────────────────────────────────────────────────────────────
+  // spec = {
+  //   verts: {id: [x, y]},            order: [ids] (optional, defaults to key order)
+  //   edges: [[u, v] | [u, v, weight] | {u, v, color, width, dash, opacity, bend, hover, arrow, weight}]
+  //   directed: bool,                 edge: fn(edgeObj) -> style overrides (per step)
+  //   vert: fn(id) -> {color, line, lineWidth, size, opacity, label, hover, symbol}
+  //   labels: bool|{id: text}         (default: true -> G.texLabel(id))
+  //   size: 24, halo: true, weights: bool (annotate edge weights at midpoints)
+  //   range: {x: [..], y: [..]}       (default: bbox + padding), pad: 0.8
+  //   annotations: [], shapes: []     (extra), pathTrace: bool (reserve a trace for tracePath)
+  //   height/width: layout size override
+  // }
+  G.build = function (spec) {
+    var C = G.colors;
+    var ids = spec.order || Object.keys(spec.verts);
+    var size = spec.size || 24;
+    var edges = (spec.edges || []).map(normEdge);
+    var data = [], annotations = [], meta = { edgeIdx: [], edgeStyles: [], edges: edges, ids: ids, size: size };
+
+    // range
+    var xs = ids.map(function (i) { return spec.verts[i][0]; }), ys = ids.map(function (i) { return spec.verts[i][1]; });
+    var pad = spec.pad !== undefined ? spec.pad : 0.8;
+    var xr = spec.range && spec.range.x || [Math.min.apply(null, xs) - pad, Math.max.apply(null, xs) + pad];
+    var yr = spec.range && spec.range.y || [Math.min.apply(null, ys) - pad, Math.max.apply(null, ys) + pad];
+    // Vertex radius in data units, for arrowhead shortening: estimate from
+    // the plot's pixel width (marker size is in px, the axis range in data).
+    var plotPx = spec.plotWidthPx || 460;
+    var rData = spec.vertRadius !== undefined ? spec.vertRadius : (size / 2) * (xr[1] - xr[0]) / plotPx * 1.15;
+
+    // edges
+    var midX = [], midY = [], midText = [];
+    edges.forEach(function (e, k) {
+      var st = assign({ color: C.edge, width: 1.6, dash: "solid", opacity: 1, bend: 0 }, e, spec.edge ? spec.edge(e, k) : null);
+      var p0 = spec.verts[e.u], p1 = spec.verts[e.v];
+      var pts = st.bend ? G.curve(p0, p1, st.bend) : [p0, p1];
+      var directed = st.arrow !== undefined ? st.arrow : !!spec.directed;
+      if (directed) {
+        // trim the last segment so the arrowhead (drawn separately) ends on
+        // the target vertex rim; the line itself stops there too.
+        var a = pts[pts.length - 2], b = pts[pts.length - 1];
+        var dx = b[0] - a[0], dy = b[1] - a[1], L = Math.sqrt(dx * dx + dy * dy) || 1;
+        var head = [b[0] - dx / L * rData, b[1] - dy / L * rData];
+        var tail = [head[0] - dx / L * Math.min(L, rData * 1.6), head[1] - dy / L * Math.min(L, rData * 1.6)];
+        pts = pts.slice(0, -1).concat([head]);
+        annotations.push({
+          x: head[0], y: head[1], ax: tail[0], ay: tail[1], xref: "x", yref: "y", axref: "x", ayref: "y",
+          showarrow: true, arrowhead: 2, arrowsize: 1.15, arrowwidth: st.width, arrowcolor: st.color,
+          opacity: st.opacity, text: "", standoff: 0
+        });
+      }
+      data.push({
+        x: pts.map(function (p) { return p[0]; }), y: pts.map(function (p) { return p[1]; }),
+        mode: "lines", line: { color: st.color, width: st.width, dash: st.dash }, opacity: st.opacity,
+        hoverinfo: "skip", showlegend: false, name: e.u + "-" + e.v
+      });
+      meta.edgeIdx.push(data.length - 1);
+      meta.edgeStyles.push({ color: st.color, width: st.width, dash: st.dash, opacity: st.opacity });
+      var mid = pts[Math.floor(pts.length / 2)];
+      if (pts.length === 2) mid = [(p0[0] + p1[0]) / 2, (p0[1] + p1[1]) / 2];
+      midX.push(mid[0]); midY.push(mid[1]);
+      var hover = st.hover !== undefined ? st.hover : (G.plainLabel(e.u) + (directed ? " → " : " — ") + G.plainLabel(e.v) + (st.weight !== undefined ? "<br>" + (WEIGHT_WORD) + " " + st.weight : ""));
+      midText.push(hover);
+      // st.weight (not e.weight): a per-step override may hide a faded edge's
+      // label by returning {weight: undefined}
+      if (spec.weights && st.weight !== undefined && st.opacity > 0.05) {
+        annotations.push({ x: mid[0], y: mid[1], text: String(st.weight), showarrow: false,
+          font: { size: 11, color: st.color === C.edgeFaded ? "#a8a29e" : "#44403c" }, bgcolor: "rgba(252,252,251,0.9)", borderpad: 1 });
+      }
+    });
+    // invisible edge midpoints: hover only (per-point hoverinfo so a hidden
+    // edge -- opacity 0, e.g. "not added yet" in a step player -- shows no
+    // empty tooltip)
+    data.push({ x: midX, y: midY, mode: "markers", marker: { size: 14, opacity: 0 }, hovertext: midText,
+      hoverinfo: meta.edgeStyles.map(function (s) { return s.opacity > 0 ? "text" : "skip"; }), showlegend: false, name: "edges" });
+    meta.midIdx = data.length - 1;
+
+    // vertices
+    var vx = [], vy = [], vColor = [], vLine = [], vLineW = [], vSize = [], vOp = [], vHover = [], vSym = [], haloColor = [];
+    ids.forEach(function (id) {
+      var st = assign({ color: C.vert, line: C.vertLine, lineWidth: 1.8, size: size, opacity: 1, symbol: "circle" }, spec.vert ? spec.vert(id) : null);
+      vx.push(spec.verts[id][0]); vy.push(spec.verts[id][1]);
+      vColor.push(st.color); vLine.push(st.line); vLineW.push(st.lineWidth); vSize.push(st.size); vOp.push(st.opacity); vSym.push(st.symbol);
+      vHover.push(st.hover !== undefined ? st.hover : G.plainLabel(id));
+      haloColor.push(st.opacity === 0 ? "rgba(0,0,0,0)" : (st.halo || (st.color === C.vert ? "rgba(42,120,214,0.10)" : G.rgba(st.color, 0.22))));
+      var lbl = st.label !== undefined ? st.label
+        : (spec.labels === false ? null : (spec.labels && typeof spec.labels === "object" ? spec.labels[id] : G.texLabel(id)));
+      if (lbl) {
+        annotations.push({ x: spec.verts[id][0], y: spec.verts[id][1], text: lbl, showarrow: false,
+          font: { size: st.labelSize || 13, color: st.labelColor || (st.color === C.vert || st.color === C.accent ? C.vertText : C.selText) }, opacity: st.opacity });
+      }
+    });
+    if (spec.halo !== false) {
+      data.push({ x: vx, y: vy, mode: "markers", marker: { size: vSize.map(function (s) { return s + 14; }), color: haloColor, line: { width: 0 } },
+        opacity: 1, hoverinfo: "skip", showlegend: false, name: "halo" });
+      meta.haloIdx = data.length - 1;
+    }
+    data.push({ x: vx, y: vy, mode: "markers", marker: { size: vSize, color: vColor, symbol: vSym, opacity: vOp, line: { color: vLine, width: vLineW } },
+      hovertext: vHover, hoverinfo: vOp.map(function (o) { return o > 0 ? "text" : "skip"; }), showlegend: false, name: "vertices",
+      hoverlabel: { bgcolor: "#1c1917", bordercolor: "#1c1917", font: { color: "#fff", size: 12 } } });
+    meta.vertIdx = data.length - 1;
+    if (spec.pathTrace) {
+      data.push({ x: [], y: [], mode: "lines", line: { color: C.red, width: 3.2, shape: "linear" }, hoverinfo: "skip", showlegend: false, name: "path" });
+      meta.pathIdx = data.length - 1;
+    }
+
+    var layout = {
+      xaxis: { visible: false, range: xr, fixedrange: true },
+      yaxis: { visible: false, range: yr, fixedrange: true, scaleanchor: "x" },
+      margin: { t: 8, b: 8, l: 8, r: 8 },
+      plot_bgcolor: C.bg, paper_bgcolor: C.bg, showlegend: false, hovermode: "closest",
+      annotations: annotations.concat(spec.annotations || []), shapes: spec.shapes || [],
+      transition: { duration: 420, easing: "cubic-in-out" }
+    };
+    if (spec.height) layout.height = spec.height;
+    return { data: data, layout: layout, meta: meta };
+  };
+
+  G.rgba = function (hex, a) {
+    var m = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(hex);
+    if (!m) return hex;
+    return "rgba(" + parseInt(m[1], 16) + "," + parseInt(m[2], 16) + "," + parseInt(m[3], 16) + "," + a + ")";
+  };
+
+  // ── draw (with transitions) ────────────────────────────────────────────────
+  G.config = { displayModeBar: false, displaylogo: false, scrollZoom: false, responsive: true };
+  G.draw = function (el, built, opts) {
+    if (typeof el === "string") el = document.getElementById(el);
+    opts = opts || {};
+    G.ready(function (Plotly) {
+      var canAnimate = el.data && el.data.length === built.data.length && !opts.noAnimate;
+      if (canAnimate) {
+        // Same trace structure as the previous step -> tween colors/widths/
+        // positions instead of snapping. Layout (annotations, shapes) is
+        // applied at the start of the frame.
+        Plotly.animate(el, { data: built.data, layout: built.layout },
+          { transition: { duration: opts.duration || 420, easing: "cubic-in-out" },
+            frame: { duration: opts.duration || 420, redraw: false } });
+      } else if (el.data) {
+        Plotly.react(el, built.data, built.layout, G.config);
+      } else {
+        Plotly.newPlot(el, built.data, built.layout, G.config);
+      }
+      el.__fpmiGraph = built;
+      if (!el.__fpmiHoverBound && opts.hover !== false) { G.attachHover(el); el.__fpmiHoverBound = true; }
+      if (opts.then) opts.then(Plotly);
+    });
+  };
+
+  // ── hover-highlight: lift a vertex's incident edges, dim the rest ──────────
+  G.attachHover = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    var restore = function () {
+      var b = el.__fpmiGraph; if (!b || !window.Plotly) return;
+      var s = b.meta.edgeStyles;
+      window.Plotly.restyle(el, {
+        "line.width": s.map(function (x) { return x.width; }),
+        "line.color": s.map(function (x) { return x.color; }),
+        "opacity": s.map(function (x) { return x.opacity; })
+      }, b.meta.edgeIdx);
+    };
+    el.on("plotly_hover", function (ev) {
+      var b = el.__fpmiGraph; if (!b || !ev.points || !ev.points.length) return;
+      var p = ev.points[0];
+      if (p.curveNumber !== b.meta.vertIdx) return;
+      var id = b.meta.ids[p.pointNumber];
+      var widths = [], colors = [], ops = [];
+      b.meta.edges.forEach(function (e, k) {
+        var st = b.meta.edgeStyles[k], inc = (e.u === id || e.v === id);
+        widths.push(inc ? Math.max(st.width * 1.9, 3) : st.width);
+        colors.push(inc ? (st.color === G.colors.edge || st.color === G.colors.edgeFaded ? G.colors.sel : st.color) : st.color);
+        ops.push(inc ? 1 : Math.min(st.opacity, 0.28));
+      });
+      window.Plotly.restyle(el, { "line.width": widths, "line.color": colors, "opacity": ops }, b.meta.edgeIdx);
+    });
+    el.on("plotly_unhover", restore);
+  };
+
+  // ── step player ────────────────────────────────────────────────────────────
+  // G.player({ container, count, render(i), autoplayMs, loop, start })
+  // Builds: [← Back] [Step i / N] [Next →] [▶ Auto]; arrow keys work while
+  // the controls have focus. render(i) is called for every step change.
+  // UI strings use the same IS_EN language switch declared at the top of
+  // this file. `o.label` still overrides the step word directly, same as
+  // before this change, for any call site that wants a custom label.
+  var PLAYER_STR = IS_EN
+    ? { back: "← Back", next: "Next →", auto: "▶ Auto", autoTitle: "Autoplay", pause: "⏸ Pause", step: "Step" }
+    : { back: "← Назад", next: "Вперёд →", auto: "▶ Авто", autoTitle: "Автовоспроизведение", pause: "⏸ Пауза", step: "Шаг" };
+  G.player = function (o) {
+    var box = typeof o.container === "string" ? document.getElementById(o.container) : o.container;
+    box.classList.add("fpmi-graph-controls");
+    box.setAttribute("tabindex", "0");
+    box.innerHTML =
+      '<button type="button" class="fg-prev">' + PLAYER_STR.back + '</button>' +
+      '<span class="fg-step"></span>' +
+      '<button type="button" class="fg-next">' + PLAYER_STR.next + '</button>' +
+      '<button type="button" class="fg-play" title="' + PLAYER_STR.autoTitle + '">' + PLAYER_STR.auto + '</button>';
+    var prev = box.querySelector(".fg-prev"), next = box.querySelector(".fg-next"), play = box.querySelector(".fg-play"), lbl = box.querySelector(".fg-step");
+    var cur = o.start || 0, timer = null, N = o.count;
+    function stop() { if (timer) { clearInterval(timer); timer = null; } play.textContent = PLAYER_STR.auto; play.classList.remove("active"); }
+    function go(i, fromAuto) {
+      if (!fromAuto) stop();
+      cur = Math.max(0, Math.min(N - 1, i));
+      lbl.textContent = (o.label || PLAYER_STR.step) + " " + (cur + 1) + " / " + N;
+      prev.disabled = cur === 0; next.disabled = cur === N - 1;
+      o.render(cur);
+    }
+    prev.addEventListener("click", function () { go(cur - 1); });
+    next.addEventListener("click", function () { go(cur + 1); });
+    play.addEventListener("click", function () {
+      if (timer) { stop(); return; }
+      play.textContent = PLAYER_STR.pause; play.classList.add("active");
+      if (cur === N - 1) go(0, true);
+      timer = setInterval(function () {
+        if (cur < N - 1) go(cur + 1, true);
+        else if (o.loop) go(0, true);
+        else stop();
+      }, o.autoplayMs || 1600);
+    });
+    box.addEventListener("keydown", function (ev) {
+      if (ev.key === "ArrowRight") { go(cur + 1); ev.preventDefault(); }
+      else if (ev.key === "ArrowLeft") { go(cur - 1); ev.preventDefault(); }
+    });
+    go(cur);
+    return { go: go, next: function () { go(cur + 1); }, prev: function () { go(cur - 1); }, current: function () { return cur; }, stop: stop };
+  };
+
+  // ── path tracer ────────────────────────────────────────────────────────────
+  // Grows the reserved path trace (spec.pathTrace) along `ids` over
+  // `duration` ms, with a moving tip. Returns a cancel function.
+  G.tracePath = function (el, verts, ids, opts) {
+    if (typeof el === "string") el = document.getElementById(el);
+    opts = opts || {};
+    var b = el.__fpmiGraph; if (!b || b.meta.pathIdx === undefined || !window.Plotly) return function () {};
+    var pts = ids.map(function (id) { return verts[id]; });
+    var segs = pts.length - 1, dur = opts.duration || 500 * segs, t0 = null, cancelled = false;
+    var style = { "line.color": opts.color || G.colors.red, "line.width": opts.width || 3.2 };
+    window.Plotly.restyle(el, style, [b.meta.pathIdx]);
+    function frame(ts) {
+      if (cancelled) return;
+      if (t0 === null) t0 = ts;
+      var f = Math.min(1, (ts - t0) / dur), pos = f * segs, k = Math.floor(pos), r = pos - k;
+      var x = [], y = [];
+      for (var i = 0; i <= Math.min(k, segs); i++) { x.push(pts[i][0]); y.push(pts[i][1]); }
+      if (k < segs) { x.push(pts[k][0] + (pts[k + 1][0] - pts[k][0]) * r); y.push(pts[k][1] + (pts[k + 1][1] - pts[k][1]) * r); }
+      window.Plotly.restyle(el, { x: [x], y: [y] }, [b.meta.pathIdx]);
+      if (f < 1) requestAnimationFrame(frame); else if (opts.done) opts.done();
+    }
+    requestAnimationFrame(frame);
+    return function () { cancelled = true; };
+  };
+  G.clearPath = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    var b = el.__fpmiGraph; if (!b || b.meta.pathIdx === undefined || !window.Plotly) return;
+    window.Plotly.restyle(el, { x: [[]], y: [[]] }, [b.meta.pathIdx]);
+  };
+
+  // Typeset \(...\) math in a caption/status element (after innerHTML update).
+  G.typeset = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    if (window.fpmiWithMathJax) window.fpmiWithMathJax(function () { if (window.MathJax && window.MathJax.typesetPromise) window.MathJax.typesetPromise([el]); else if (window.MathJax) window.MathJax.typeset([el]); });
+  };
+  G.setCaption = function (id, html) { var el = document.getElementById(id); if (!el) return; el.innerHTML = html; G.typeset(el); };
+
+  window.fpmiGraph = G;
+})();
+</script>
+<style>
+  /* Shared look for every fpmiGraph widget (see graph-helper.html). */
+  .fpmi-graph { padding: 1rem 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .fpmi-graph h2.fg-title { font-size: 16px; font-weight: 500; margin: 0 0 4px; }
+  .fpmi-graph p.fg-sub { font-size: 13px; color: #78716c; margin: 0 0 0.75rem; }
+  .fpmi-graph .fg-plot { width: 100%; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 6px 18px rgba(0,58,65,0.06); }
+  .fpmi-graph .fg-caption { font-size: 13px; color: #44403c; margin-top: 0.6rem; min-height: 1.4em; line-height: 1.5; }
+  .fpmi-graph .fg-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .fpmi-graph .fg-arrow { font-size: 26px; color: #78716c; }
+  .fpmi-graph-controls, .fpmi-graph .fg-controls { display: flex; align-items: center; gap: 10px; margin: 0.5rem 0 0.9rem; flex-wrap: wrap; outline: none; }
+  .fpmi-graph-controls button, .fpmi-graph button {
+    font-size: 13px; padding: 6px 12px; cursor: pointer; border-radius: 8px;
+    border: 1px solid #d6d3d1; background: #fff; color: #292524; transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  }
+  .fpmi-graph-controls button:hover:not(:disabled), .fpmi-graph button:hover:not(:disabled) { background: #f5f5f4; border-color: #a8a29e; }
+  .fpmi-graph-controls button:disabled, .fpmi-graph button:disabled { opacity: 0.4; cursor: default; }
+  .fpmi-graph-controls button.active, .fpmi-graph button.active { background: #eaf2fb; border-color: #2a78d6; color: #1c4a7a; font-weight: 600; box-shadow: 0 0 0 3px rgba(42,120,214,0.12); }
+  .fpmi-graph-controls .fg-step { font-size: 13px; font-weight: 600; color: #44403c; min-width: 6.5em; text-align: center; }
+  .fpmi-graph-controls:focus-within .fg-step { color: #1c4a7a; }
+  .fpmi-graph label { font-size: 13px; color: #57534e; }
+  .fpmi-graph input[type="range"] { accent-color: #2a78d6; }
+  .fpmi-graph .fg-val { font-size: 13px; font-weight: 600; min-width: 2em; display: inline-block; color: #1c4a7a; }
+  .fpmi-graph .fg-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: #57534e; margin-top: 0.4rem; }
+  .fpmi-graph .fg-legend span::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; background: var(--c, #eaf2fb); border: 1.5px solid var(--b, #1e3a8a); }
+  .fpmi-graph .fg-legend span.line::before { border-radius: 0; height: 3px; width: 18px; border: none; vertical-align: 2px; background: var(--c, #78716c); }
+</style>
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Vector spaces</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">18 October 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Draft
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This text is still being edited: the text may contain typos, inaccuracies, and locally unpolished spots. If you find something, please let the author know (contact info on the <a href="../../../../courses/02-algebra/LA/overview.html#об-этом-пособии">course page</a>).</p>
+</div>
+</div>
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<p>Suppose we have a set <span class="math inline">\(A\)</span>. Any map of the form <span class="math inline">\(A \times A \mapsto A\)</span> is called a <em>(binary) operation</em> on the set <span class="math inline">\(A\)</span>. It is important that the range of the operation not leave <span class="math inline">\(A\)</span>, i.e., that <em>closure</em> with respect to the operation hold. For example, the usual subtraction operation on the natural numbers <span class="math inline">\(\mathbb {N}\)</span> is not closed: for instance, <span class="math inline">\(6 - 9 = -3 \not\in \mathbb {N}\)</span>. On the integers, however, subtraction is clearly closed.</p>
+<p>For simplicity, let us denote the operation by a dot <span class="math inline">\(\bullet\)</span>. A set with a binary operation (closed with respect to the operation) <span class="math inline">\((A, \bullet )\)</span> is called a <em>magma</em> or <em>groupoid</em>.</p>
+<p>A magma <span class="math inline">\((A, \bullet )\)</span> is called a <em>semigroup</em> if</p>
+<ol type="1">
+<li><span class="math inline">\((a \bullet b) \bullet c = a \bullet (b \bullet c), \;  \forall a,b,c \in A\)</span>, i.e., it does not matter in what order the operation is performed. This property is called <em>associativity of the operation</em>.</li>
+</ol>
+<p>A semigroup <span class="math inline">\((A, \bullet )\)</span> is called a <em>monoid</em> if</p>
+<ol type="1">
+<li>there exists a special element <span class="math inline">\(e \in A\)</span> such that <span class="math inline">\(a \bullet e = e \bullet a = a \;  \forall a \in A\)</span>. This element is called the <em>identity element with respect to the operation <span class="math inline">\(\bullet\)</span></em>. When <span class="math inline">\(\bullet\)</span> is addition, <span class="math inline">\(e\)</span> is denoted by <span class="math inline">\(0\)</span>. When <span class="math inline">\(\bullet\)</span> is multiplication, <span class="math inline">\(e\)</span> is denoted by <span class="math inline">\(1\)</span>.</li>
+</ol>
+<p>A monoid <span class="math inline">\((A, \bullet )\)</span> is called a <em>group</em> if</p>
+<ol type="1">
+<li>every element is invertible, i.e., <span class="math inline">\(\forall a \in A \;  \exists b \in A: \;  a \bullet b= b \bullet a = e\)</span>. When <span class="math inline">\(\bullet\)</span> is addition, <span class="math inline">\(b\)</span> is denoted by <span class="math inline">\((-a)\)</span>. When <span class="math inline">\(\bullet\)</span> is multiplication, <span class="math inline">\(b\)</span> is denoted by <span class="math inline">\(a^{-1}\)</span>.</li>
+</ol>
+<p>A group <span class="math inline">\((A, \bullet )\)</span> is called an <em>abelian group</em> if</p>
+<ol type="1">
+<li>the operation <span class="math inline">\(\bullet\)</span> on <span class="math inline">\(A\)</span> is <em>commutative</em>: <span class="math inline">\(a \bullet b = b \bullet a , \;  \forall a,b \in A\)</span>.</li>
+</ol>
+<p>A set <span class="math inline">\(\mathbb {F}\)</span> with two operations, usually denoted <span class="math inline">\(+, \cdot\)</span> and called addition and multiplication, is called a <em>ring</em> if</p>
+<ul>
+<li><p><span class="math inline">\((\mathbb {F}, +)\)</span> is an abelian group under addition;</p></li>
+<li><p>addition and multiplication are compatible, namely, expansion of parentheses is compatible:</p>
+<p><span class="math display">\[
+\begin{align}  \alpha \cdot (\beta + \gamma ) &amp; = \alpha \cdot \beta + \alpha \cdot \gamma \\ (\beta + \gamma ) \cdot \alpha &amp; = \beta \cdot \alpha + \gamma \cdot \alpha \end{align}
+\]</span></p>
+<p><span class="math inline">\(\forall \alpha , \beta , \gamma \in \mathbb {F}\)</span>. This property is also called <em>distributivity</em>.</p></li>
+</ul>
+<p>A ring is called <em>commutative</em> if its multiplication is commutative. The same terminology applies to an associative ring. A commutative associative ring with a unit (an identity element for multiplication) is called a <em>field</em> if every one of its nonzero elements is invertible (under multiplication). That is, a field is a ring that is almost an abelian group under multiplication. The difference is that in an abelian group all elements must be invertible, while in a field only the nonzero elements are invertible.</p>
+<p>Put another way, a field is a set with addition and multiplication such that under addition it is an abelian group, under multiplication it is almost an abelian group (<span class="math inline">\(0\)</span> is not invertible, but otherwise all the properties hold), and addition and multiplication are linked by distributivity.</p>
+<p>Let a field <span class="math inline">\(\mathbb {F}\)</span> be given (typically <span class="math inline">\(\mathbb {R}\)</span> or <span class="math inline">\(\mathbb {C}\)</span>). We denote the identity elements of this field with respect to addition and multiplication by <span class="math inline">\(0,1\)</span>. We call the elements of this field <em>scalars</em>. A quadruple <span class="math inline">\((V, \mathbb {F},+, \cdot )\)</span>, consisting of a set <span class="math inline">\(V\)</span>, a field of scalars <span class="math inline">\(\mathbb {F}\)</span>, an addition operation <span class="math inline">\(+: V \times V \to V\)</span>, and a scalar multiplication operation <span class="math inline">\(\cdot \;  : \;  \mathbb {F} \times V \to V\)</span>, is called a <em>vector space</em> if the following conditions hold:</p>
+<ul>
+<li><p>Under addition <span class="math inline">\((V, +)\)</span> is an abelian group;</p></li>
+<li><p>For the scalar multiplication operation the following properties hold:</p>
+<ol type="1">
+<li><p><span class="math inline">\(\alpha \cdot (\beta \cdot \overrightarrow {x}) = (\alpha \cdot \beta ) \cdot \overrightarrow {x}, \quad \forall \alpha , \beta \in \mathbb {F}, \;  \forall \overrightarrow {x} \in V\)</span> (<em>associativity of scalar multiplication</em>). Note that the first and second multiplications are multiplications of a scalar by an element of <span class="math inline">\(V\)</span>, but the 3rd multiplication is multiplication of a scalar by a scalar. These operations are fundamentally different in nature (<span class="math inline">\(\mathbb {F} \times V \mapsto V\)</span> and <span class="math inline">\(\mathbb {F} \times \mathbb {F} \mapsto \mathbb {F}\)</span>), even though this is usually not marked explicitly;</p></li>
+<li><p><span class="math inline">\(1 \cdot \overrightarrow {x} = \overrightarrow {x}, \;  \forall \overrightarrow {x} \in V\)</span> (<em>unitarity</em>: multiplying by the identity element of the field <span class="math inline">\(\mathbb {F}\)</span> under multiplication preserves the vector);</p></li>
+<li><p><span class="math inline">\((\alpha + \beta ) \cdot \overrightarrow {x} = \alpha \cdot \overrightarrow {x} + \beta \cdot \overrightarrow {x}, \quad \forall \alpha , \beta \in \mathbb {F}, \;  \forall \overrightarrow {x} \in V\)</span> (distributivity of scalar multiplication with respect to addition of scalars);</p></li>
+<li><p><span class="math inline">\(\alpha \cdot (\overrightarrow {x} + \overrightarrow {y}) = \alpha \cdot \overrightarrow {x} + \alpha \cdot \overrightarrow {y}, \quad \forall \alpha \in \mathbb {F}, \;  \forall \overrightarrow {x}, \overrightarrow {y} \in V\)</span> (distributivity of scalar multiplication with respect to addition of vectors).</p></li>
+</ol></li>
+</ul>
+<p>From these properties it is easy to derive other natural properties.</p>
+<div id="expl-1" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Prove that for any <span class="math inline">\(\overrightarrow {x} \in V\)</span> we have <span class="math inline">\(0 \cdot \overrightarrow {x} = \overrightarrow {0}\)</span>, where <span class="math inline">\(0 \in \mathbb {F}\)</span> is the additive identity element in <span class="math inline">\(\mathbb {F}\)</span>, and <span class="math inline">\(\overrightarrow {0} \in V\)</span> is the additive identity element in <span class="math inline">\(V\)</span>.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(0 \cdot \overrightarrow {x} = (0 + 0) \cdot \overrightarrow {x} = 0 \cdot \overrightarrow {x} + 0 \cdot \overrightarrow {x}\)</span>, hence <span class="math display">\[
+  \overrightarrow {0} = 0 \cdot \overrightarrow {x} + \left(-\left(0 \cdot \overrightarrow {x} \right)\right) = 0 \cdot \overrightarrow {x} + 0 \cdot \overrightarrow {x} + \left(-\left(0 \cdot \overrightarrow {x} \right)\right) = 0 \cdot \overrightarrow {x}
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-2" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Prove that for any <span class="math inline">\(\overrightarrow {x} \in V\)</span> we have <span class="math inline">\((-1) \cdot \overrightarrow {x} = -\overrightarrow {x}\)</span>, where <span class="math inline">\((-1) \in \mathbb {F}\)</span> is the additive inverse of the multiplicative identity element <span class="math inline">\(1\)</span> of the field <span class="math inline">\(\mathbb {F}\)</span>, and <span class="math inline">\(-\overrightarrow {x} \in V\)</span> is the additive inverse of <span class="math inline">\(\overrightarrow {x} \in V\)</span>.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>We have <span class="math display">\[
+  \overrightarrow {0} = \left(1 + (- 1)\right) \overrightarrow {x} = 1 \cdot \overrightarrow {x} + (-1)\cdot \overrightarrow {x} = \overrightarrow {x} + (-1)\cdot \overrightarrow {x}.
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Typically, when one speaks of a vector space <span class="math inline">\((V, \mathbb {F},+, \cdot )\)</span>, it is denoted simply by <span class="math inline">\(V\)</span>, since it is usually clear from context over which field it is defined and how its operations are introduced.</p>
+<p>In this chapter, unless stated otherwise, we use the field of real numbers.</p>
+</section>
+<section id="examples-of-spaces.-basis-and-dimension" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Examples of spaces. Basis and dimension</h1>
+<div id="expl-3" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\(\mathbb {R}^{n}\)</span> be the set of columns of <span class="math inline">\(n\)</span> real numbers: <span class="math display">\[
+  \mathbb {R}^{n} := \left\{ \begin{bmatrix}  x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix} \quad : \quad x_i \in \mathbb {R}, \;  \forall i \in \left\{ 1, \ldots , n\right\} \right\} .
+\]</span> Addition and scalar multiplication by elements of <span class="math inline">\(\mathbb {R}\)</span> are introduced componentwise. Show that <span class="math inline">\((\mathbb {R}^{n}, \mathbb {R}, + , \cdot )\)</span> is a vector space.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Both operations are closed: the sum of two columns of <span class="math inline">\(n\)</span> real numbers and the product of a column by a real number are again columns of <span class="math inline">\(n\)</span> real numbers.</p>
+<p>All the axioms are checked componentwise and reduce to the corresponding properties of the field <span class="math inline">\(\mathbb {R}\)</span>. For example, commutativity of addition: the <span class="math inline">\(i\)</span>-th component of <span class="math inline">\(\overrightarrow {x} + \overrightarrow {y}\)</span> equals <span class="math inline">\(x_i + y_i = y_i + x_i\)</span>, i.e., the <span class="math inline">\(i\)</span>-th component of <span class="math inline">\(\overrightarrow {y} + \overrightarrow {x}\)</span>, and this holds for every <span class="math inline">\(i\)</span>. Associativity of addition, both distributivity laws, associativity of scalar multiplication, and unitarity (<span class="math inline">\(1 \cdot \overrightarrow {x} = \overrightarrow {x}\)</span>, since <span class="math inline">\(1 \cdot x_i = x_i\)</span>) are verified analogously.</p>
+<p>The additive identity element is the zero column <span class="math inline">\(\overrightarrow {0} = \left[\begin{smallmatrix}  0 &amp;  \cdots &amp;  0 \end{smallmatrix}\right]^T\)</span>, and the additive inverse of <span class="math inline">\(\overrightarrow {x}\)</span> is the column <span class="math inline">\(-\overrightarrow {x}\)</span> of numbers <span class="math inline">\(-x_i\)</span>. Altogether <span class="math inline">\((\mathbb {R}^{n}, +)\)</span> is an abelian group, and all the properties of scalar multiplication hold.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-4" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\(C[0,1]\)</span> be the set of continuous real-valued functions on <span class="math inline">\([0,1]\)</span>. Addition and scalar multiplication by elements of <span class="math inline">\(\mathbb {R}\)</span> are introduced in the obvious way. Show that <span class="math inline">\((C[0,1], \mathbb {R}, + , \cdot )\)</span> is a vector space.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>The operations are introduced pointwise: <span class="math inline">\((f + g)(t) := f(t) + g(t)\)</span>, <span class="math inline">\((\alpha f)(t) := \alpha f(t)\)</span>. The key point is closure: from calculus it is known that the sum of two continuous functions and the product of a continuous function by a number are continuous, i.e., the operations do not take us outside <span class="math inline">\(C[0,1]\)</span>.</p>
+<p>All the axioms are checked pointwise and reduce to the properties of <span class="math inline">\(\mathbb {R}\)</span> — at each point <span class="math inline">\(t \in [0,1]\)</span> the reasoning is the same as for the components in the example with <span class="math inline">\(\mathbb {R}^{n}\)</span>. The identity element is the identically zero function (it is continuous), and the inverse of <span class="math inline">\(f\)</span> is the function <span class="math inline">\(-f\)</span> (also continuous).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-5" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 5
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Show that if <span class="math inline">\(\mathbb {R}\)</span> is replaced by <span class="math inline">\(\mathbb {C}\)</span> in the previous examples, we again obtain vector spaces.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>In the checks above we nowhere used any specific properties of the real numbers — only the fact that <span class="math inline">\(\mathbb {R}\)</span> is a field: associativity and commutativity of addition and multiplication, distributivity, and the existence of <span class="math inline">\(0\)</span>, <span class="math inline">\(1\)</span>, and inverse elements. <span class="math inline">\(\mathbb {C}\)</span> is also a field, so all the reasoning carries over verbatim: <span class="math inline">\(\mathbb {C}^{n}\)</span> (columns of <span class="math inline">\(n\)</span> complex numbers) and the space of continuous complex-valued functions on <span class="math inline">\([0,1]\)</span> are vector spaces over <span class="math inline">\(\mathbb {C}\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-6" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 6
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-28" class="callout-28-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>In this example we consider various sets of sequences of real numbers. For each of them we must check whether it is a vector space. Addition and scalar multiplication are defined componentwise in each example.</p>
+<ol type="1">
+<li><p><span class="math inline">\(\mathbb {R}^{\infty }:= \left\{ (x_1, x_2, \ldots ) \;  : \;  x_i \in \mathbb {R}, \;  \forall i \in \mathbb {N}\right\}\)</span> — the space of all sequences of real numbers;</p></li>
+<li><p><span class="math inline">\(\left\{ (x_1, x_2, \ldots ) \;  : \;  x_i \in \mathbb {R}, \;  \forall i \in \mathbb {N}; \quad \sup_{n}x_n &lt; \infty \right\}\)</span> — the space of sequences of real numbers bounded above;</p></li>
+<li><p><span class="math inline">\(l^{\infty }:= \left\{ (x_1, x_2, \ldots ) \;  : \;  x_i \in \mathbb {R}, \;  \forall i \in \mathbb {N}; \quad \sup_{n}\left|x_n\right| &lt; \infty \right\}\)</span> — the space of bounded sequences of real numbers;</p></li>
+<li><p><span class="math inline">\(c:= \left\{ (x_1, x_2, \ldots ) \;  : \;  x_i \in \mathbb {R}, \;  \forall i \in \mathbb {N}; \quad \exists \lim_{n \to \infty }x_n\right\}\)</span> — the space of convergent sequences of real numbers;</p></li>
+<li><p><span class="math inline">\(\left\{ (x_1, x_2, \ldots ) \;  : \;  x_i \in \mathbb {R}, \;  \forall i \in \mathbb {N}; \quad \lim_{n \to \infty }x_n = 1\right\}\)</span> — the space of sequences of real numbers converging to one;</p></li>
+<li><p><span class="math inline">\(c_0:= \left\{ (x_1, x_2, \ldots ) \;  : \;  x_i \in \mathbb {R}, \;  \forall i \in \mathbb {N}; \quad \lim_{n \to \infty }x_n = 0\right\}\)</span> — the space of sequences of real numbers converging to zero;</p></li>
+<li><p><span class="math inline">\(c_{00}:= \left\{ (x_1, x_2, \ldots ) \;  : \;  x_i \in \mathbb {R}, \;  \forall i \in \mathbb {N}; \quad \exists N \in \mathbb {N}: \forall n &gt; N \;  x_n = 0 \right\}\)</span> — the space of sequences of real numbers that are equal to zero from some index onward.</p></li>
+</ol>
+<p>(Spaces of sequences)</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>In every item the vector space axioms (associativity, distributivity, etc.) hold automatically, since the operations are componentwise — the only question is <strong>closure</strong> with respect to addition and scalar multiplication (and the existence of a zero element, which follows from closure under multiplication by <span class="math inline">\(0\)</span>).</p>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>1.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Yes: the sum of any two sequences and the product of a sequence by a number are again sequences, with no additional conditions.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>2.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>No: there is no closure under multiplication by a negative scalar. For example, <span class="math inline">\(\overrightarrow {x} = (-1, -2, -3, \ldots )\)</span> is bounded above, but <span class="math inline">\((-1) \cdot \overrightarrow {x} = (1, 2, 3, \ldots )\)</span> is not.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>3.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Yes: if <span class="math inline">\(\sup_n \left|x_n\right| = M_x &lt; \infty\)</span> and <span class="math inline">\(\sup_n \left|y_n\right| = M_y &lt; \infty\)</span>, then <span class="math inline">\(\left|x_n + y_n\right| \leq M_x + M_y\)</span> and <span class="math inline">\(\left|\alpha x_n\right| \leq \left|\alpha \right| M_x\)</span> for all <span class="math inline">\(n\)</span>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>4.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Yes: by the arithmetic of limits, if <span class="math inline">\(x_n \to a\)</span> and <span class="math inline">\(y_n \to b\)</span>, then <span class="math inline">\(x_n + y_n \to a + b\)</span> and <span class="math inline">\(\alpha x_n \to \alpha a\)</span>, i.e., sums and scalar multiples of convergent sequences converge.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>5.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>No: if <span class="math inline">\(x_n \to 1\)</span> and <span class="math inline">\(y_n \to 1\)</span>, then <span class="math inline">\(x_n + y_n \to 2 \neq 1\)</span>. (Also, this set has no zero element: the zero sequence converges to <span class="math inline">\(0\)</span>, not to <span class="math inline">\(1\)</span>.)</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>6.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Yes: the same reasoning as in item 4, with <span class="math inline">\(a = b = 0\)</span>: <span class="math inline">\(x_n + y_n \to 0\)</span>, <span class="math inline">\(\alpha x_n \to 0\)</span>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>7.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Yes: if <span class="math inline">\(x_n = 0\)</span> for <span class="math inline">\(n &gt; N_x\)</span> and <span class="math inline">\(y_n = 0\)</span> for <span class="math inline">\(n &gt; N_y\)</span>, then <span class="math inline">\(x_n + y_n = 0\)</span> for <span class="math inline">\(n &gt; \max \left\{ N_x, N_y\right\}\)</span>, and <span class="math inline">\(\alpha x_n = 0\)</span> for <span class="math inline">\(n &gt; N_x\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-27" class="callout-27-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>1.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Yes;</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>2.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>No;</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>3.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Yes;</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>4.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Yes;</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>5.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>No;</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>6.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Yes;</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>7.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Yes.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>A nonempty subset <span class="math inline">\(U \subseteq V\)</span> of a vector space <span class="math inline">\(V\)</span> is called a <em>subspace</em> if it is closed with respect to the operations:</p>
+<ul>
+<li><p><span class="math inline">\(\overrightarrow {x} + \overrightarrow {y} \in U, \;  \forall \overrightarrow {x}, \overrightarrow {y} \in U\)</span>;</p></li>
+<li><p><span class="math inline">\(\alpha \cdot \overrightarrow {x} \in U, \;  \forall \alpha \in \mathbb {F}, \forall \overrightarrow {x} \in U\)</span>.</p></li>
+</ul>
+<div id="expl-7" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 7
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-30" class="callout-30-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Prove that a subspace is closed with respect to taking the inverse element, i.e., for any <span class="math inline">\(\overrightarrow {x}\in U\)</span> we have <span class="math inline">\((-\overrightarrow {x}) \in U\)</span>.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-29" class="callout-29-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>We have <span class="math inline">\(-\overrightarrow {x} = (-1) \cdot \overrightarrow {x}\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-8" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 8
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-32" class="callout-32-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Consider the spaces <span class="math inline">\(\mathbb {R}^{\infty }, c, c_0, c_{00}, l^{\infty }\)</span>. Which is a subspace of which?</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-31" class="callout-31-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>We have <span class="math inline">\(c_{00} \subset c_{0} \subset c \subset l^{\infty } \subset \mathbb {R}^{\infty }\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-def no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-1" class="definition theorem">
+<p><span class="theorem-title"><strong>Definition 1</strong></span> Let <span class="math inline">\(V\)</span> be some space over a field <span class="math inline">\(\mathbb {F}\)</span>. A collection of vectors <span class="math inline">\(B \subset V\)</span> (finite or infinite) is called <em>linearly independent</em> if every (<strong>finite</strong>) linear combination of its elements that equals the zero vector is trivial. That is, <span class="math inline">\(\forall n \in \mathbb {N}, \;  \forall \left\{ \overrightarrow {v}_i\right\}_{i=1}^n \subset B\)</span> and for any collection of scalars <span class="math inline">\(\left\{ \alpha_i\right\}_{i=1}^n\)</span> such that <span class="math inline">\(\alpha_1\overrightarrow {v}_1 + \ldots + \alpha_n \overrightarrow {v}_n = \overrightarrow {0}\)</span>, we have <span class="math inline">\(\alpha_1 = \cdots = \alpha_n = 0\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-9" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-34-contents" aria-controls="callout-34" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 9
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-34" class="callout-34-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Find some linearly independent collections of vectors in <span class="math inline">\(\mathbb {R}^{n}\)</span>.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-33" class="callout-33-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>For example, <span class="math inline">\(\left\{ \overrightarrow {e}_i\right\}_{i=1}^n\)</span>, where <span class="math inline">\(\overrightarrow {e}_i\)</span> is the column with <span class="math inline">\(1\)</span> in position <span class="math inline">\(i\)</span> and zeros elsewhere.</p>
+<p>Any subset of <span class="math inline">\(\left\{ \overrightarrow {e}_i\right\}_{i = 1}^n\)</span> also works.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-10" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-36-contents" aria-controls="callout-36" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 10
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-36" class="callout-36-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Consider the spaces <span class="math inline">\(\mathbb {R}^{\infty }, c, c_0, c_{00}, l^{\infty }\)</span>. Find linearly independent collections there.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-35-contents" aria-controls="callout-35" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-35" class="callout-35-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>For example, <span class="math inline">\(\left\{ \overrightarrow {e}_i\right\}_{i \in \mathbb {N}}\)</span>, where <span class="math inline">\(\overrightarrow {e}_i\)</span> is the sequence with <span class="math inline">\(1\)</span> in position <span class="math inline">\(i\)</span> and zeros elsewhere.</p>
+<p>Any subset of <span class="math inline">\(\left\{ \overrightarrow {e}_i\right\}_{i \in \mathbb {N}}\)</span> also works.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-def no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-2" class="definition theorem">
+<p><span class="theorem-title"><strong>Definition 2</strong></span> Recall that for a collection <span class="math inline">\(B\)</span> of vectors, the <em>linear span</em> is the set of all possible finite linear combinations of them. Notation: <span class="math inline">\(\left\langle B\right\rangle\)</span> or <span class="math inline">\(\operatorname {span}(B)\)</span>. We also say that <span class="math inline">\(B\)</span> <em>spans</em> <span class="math inline">\(\left\langle B\right\rangle\)</span>.</p>
+<p>It is easy to show that the linear span of a set of vectors is the smallest (under inclusion) vector space containing those vectors.</p>
+<p>For a vector space, a <em>basis</em> is any linearly independent system of vectors that spans the space.</p>
+<p>If a space <span class="math inline">\(V\)</span> has a finite basis, the space is called <em>finite-dimensional</em>. If this basis has <span class="math inline">\(n\)</span> vectors, we say that the <em>dimension</em> of <span class="math inline">\(V\)</span> equals <span class="math inline">\(n\)</span> and write <span class="math inline">\(\operatorname {dim}(V) = n\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<p>It is easy to prove that if a space has at least one finite basis, then all its other bases are also finite, and the number of vectors in all of them is the same. Thus, the dimension of a finite-dimensional space is well defined.</p>
+<div id="expl-11" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-39-contents" aria-controls="callout-39" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 11
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-39" class="callout-39-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\(\mathbb {R}^{m \times n}\)</span> be the space of <span class="math inline">\(m \times n\)</span> matrices. Find a finite basis for this space. What is the dimension of this space? What will the coefficients of the expansion of an arbitrary matrix <span class="math inline">\(A \in \mathbb {R}^{m \times n}\)</span> in the found basis be equal to?</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-37-contents" aria-controls="callout-37" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-37" class="callout-37-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Consider the <em>matrix units</em> <span class="math inline">\(E^{(i,j)} \in \mathbb {R}^{m \times n}\)</span>, <span class="math inline">\(i \in \left\{ 1, \ldots , m\right\}\)</span>, <span class="math inline">\(j \in \left\{ 1, \ldots , n\right\}\)</span>: the matrix <span class="math inline">\(E^{(i,j)}\)</span> has <span class="math inline">\(1\)</span> in position <span class="math inline">\((i,j)\)</span> and zeros everywhere else. Any matrix expands uniquely in terms of them: <span class="math display">\[
+  A = \sum _{i=1}^{m} \sum _{j=1}^{n} a_{i,j} \cdot E^{(i,j)},
+\]</span> i.e., the collection <span class="math inline">\(\left\{ E^{(i,j)}\right\}\)</span> spans <span class="math inline">\(\mathbb {R}^{m \times n}\)</span>, and the expansion coefficients are exactly the entries of the matrix <span class="math inline">\(a_{i,j}\)</span>. Linear independence: if <span class="math inline">\(\sum_{i,j} \alpha_{i,j} E^{(i,j)} = O\)</span>, then, looking at position <span class="math inline">\((i,j)\)</span> of the left-hand side, we get <span class="math inline">\(\alpha_{i,j} = 0\)</span> for all <span class="math inline">\(i, j\)</span>. Altogether this is a basis, and <span class="math display">\[
+  \dim \mathbb {R}^{m \times n} = mn
+\]</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-38-contents" aria-controls="callout-38" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-38" class="callout-38-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>The dimension equals <span class="math inline">\(mn\)</span>; the basis is given by the matrix units <span class="math inline">\(E^{(i,j)}\)</span>, and the expansion coefficients are the entries of the matrix <span class="math inline">\(a_{i,j}\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-12" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-41-contents" aria-controls="callout-41" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 12
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-41" class="callout-41-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Consider the spaces <span class="math inline">\(\mathbb {R}^{\infty }, c, c_0, c_{00}, l^{\infty }\)</span>. For which of them is the collection <span class="math inline">\(\left\{ \overrightarrow {e}_i\right\}_{i=1}^{\infty }\)</span> a basis?</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-40-contents" aria-controls="callout-40" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-40" class="callout-40-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Only for <span class="math inline">\(c_{00}\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Typically, the vectors in a basis are ordered. That is, a basis is spoken of as an ordered collection.</p>
+<div id="expl-cstmProblem-20.6" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-48-contents" aria-controls="callout-48" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example (Problem 20.6)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-48" class="callout-48-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Determine whether the given set of square matrices of order <span class="math inline">\(n\)</span> is a linear subspace of the space of all square matrices of order <span class="math inline">\(n\)</span>, and if it is, find its dimension:</p>
+<ol type="1">
+<li><p>the set of matrices with zero first row</p></li>
+<li><p>the set of diagonal matrices</p></li>
+<li><p>the set of upper triangular matrices</p></li>
+<li><p>the set of skew-symmetric matrices</p></li>
+<li><p>the set of nonsingular matrices</p></li>
+</ol>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-47-contents" aria-controls="callout-47" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-47" class="callout-47-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>1.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Yes; the dimension equals <span class="math inline">\(n(n - 1)\)</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>2.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Yes; the dimension equals <span class="math inline">\(n\)</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>3.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Yes; the dimension equals <span class="math inline">\(n(n+1) / 2\)</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>4.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Yes; the dimension equals <span class="math inline">\(n(n - 1) / 2\)</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>5.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>No, since</p>
+<p><span class="math display">\[
+  \begin{bmatrix}  1 &amp;  0 \\ 0 &amp;  1 \end{bmatrix} + \begin{bmatrix}  -1 &amp;  0 \\ 0 &amp;  1 \end{bmatrix} = \begin{bmatrix}  0 &amp;  0 \\ 0 &amp;  1 \end{bmatrix}
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-cstmProblem-20.8" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-57-contents" aria-controls="callout-57" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example (Problem 20.8)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-57" class="callout-57-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Prove that for any natural number <span class="math inline">\(n\)</span> the given set of functions forms a finite-dimensional vector space; find the dimension and give a basis for this space:</p>
+<ol type="1">
+<li><p>the set of polynomials of degree at most <span class="math inline">\(n\)</span> (denoted <span class="math inline">\(\left. \mathcal{P}^{(n)}\right)\)</span></p></li>
+<li><p>the set of even polynomials of degree at most <span class="math inline">\(n\)</span></p></li>
+<li><p>the set of odd polynomials of degree at most <span class="math inline">\(n\)</span></p></li>
+</ol>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-52-contents" aria-controls="callout-52" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-52" class="callout-52-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>In all three cases closure is obvious: the sum of polynomials of degree at most <span class="math inline">\(n\)</span> and a scalar multiple of such a polynomial are again a polynomial of degree at most <span class="math inline">\(n\)</span>, and evenness/oddness (i.e., having only even/only odd powers of <span class="math inline">\(t\)</span>) is preserved under these operations.</p>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>1.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The monomials <span class="math inline">\(1, t, \ldots , t^n\)</span> span <span class="math inline">\(\mathcal{P}^{(n)}\)</span> by the definition of a polynomial. Linear independence: if the polynomial <span class="math inline">\(\alpha_0 + \alpha_1 t + \ldots + \alpha_n t^n\)</span> is identically zero (as a function), then all its coefficients are zero (a nonzero polynomial of degree <span class="math inline">\(\leq n\)</span> has at most <span class="math inline">\(n\)</span> roots). Altogether this is a basis, of dimension <span class="math inline">\(n + 1\)</span>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>2.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A polynomial is an even function if and only if all its nonzero coefficients stand at even powers (compare the coefficients of <span class="math inline">\(f(t)\)</span> and <span class="math inline">\(f(-t)\)</span>). Hence the even polynomials of degree at most <span class="math inline">\(n\)</span> are exactly the linear combinations of the monomials <span class="math inline">\(1, t^2, \ldots , t^{2k}\)</span>, <span class="math inline">\(k = [n/2]\)</span>, and they are linearly independent as a subset of the basis from item 1. The dimension is <span class="math inline">\(k + 1 = [n/2] + 1\)</span>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>3.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Similarly: oddness is equivalent to the nonzero coefficients standing only at odd powers. Basis <span class="math inline">\(t, t^3, \ldots , t^{2k-1}\)</span>, <span class="math inline">\(k = [(n+1)/2]\)</span>; dimension <span class="math inline">\([(n+1)/2]\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-56-contents" aria-controls="callout-56" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-56" class="callout-56-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>1.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The dimension equals <span class="math inline">\(n + 1\)</span>; basis: <span class="math inline">\(1, t, t^{2}, \ldots , t^{n}\)</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>2.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The dimension equals <span class="math inline">\([n / 2]+1\)</span>; basis: <span class="math inline">\(1, t^{2}, \ldots , t^{2 k}(k = [n / 2])\)</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>3.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The dimension equals <span class="math inline">\([(n+1) / 2]\)</span>; basis: <span class="math inline">\(t\)</span>, <span class="math inline">\(t^{3}, \ldots , t^{2 k - 1}(k = [(n+1) / 2])\)</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-LinSp:Polynoms" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-59-contents" aria-controls="callout-59" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example (Problem 20.8)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-59" class="callout-59-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\(x_0 \in \mathbb {R}\)</span> be an arbitrary fixed number. Prove that the polynomials of the form <span class="math display">\[
+  1, x - x_0, (x-x_0)^2, (x-x_0)^3, \ldots , (x-x_0)^n
+\]</span> form a basis in the space of polynomials of degree at most <span class="math inline">\(n\)</span>, and find the coordinate column of the polynomial <span class="math display">\[
+  f(x) = a_0 + a_1x + \ldots + a_nx^n
+\]</span> in this basis.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-58-contents" aria-controls="callout-58" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-58" class="callout-58-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>If <span class="math display">\[
+  f(x) = a_0 + a_1x + \ldots + a_nx^n = b_0 + b_1(x-x_0) + b_2(x-x_0)^2 + \ldots + b_n(x-x_0)^n,
+\]</span> then <span class="math inline">\(b_k = \frac{f^{(k)}(x_0)}{k!}, \;  k \in \left\{ 0, \ldots , n\right\}\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Let <span class="math inline">\(V, V'\)</span> be two vector spaces over the same field <span class="math inline">\(\mathbb {F}\)</span>. A map <span class="math inline">\(f: V \to V'\)</span> is called an <em>isomorphism</em> if it is bijective and preserves the operations:</p>
+<ul>
+<li><p><span class="math inline">\(f\)</span> is one-to-one;</p></li>
+<li><p><span class="math inline">\(f(\overrightarrow {x} + \overrightarrow {y}) = f(\overrightarrow {x}) + f(\overrightarrow {y}), \;  \forall \overrightarrow {x}, \overrightarrow {y} \in V\)</span>;</p></li>
+<li><p><span class="math inline">\(f(\lambda \overrightarrow {x}) = \lambda f(\overrightarrow {x}), \;  \forall \lambda \in \mathbb {F}, \;  \forall \overrightarrow {x} \in V\)</span>.</p></li>
+</ul>
+<p>Any finite-dimensional space <span class="math inline">\(V\)</span> over <span class="math inline">\(\mathbb {F}\)</span> of dimension <span class="math inline">\(n\)</span> is isomorphic to <span class="math inline">\(\mathbb {F}^n\)</span>. Indeed, choose a basis <span class="math inline">\(\overrightarrow {e}_1, \ldots , \overrightarrow {e_n}\)</span> in <span class="math inline">\(V\)</span>. Let <span class="math inline">\(\overrightarrow {x}\)</span> be an arbitrary vector from <span class="math inline">\(V\)</span>. It turns out that <span class="math inline">\(\overrightarrow {x}\)</span> is uniquely represented in the form</p>
+<p><span class="math display">\[
+  \overrightarrow {x} = \alpha _1\overrightarrow {e}_1 + \ldots + \alpha _n \overrightarrow {e}_n, \quad \alpha _1, \ldots , \alpha _n \in \mathbb {F}
+\]</span></p>
+<p>Then define the map <span class="math inline">\(f\)</span> as follows: to <span class="math inline">\(\overrightarrow {x}\)</span> assign the column of its coordinates in the basis <span class="math inline">\(\left\{ \overrightarrow {e}_i\right\}\)</span>:</p>
+<p><span class="math display">\[
+  f(\overrightarrow {x}) := \left[\begin{smallmatrix}  \alpha _1 \\ \vdots \\ \alpha _n \end{smallmatrix}\right]
+\]</span></p>
+<p>It is easy to check that <span class="math inline">\(f\)</span> is indeed an isomorphism from <span class="math inline">\(V\)</span> to <span class="math inline">\(\mathbb {F}^n\)</span>. Such an isomorphism for a finite-dimensional space is called <em>canonical</em>.</p>
+<p>Note that the isomorphism above depends on the basis chosen in <span class="math inline">\(V\)</span>. For example, consider <a href="#expl-LinSp:Polynoms">the example with polynomials</a>. There, besides the obvious basis <span class="math inline">\(1, x, \ldots , x^n\)</span>, another basis is considered. It is clear that for some fixed polynomial <span class="math inline">\(P_k\)</span> of degree <span class="math inline">\(k \leq n\)</span> the coordinates in one basis and in the other will differ.</p>
+<div id="expl-LinSp:BasisExer" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-62-contents" aria-controls="callout-62" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example (Problem 20.14(5))
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-62" class="callout-62-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Find the dimension and a basis of the linear span of the given system of columns: <span class="math inline">\(\overrightarrow {c}_{166}, \overrightarrow {c}_{198}, \overrightarrow {c}_{199}, \overrightarrow {c}_{201}\)</span>. Matrices and vectors: <span class="math inline">\(\overrightarrow {c}_{166} = \left[\begin{smallmatrix}  1 \\ 1 \\ 1 \\ 1 \end{smallmatrix}\right], \overrightarrow {c}_{198} = \left[\begin{smallmatrix}  1 \\ 1 \\ 1 \\ 3 \end{smallmatrix}\right], \overrightarrow {c}_{199} = \left[\begin{smallmatrix}  3 \\ - 5 \\ 7 \\ 2 \end{smallmatrix}\right], \overrightarrow {c}_{201} = \left[\begin{smallmatrix}  1 \\ - 7 \\ 5 \\ - 2 \end{smallmatrix}\right]\)</span>.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-60-contents" aria-controls="callout-60" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-60" class="callout-60-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Recall that the linear span of columns does not change under elementary transformations of the columns. We have</p>
+<p><span class="math display">\[
+  \begin{aligned}  \begin{bmatrix}  \overrightarrow {c}_{166} &amp;  \overrightarrow {c}_{198} &amp;  \overrightarrow {c}_{199} &amp;  \overrightarrow {c}_{201} \end{bmatrix} &amp;  = \begin{bmatrix}  1 &amp;  1 &amp;  3 &amp;  1 \\ 1 &amp;  1 &amp;  -5 &amp;  -7 \\ 1 &amp;  1 &amp;  7 &amp;  5 \\ 1 &amp;  3 &amp;  2 &amp;  -2 \end{bmatrix} \\ &amp;  \mathrel {\leadsto } \begin{bmatrix}  1 &amp;  0 &amp;  0 &amp;  0 \\ 1 &amp;  0 &amp;  -8 &amp;  -8 \\ 1 &amp;  0 &amp;  4 &amp;  4 \\ 1 &amp;  2 &amp;  -1 &amp;  -3 \end{bmatrix} \\ &amp;  \mathrel {\leadsto } \begin{bmatrix}  1 &amp;  0 &amp;  0 &amp;  0 \\ 1 &amp;  -8 &amp;  -8 &amp;  0 \\ 1 &amp;  4 &amp;  4 &amp;  0 \\ 1 &amp;  -3 &amp;  -1 &amp;  2 \end{bmatrix} \\ &amp;  \mathrel {\leadsto } \begin{bmatrix}  1 &amp;  0 &amp;  0 &amp;  0 \\ 1 &amp;  -8 &amp;  0 &amp;  0 \\ 1 &amp;  4 &amp;  0 &amp;  0 \\ 1 &amp;  -3 &amp;  2 &amp;  2 \end{bmatrix} \\ &amp;  \mathrel {\leadsto } \begin{bmatrix}  1 &amp;  0 &amp;  0 &amp;  0 \\ 1 &amp;  -8 &amp;  0 &amp;  0 \\ 1 &amp;  4 &amp;  0 &amp;  0 \\ 1 &amp;  -3 &amp;  2 &amp;  0 \end{bmatrix} \end{aligned}
+\]</span></p>
+<p>We brought the matrix to column echelon form. The rank of the matrix equals <span class="math inline">\(3\)</span>, and this is the dimension of the space. As a basis one may take the nonzero columns of the echelon form, since there are exactly <span class="math inline">\(3\)</span> of them and they are linearly independent.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-61-contents" aria-controls="callout-61" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-61" class="callout-61-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>The dimension equals <span class="math inline">\(3\)</span>; basis: <span class="math display">\[
+  \begin{bmatrix}  1 \\ 1 \\ 1 \\ 1 \end{bmatrix}, \qquad \begin{bmatrix}  0 \\ -8 \\ 4 \\ -3 \end{bmatrix}, \qquad \begin{bmatrix}  0 \\ 0 \\ 0 \\ 2 \end{bmatrix}.
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-cstmProblem-20.23-6" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-66-contents" aria-controls="callout-66" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example (Problem 20.23(6))
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-66" class="callout-66-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Set up a system of equations defining the linear span of the given system of columns: <span class="math inline">\(\overrightarrow {c}_{166}, \overrightarrow {c}_{198}, \overrightarrow {c}_{199}, \overrightarrow {c}_{201}\)</span>. Matrices and vectors: <span class="math inline">\(\overrightarrow {c}_{166} = \left[\begin{smallmatrix}  1 \\ 1 \\ 1 \\ 1 \end{smallmatrix}\right], \overrightarrow {c}_{198} = \left[\begin{smallmatrix}  1 \\ 1 \\ 1 \\ 3 \end{smallmatrix}\right], \overrightarrow {c}_{199} = \left[\begin{smallmatrix}  3 \\ - 5 \\ 7 \\ 2 \end{smallmatrix}\right], \overrightarrow {c}_{201} = \left[\begin{smallmatrix}  1 \\ - 7 \\ 5 \\ - 2 \end{smallmatrix}\right]\)</span>.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-64-contents" aria-controls="callout-64" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-64" class="callout-64-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>The linear span is always a vector space, i.e., it contains the zero vector <span class="math inline">\(\overrightarrow {0}\)</span>. Hence <span class="math inline">\(\overrightarrow {0}\)</span> is one of the solutions of the desired system, and so the system must be homogeneous: <span class="math inline">\(A \overrightarrow {x} = \overrightarrow {0}\)</span>. We need to find the matrix <span class="math inline">\(A\)</span>.</p>
+<div class="callout callout-style-default callout-enum-item callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Enum-item</span>1.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Let us check the rank of the given system. Write the columns as rows and bring the matrix to echelon form.</p>
+<p><span class="math display">\[
+  \begin{bmatrix}  \overrightarrow {c}^T_{166} \\ \overrightarrow {c}^T_{198} \\ \overrightarrow {c}^T_{199} \\ \overrightarrow {c}^T_{201} \end{bmatrix} = \begin{bmatrix}  1 &amp;  1 &amp;  1 &amp;  1 \\ 1 &amp;  1 &amp;  1 &amp;  3 \\ 3 &amp;  -5 &amp;  7 &amp;  2 \\ 1 &amp;  -7 &amp;  5 &amp;  -2 \end{bmatrix} \mathrel {\leadsto } \cdots \mathrel {\leadsto } \begin{bmatrix}  1 &amp;  1 &amp;  1 &amp;  1 \\ 0 &amp;  -8 &amp;  4 &amp;  -3 \\ 0 &amp;  0 &amp;  0 &amp;  2 \\ 0 &amp;  0 &amp;  0 &amp;  0 \end{bmatrix}
+\]</span></p>
+<p>The dimension of the linear span equals 3, and a basis may be given by the following vectors:</p>
+<p><span class="math display">\[
+  \begin{bmatrix}  1 \\ 1 \\ 1 \\ 1 \end{bmatrix}, \qquad \begin{bmatrix}  0 \\ -8 \\ 4 \\ -3 \end{bmatrix}, \qquad \begin{bmatrix}  0 \\ 0 \\ 0 \\ 2 \end{bmatrix}.
+\]</span></p>
+<p>For details, see <a href="#expl-LinSp:BasisExer">the worked problem 20.14(5)</a>.</p>
+<p>So, for the desired system we have a fundamental matrix:</p>
+<p><span class="math display">\[
+  \Phi = \begin{bmatrix}  1 &amp;  0 &amp;  0 \\ 1 &amp;  -8 &amp;  0 \\ 1 &amp;  4 &amp;  0 \\ 1 &amp;  -3 &amp;  2 \end{bmatrix}
+\]</span></p>
+<p>We need to obtain the coefficient matrix <span class="math inline">\(A\)</span>.</p>
+<p>Recall that if <span class="math inline">\(\Phi\)</span> is a fundamental matrix of the HSLE <span class="math inline">\(A\overrightarrow {x} = \overrightarrow {0}\)</span>, then the system <span class="math inline">\(\Phi^T \overrightarrow {y} = \overrightarrow {0}\)</span> defines the linear span of the rows of <span class="math inline">\(A\)</span>. That is, the fundamental matrix for the system <span class="math inline">\(\Phi^T \overrightarrow {y} = \overrightarrow {0}\)</span>, when transposed, is one of the possible choices of the matrix <span class="math inline">\(A\)</span>. In our case we have</p>
+<p><span class="math display">\[
+  \Phi ^T \overrightarrow {y} = \begin{bmatrix}  1 &amp;  1 &amp;  1 &amp;  1 \\ 0 &amp;  -8 &amp;  4 &amp;  -3 \\ 0 &amp;  0 &amp;  0 &amp;  2 \end{bmatrix} \begin{bmatrix}  y_1 \\ y_2 \\ y_3 \\ y_4 \end{bmatrix} = \begin{bmatrix}  0 \\ 0 \\ 0 \\ 0 \end{bmatrix}
+\]</span></p>
+<p>Let us bring <span class="math inline">\(\Phi^T\)</span> to reduced form:</p>
+<p><span class="math display">\[
+  \begin{bmatrix}  1 &amp;  1 &amp;  1 &amp;  1 \\ 0 &amp;  -8 &amp;  4 &amp;  -3 \\ 0 &amp;  0 &amp;  0 &amp;  2 \end{bmatrix} \mathrel {\leadsto } \begin{bmatrix}  1 &amp;  1 &amp;  1 &amp;  1 \\ 0 &amp;  1 &amp;  -1/2 &amp;  3/8 \\ 0 &amp;  0 &amp;  0 &amp;  1 \end{bmatrix} \mathrel {\leadsto } \begin{bmatrix}  1 &amp;  0 &amp;  3/2 &amp;  0 \\ 0 &amp;  1 &amp;  -1/2 &amp;  0 \\ 0 &amp;  0 &amp;  0 &amp;  1 \end{bmatrix}
+\]</span></p>
+<p>The fundamental matrix for the system <span class="math inline">\(\Phi^T \overrightarrow {y} = \overrightarrow {0}\)</span>:</p>
+<p><span class="math display">\[
+  \begin{bmatrix}  -3/2 \\ 1/2 \\ 1 \\ 0 \end{bmatrix} =: A^T
+\]</span></p>
+<p>The desired system (one of the possible choices):</p>
+<p><span class="math display">\[
+  0 = \overrightarrow {0} = A \overrightarrow {x} = -\frac{3}{2}x_1 + \frac{1}{2}x_2 + x_3 \iff 0 = 3x_1 -x_2 - 2x_3
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-65-contents" aria-controls="callout-65" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-65" class="callout-65-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(3 x_{1} - x_{2} - 2 x_{3} = 0\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="sum-and-intersection-of-subspaces" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Sum and intersection of subspaces</h1>
+<p>Let <span class="math inline">\(U,W\)</span> be two linear subspaces of the same ambient space <span class="math inline">\(V\)</span>: <span class="math inline">\(U,W \subset V\)</span>.</p>
+<div id="expl-13" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-68-contents" aria-controls="callout-68" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 18
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-68" class="callout-68-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Prove that the intersection <span class="math inline">\(U \cap W\)</span> of any two subspaces is itself a subspace;</p></li>
+<li><p>Prove that the union <span class="math inline">\(U \cup W\)</span> of subspaces is a subspace of <span class="math inline">\(V\)</span> <span class="math inline">\(\iff\)</span> <span class="math inline">\(U \subset W\)</span> or <span class="math inline">\(W \subset U\)</span>.</p></li>
+</ul>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-67-contents" aria-controls="callout-67" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-67" class="callout-67-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>The intersection <span class="math inline">\(U \cap W\)</span> consists of vectors belonging to both subspaces. Let us verify that the subspace conditions hold:</p>
+<ul>
+<li><p>If <span class="math inline">\(x, y \in U \cap W\)</span>, then <span class="math inline">\(x, y \in U\)</span> and <span class="math inline">\(x, y \in W\)</span>. Since <span class="math inline">\(U\)</span> and <span class="math inline">\(W\)</span> are subspaces, <span class="math inline">\(x+y \in U\)</span> and <span class="math inline">\(x+y \in W\)</span>, hence <span class="math inline">\(x+y \in U \cap W\)</span>.</p></li>
+<li><p>If <span class="math inline">\(x \in U \cap W\)</span> and <span class="math inline">\(\alpha \in \mathbb {R}\)</span>, then <span class="math inline">\(\alpha x \in U\)</span> and <span class="math inline">\(\alpha x \in W\)</span>, hence <span class="math inline">\(\alpha x \in U \cap W\)</span>.</p></li>
+</ul>
+<p>Thus, <span class="math inline">\(U \cap W\)</span> is a subspace.</p></li>
+<li><p>The union <span class="math inline">\(U \cup W\)</span> is a subspace if and only if it is closed with respect to addition and scalar multiplication. If <span class="math inline">\(U \not\subset W\)</span> and <span class="math inline">\(W \not\subset U\)</span>, then there exist <span class="math inline">\(u \in U \setminus W\)</span> and <span class="math inline">\(w \in W \setminus U\)</span>. Then their sum <span class="math inline">\(u + w\)</span> belongs to neither <span class="math inline">\(U\)</span> nor <span class="math inline">\(W\)</span>: if <span class="math inline">\(u+w \in U\)</span> held, then <span class="math inline">\(w = (u+w) - u \in U\)</span> (since <span class="math inline">\(u \in U\)</span>), contradicting <span class="math inline">\(w \notin U\)</span>; similarly <span class="math inline">\(u + w \notin W\)</span>. Hence, <span class="math inline">\(u+w \notin U \cup W\)</span>, which violates closure. Therefore, <span class="math inline">\(U \cup W\)</span> is a subspace only in the case where one of the subspaces is contained in the other.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>The <em>sum of the spaces</em> <span class="math inline">\(U,W\)</span> is the set consisting of all possible sums of vectors from <span class="math inline">\(U\)</span> and <span class="math inline">\(W\)</span>:</p>
+<p><span class="math display">\[
+  U + W := \left\{ \overrightarrow {u} + \overrightarrow {w} \;  : \;  \overrightarrow {u} \in U, \;  \overrightarrow {w} \in W \right\}  \subset V
+\]</span></p>
+<div id="expl-14" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-70-contents" aria-controls="callout-70" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 19
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-70" class="callout-70-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Prove that the sum of any two subspaces is itself a subspace.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-69-contents" aria-controls="callout-69" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-69" class="callout-69-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Note that <span class="math display">\[
+  U + W = \left\langle U \cup W\right\rangle
+\]</span> Indeed, <span class="math inline">\(U + W \subseteq \left\langle U \cup W\right\rangle\)</span>, since <span class="math inline">\(\overrightarrow {u} + \overrightarrow {w}\)</span> is a linear combination of vectors from <span class="math inline">\(U \cup W\)</span>. Conversely, any finite linear combination of vectors from <span class="math inline">\(U \cup W\)</span> splits into two parts: a combination of vectors from <span class="math inline">\(U\)</span> (it lies in <span class="math inline">\(U\)</span>, since <span class="math inline">\(U\)</span> is a subspace) plus a combination of vectors from <span class="math inline">\(W\)</span> (lies in <span class="math inline">\(W\)</span>); altogether this is an element of <span class="math inline">\(U + W\)</span>. And the linear span of any set is a subspace.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><em>Grassmann’s formula</em>: in a finite-dimensional <span class="math inline">\(V\)</span> we have <span class="math inline">\(\dim (U + W) = \dim (U) + \dim (W) - \dim (U \cap W)\)</span>.</p>
+<div id="expl-15" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-72-contents" aria-controls="callout-72" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 20
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-72" class="callout-72-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Prove Grassmann’s formula.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-71-contents" aria-controls="callout-71" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-71" class="callout-71-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Consider bases of the subspaces <span class="math inline">\(U\)</span> and <span class="math inline">\(W\)</span>:</p>
+<ul>
+<li><p>Let <span class="math inline">\(\{ \overrightarrow {u}_1, \dots , \overrightarrow {u}_k\}\)</span> be a basis of <span class="math inline">\(U\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(\{ \overrightarrow {w}_1, \dots , \overrightarrow {w}_m\}\)</span> be a basis of <span class="math inline">\(W\)</span>.</p></li>
+</ul>
+<p>Denote <span class="math inline">\(U \cap W = S\)</span> and choose a basis <span class="math inline">\(\{ s_1, \dots , s_r\}\)</span> for it. Extend the basis of <span class="math inline">\(S\)</span> to a basis of <span class="math inline">\(U\)</span> by adding vectors <span class="math inline">\(\overrightarrow {u}_{r+1}, \dots , \overrightarrow {u}_k\)</span>, and to a basis of <span class="math inline">\(W\)</span> by adding vectors <span class="math inline">\(\overrightarrow {w}_{r+1}, \dots , \overrightarrow {w}_m\)</span>.</p>
+<p>We claim that the set of vectors <span class="math inline">\(\{ s_1, \dots , s_r, \overrightarrow {u}_{r+1}, \dots , \overrightarrow {u}_k, \overrightarrow {w}_{r+1}, \dots , \overrightarrow {w}_m\}\)</span> is a basis of <span class="math inline">\(U + W\)</span>. That it spans <span class="math inline">\(U + W\)</span> is clear: any vector of the sum is (a vector from <span class="math inline">\(U\)</span>) + (a vector from <span class="math inline">\(W\)</span>), and each summand expands in its own part of the collection. Let us check linear independence. Suppose</p>
+<p><span class="math display">\[
+  \sum _{i=1}^{r} \gamma _i s_i + \sum _{i=r+1}^{k} \lambda _i \overrightarrow {u}_i + \sum _{i=r+1}^{m} \mu _i \overrightarrow {w}_i = \overrightarrow {0}
+\]</span></p>
+<p>Denote <span class="math inline">\(\overrightarrow {v} := \sum_{i=r+1}^{m} \mu_i \overrightarrow {w}_i\)</span>. On the one hand, <span class="math inline">\(\overrightarrow {v} \in W\)</span>. On the other hand, from the equality above, <span class="math inline">\(\overrightarrow {v} = -\sum \gamma_i s_i - \sum \lambda_i \overrightarrow {u}_i \in U\)</span>. Hence, <span class="math inline">\(\overrightarrow {v} \in U \cap W = S\)</span>, i.e., <span class="math inline">\(\overrightarrow {v}\)</span> expands in terms of the basis <span class="math inline">\(s_1, \ldots , s_r\)</span>. But then, equating the two expansions of <span class="math inline">\(\overrightarrow {v}\)</span> in the linearly independent system <span class="math inline">\(\{ s_i\}  \cup \{ \overrightarrow {w}_i\}\)</span> (this is a basis of <span class="math inline">\(W\)</span>), we get <span class="math inline">\(\mu_{r+1} = \ldots = \mu_m = 0\)</span>. What remains is <span class="math inline">\(\sum \gamma_i s_i + \sum \lambda_i \overrightarrow {u}_i = \overrightarrow {0}\)</span>, and this is a linear combination of the basis vectors of <span class="math inline">\(U\)</span> — all coefficients are zero.</p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+  \dim (U + W) = r + (k - r) + (m - r) = k + m - r = \dim U + \dim W - \dim (U \cap W).
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-16" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-75-contents" aria-controls="callout-75" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 21
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-75" class="callout-75-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Find the dimension and a basis of the sum and intersection of the linear subspaces <span class="math inline">\(U\)</span>, <span class="math inline">\(W\)</span> of the <span class="math inline">\(4\)</span>-dimensional arithmetic space, spanned by the systems of vectors <span class="math inline">\(\overrightarrow {a}_{1}, \overrightarrow {a}_{2}\)</span> and <span class="math inline">\(\overrightarrow {b}_{1}, \overrightarrow {b}_{2}\)</span>, respectively, where <span class="math display">\[
+  \overrightarrow {a}_1 = \left[\begin{smallmatrix}  1 \\ 0 \\ 0 \\ 0 \end{smallmatrix}\right], \quad \overrightarrow {a}_2 = \left[\begin{smallmatrix}  1 \\ 0 \\ 1 \\ 0 \end{smallmatrix}\right], \quad \overrightarrow {b}_1 = \left[\begin{smallmatrix}  0 \\ 1 \\ 1 \\ 1 \end{smallmatrix}\right], \quad \overrightarrow {b}_2 = \left[\begin{smallmatrix}  2 \\ 1 \\ 0 \\ 1 \end{smallmatrix}\right]
+\]</span></p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-73-contents" aria-controls="callout-73" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-73" class="callout-73-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Let the first subspace be <span class="math inline">\(U\)</span> and the second <span class="math inline">\(W\)</span>. Let us simplify the condition. Note that the linear span of rows does not change under elementary row transformations. We have</p>
+<p><span class="math display">\[
+\begin{align}  \begin{bmatrix}  \overrightarrow {a}_1^T \\ \overrightarrow {a}_2^T \end{bmatrix} &amp; = \begin{bmatrix}  1 &amp;  0 &amp;  0 &amp;  0 \\ 1 &amp;  0 &amp;  1 &amp;  0 \end{bmatrix} \mathrel {\leadsto } \begin{bmatrix}  1 &amp;  0 &amp;  0 &amp;  0 \\ 0 &amp;  0 &amp;  1 &amp;  0 \end{bmatrix} \\ \begin{bmatrix}  \overrightarrow {b}_1^T \\ \overrightarrow {b}_2^T \end{bmatrix} &amp; = \begin{bmatrix}  0 &amp;  1 &amp;  1 &amp;  1 \\ 2 &amp;  1 &amp;  0 &amp;  1 \end{bmatrix} \mathrel {\leadsto } \begin{bmatrix}  1 &amp;  1/2 &amp;  0 &amp;  1/2 \\ 0 &amp;  1 &amp;  1 &amp;  1 \\ \end{bmatrix} \mathrel {\leadsto } \begin{bmatrix}  1 &amp;  0 &amp;  -1/2 &amp;  0 \\ 0 &amp;  1 &amp;  1 &amp;  1 \\ \end{bmatrix} \end{align}
+\]</span></p>
+<p>Let</p>
+<p><span class="math display">\[
+  \overrightarrow {a}'_1 = \begin{bmatrix}  1 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \quad \overrightarrow {a}'_2 = \begin{bmatrix}  0 \\ 0 \\ 1 \\ 0 \end{bmatrix}, \quad \overrightarrow {b}'_1 = \begin{bmatrix}  1 \\ 0 \\ -1/2 \\ 0 \end{bmatrix}, \quad \overrightarrow {b}'_2 = \begin{bmatrix}  0 \\ 1 \\ 1 \\ 1 \end{bmatrix}
+\]</span></p>
+<p>We have <span class="math inline">\(U = \left\langle \overrightarrow {a}'_1, \overrightarrow {a}'_2\right\rangle , \;  W = \left\langle \overrightarrow {b}'_1, \overrightarrow {b}'_2\right\rangle\)</span>.</p>
+<p>Let us find the dimension and basis of the <strong>sum</strong>. The sum is spanned by the union of the spanning systems: <span class="math inline">\(U + W = \left\langle \overrightarrow {a}'_1, \overrightarrow {a}'_2, \overrightarrow {b}'_1, \overrightarrow {b}'_2\right\rangle\)</span>. Write the vectors as rows and bring the matrix to echelon form:</p>
+<p><span class="math display">\[
+  \begin{bmatrix}  1 &amp;  0 &amp;  0 &amp;  0 \\ 0 &amp;  0 &amp;  1 &amp;  0 \\ 1 &amp;  0 &amp;  -1/2 &amp;  0 \\ 0 &amp;  1 &amp;  1 &amp;  1 \end{bmatrix} \mathrel {\leadsto } \begin{bmatrix}  1 &amp;  0 &amp;  0 &amp;  0 \\ 0 &amp;  0 &amp;  1 &amp;  0 \\ 0 &amp;  0 &amp;  -1/2 &amp;  0 \\ 0 &amp;  1 &amp;  1 &amp;  1 \end{bmatrix} \mathrel {\leadsto } \begin{bmatrix}  1 &amp;  0 &amp;  0 &amp;  0 \\ 0 &amp;  1 &amp;  1 &amp;  1 \\ 0 &amp;  0 &amp;  1 &amp;  0 \\ 0 &amp;  0 &amp;  0 &amp;  0 \end{bmatrix}
+\]</span></p>
+<p>(we subtracted row 1 from row 3; added row 2 with coefficient <span class="math inline">\(1/2\)</span> to row 3 and swapped rows.) Altogether <span class="math inline">\(\dim (U + W) = 3\)</span>, and as a basis of the sum we can take the nonzero rows of the echelon form (transposed):</p>
+<p><span class="math display">\[
+  \begin{bmatrix}  1 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \qquad \begin{bmatrix}  0 \\ 1 \\ 1 \\ 1 \end{bmatrix}, \qquad \begin{bmatrix}  0 \\ 0 \\ 1 \\ 0 \end{bmatrix}
+\]</span></p>
+<p>Let us find the dimension and basis of the <strong>intersection</strong>. Let <span class="math inline">\(\overrightarrow {x} \in U \cap W\)</span> be an arbitrary vector from the intersection. Then for some scalars <span class="math inline">\(\alpha_1, \alpha_2, \beta_1, \beta_2\)</span> we have</p>
+<p><span class="math display">\[
+  \overrightarrow {x} = \alpha _1\overrightarrow {a}'_1 + \alpha _2\overrightarrow {a}'_2 = \beta _1\overrightarrow {b}'_1 + \beta _2\overrightarrow {b}'_2 \quad \iff \quad \begin{bmatrix}  \alpha _1 \\ 0 \\ \alpha _2 \\ 0 \end{bmatrix} = \begin{bmatrix}  \beta _1 \\ \beta _2 \\ -\frac{1}{2}\beta _1 + \beta _2 \\ \beta _2 \end{bmatrix}
+\]</span></p>
+<p>From the 2nd (or 4th) coordinate, <span class="math inline">\(\beta_2 = 0\)</span>; then from the 1st coordinate, <span class="math inline">\(\beta_1 = \alpha_1\)</span>, and from the 3rd, <span class="math inline">\(\alpha_2 = -\frac{1}{2}\alpha_1\)</span>. Altogether</p>
+<p><span class="math display">\[
+  \overrightarrow {x} = \alpha _1 \overrightarrow {a}'_1 - \frac{\alpha _1}{2} \overrightarrow {a}'_2 = \frac{\alpha _1}{2} \cdot \left[\begin{smallmatrix}  2 \\ 0 \\ -1 \\ 0 \end{smallmatrix}\right], \quad \alpha _1 \in \mathbb {R} \text{ -- arbitrary}
+\]</span></p>
+<p>Thus, <span class="math inline">\(U \cap W = \left\langle \left[\begin{smallmatrix}  2 \\ 0 \\ -1 \\ 0 \end{smallmatrix}\right]\right\rangle\)</span> is a one-dimensional subspace (this is exactly <span class="math inline">\(\left\langle \overrightarrow {b}'_1\right\rangle\)</span>: the vector <span class="math inline">\(\overrightarrow {b}'_1 = \overrightarrow {a}'_1 - \frac{1}{2}\overrightarrow {a}'_2\)</span> lies in <span class="math inline">\(U\)</span>).</p>
+<p>Let us check ourselves with Grassmann’s formula: <span class="math inline">\(\dim (U + W) = \dim U + \dim W - \dim (U \cap W) = 2 + 2 - 1 = 3\)</span>. It checks out.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-answer no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-74-contents" aria-controls="callout-74" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Answer</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-74" class="callout-74-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\dim (U + W) = 3\)</span> with basis <span class="math inline">\(\left[\begin{smallmatrix}  1 \\ 0 \\ 0 \\ 0 \end{smallmatrix}\right], \left[\begin{smallmatrix}  0 \\ 1 \\ 1 \\ 1 \end{smallmatrix}\right], \left[\begin{smallmatrix}  0 \\ 0 \\ 1 \\ 0 \end{smallmatrix}\right]\)</span>; <span class="math inline">\(\;  U \cap W = \left\langle \left[\begin{smallmatrix}  2 \\ 0 \\ -1 \\ 0 \end{smallmatrix}\right]\right\rangle\)</span> of dimension <span class="math inline">\(1\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>The sum <span class="math inline">\(U + W\)</span> of subspaces <span class="math inline">\(U,W \subset V\)</span> is called <em>direct</em> if for every <span class="math inline">\(\overrightarrow {x} \in U + W\)</span> its representation <span class="math inline">\(\overrightarrow {u} + \overrightarrow {w}\)</span> as a sum of <span class="math inline">\(\overrightarrow {u} \in U\)</span>, <span class="math inline">\(\overrightarrow {w} \in W\)</span> is unique. Notation: <span class="math inline">\(U \oplus W\)</span>.</p>
+<div id="expl-17" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-77-contents" aria-controls="callout-77" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 22
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-77" class="callout-77-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>The sum <span class="math inline">\(U + W\)</span> is direct <span class="math inline">\(\iff\)</span> <span class="math inline">\(U \cap W = \left\{ \overrightarrow {0}\right\}\)</span>.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-76-contents" aria-controls="callout-76" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-76" class="callout-76-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>(<span class="math inline">\(\Rightarrow\)</span>) Suppose the sum is direct, and let <span class="math inline">\(\overrightarrow {x} \in U \cap W\)</span>. Then the vector <span class="math inline">\(\overrightarrow {x} \in U + W\)</span> has two representations:</p>
+<p><span class="math display">\[
+  \overrightarrow {x} = \underbrace{\overrightarrow {x}}_{\in U} + \underbrace{\overrightarrow {0}}_{\in W} = \underbrace{\overrightarrow {0}}_{\in U} + \underbrace{\overrightarrow {x}}_{\in W}
+\]</span></p>
+<p>By uniqueness of the representation, <span class="math inline">\(\overrightarrow {x} = \overrightarrow {0}\)</span>. That is, <span class="math inline">\(U \cap W = \left\{ \overrightarrow {0}\right\}\)</span>.</p>
+<p>(<span class="math inline">\(\Leftarrow\)</span>) Suppose <span class="math inline">\(U \cap W = \left\{ \overrightarrow {0}\right\}\)</span>, and suppose some <span class="math inline">\(\overrightarrow {x}\)</span> has two representations: <span class="math inline">\(\overrightarrow {x} = \overrightarrow {u}_1 + \overrightarrow {w}_1 = \overrightarrow {u}_2 + \overrightarrow {w}_2\)</span>, where <span class="math inline">\(\overrightarrow {u}_i \in U, \overrightarrow {w}_i \in W\)</span>. Then</p>
+<p><span class="math display">\[
+  \underbrace{\overrightarrow {u}_1 - \overrightarrow {u}_2}_{\in U} = \underbrace{\overrightarrow {w}_2 - \overrightarrow {w}_1}_{\in W} \in U \cap W = \left\{ \overrightarrow {0}\right\}
+\]</span></p>
+<p>That is, <span class="math inline">\(\overrightarrow {u}_1 = \overrightarrow {u}_2\)</span> and <span class="math inline">\(\overrightarrow {w}_1 = \overrightarrow {w}_2\)</span> — the representation is unique, the sum is direct.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-18" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-79-contents" aria-controls="callout-79" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 23
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-79" class="callout-79-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Prove that the space <span class="math inline">\(V\)</span> of all real-valued functions defined on all of <span class="math inline">\(\mathbb {R}\)</span> is the direct sum of the subspace of even functions <span class="math inline">\(U\)</span> and the subspace of odd functions <span class="math inline">\(W\)</span>. Find the projection of the function <span class="math inline">\(e^x\)</span> onto the indicated subspaces.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-78-contents" aria-controls="callout-78" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-78" class="callout-78-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\(f: \mathbb {R} \to \mathbb {R}\)</span> be an arbitrary function, and suppose <span class="math inline">\(f(x) = g(x) + h(x)\)</span>, where <span class="math inline">\(g\)</span> is even and <span class="math inline">\(h\)</span> is odd. Then</p>
+<p><span class="math display">\[
+  f(-x) = g(-x) + h(-x) = g(x) - h(x)
+\]</span></p>
+<p>Hence, <span class="math inline">\(g(x) = \frac{1}{2}(f(x) + f(-x))\)</span>, <span class="math inline">\(h(x) = \frac{1}{2}(f(x) - f(-x))\)</span>. That is, any function <span class="math inline">\(\mathbb {R} \mapsto \mathbb {R}\)</span> can indeed be decomposed into a sum of an even and an odd function.</p>
+<p>Moreover, it is clear that the intersection of the set of even functions and the set of odd functions is the set consisting only of the function identically equal to zero. Hence the sum is direct.</p>
+<p>For the exponential we have</p>
+<p><span class="math display">\[
+  \operatorname {Pr}_{U}^{\parallel W}(e^x) = \frac{e^x + e^{-x}}{2} = \operatorname {ch}(x), \qquad \operatorname {Pr}_{W}^{\parallel U}(e^x) = \frac{e^x - e^{-x}}{2} = \operatorname {sh}(x).
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Let <span class="math inline">\(U \subset V\)</span> be a subspace. A subspace <span class="math inline">\(W \subset V\)</span> is called a <em>direct complement to <span class="math inline">\(U\)</span> in <span class="math inline">\(V\)</span></em> if <span class="math inline">\(V = U \oplus W\)</span>. In this case, every element <span class="math inline">\(\overrightarrow {x} \in V\)</span> can be represented uniquely as a sum of elements from <span class="math inline">\(U\)</span> and from <span class="math inline">\(W\)</span>. The first summand of this sum is called the <em>projection of the vector <span class="math inline">\(\overrightarrow {x}\)</span> onto the subspace <span class="math inline">\(U\)</span> along the subspace <span class="math inline">\(W\)</span></em> and is denoted <span class="math inline">\(\operatorname {Pr}_U^{\parallel W}(\overrightarrow {x})\)</span>. The second summand is, respectively, the projection onto <span class="math inline">\(W\)</span> along <span class="math inline">\(U\)</span>. Thus, we have</p>
+<p><span class="math display">\[
+  \overrightarrow {x} = \operatorname {Pr}_U^{\parallel W}\hspace{-0.5em}(\overrightarrow {x}) + \operatorname {Pr}_W^{\parallel U}(\overrightarrow {x})
+\]</span></p>
+<div id="expl-19" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-81-contents" aria-controls="callout-81" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 24
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-81" class="callout-81-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Every subspace of a finite-dimensional space has a direct complement.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-80-contents" aria-controls="callout-80" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-80" class="callout-80-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\((\overrightarrow {e}_1, \ldots , \overrightarrow {e}_m)\)</span> be a basis of <span class="math inline">\(U\)</span>. It is known that it can be extended to a basis <span class="math inline">\((\overrightarrow {e}_1, \ldots , \overrightarrow {e}_m, \overrightarrow {e}_{m+1}, \ldots , \overrightarrow {e}_n)\)</span> of the whole space <span class="math inline">\(V\)</span>. Set <span class="math display">\[
+  W := \left\langle \overrightarrow {e}_{m+1}, \ldots , \overrightarrow {e}_n\right\rangle
+\]</span> Then <span class="math inline">\(V = U + W\)</span>: any vector expands in the basis of <span class="math inline">\(V\)</span>, and it suffices to group the first <span class="math inline">\(m\)</span> terms (this gives a vector from <span class="math inline">\(U\)</span>) and the last <span class="math inline">\(n - m\)</span> (a vector from <span class="math inline">\(W\)</span>). Moreover, <span class="math inline">\(U \cap W = \left\{ \overrightarrow {0}\right\}\)</span>: if <span class="math inline">\(\overrightarrow {x}\)</span> lies in the intersection, then it expands both in terms of <span class="math inline">\(\overrightarrow {e}_1, \ldots , \overrightarrow {e}_m\)</span> and in terms of <span class="math inline">\(\overrightarrow {e}_{m+1}, \ldots , \overrightarrow {e}_n\)</span>; subtracting one expansion from the other, we obtain a nontrivial (if <span class="math inline">\(\overrightarrow {x} \neq \overrightarrow {0}\)</span>) zero combination of the basis vectors of <span class="math inline">\(V\)</span> — a contradiction. By the criterion from the example above, the sum is direct: <span class="math inline">\(V = U \oplus W\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="expl-20" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-83-contents" aria-controls="callout-83" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 25
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-83" class="callout-83-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Give an example showing that the projection onto a subspace depends not only on the subspace itself, but also on the chosen complement.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-82-contents" aria-controls="callout-82" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-82" class="callout-82-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\(V = \mathbb {R}^{2}\)</span>, <span class="math inline">\(U = \left\langle \overrightarrow {e}_1\right\rangle\)</span> be the horizontal axis. Consider two different direct complements:</p>
+<p><span class="math display">\[
+  W_1 = \left\langle \left[\begin{smallmatrix}  0 \\ 1 \end{smallmatrix}\right]\right\rangle , \qquad W_2 = \left\langle \left[\begin{smallmatrix}  1 \\ 1 \end{smallmatrix}\right]\right\rangle
+\]</span></p>
+<p>(in both cases <span class="math inline">\(U \cap W_i = \left\{ \overrightarrow {0}\right\}\)</span> and <span class="math inline">\(U + W_i = \mathbb {R}^{2}\)</span>). Let us project the vector <span class="math inline">\(\overrightarrow {x} = \left[\begin{smallmatrix}  1 \\ 1 \end{smallmatrix}\right]\)</span> onto <span class="math inline">\(U\)</span>:</p>
+<p><span class="math display">\[
+  \overrightarrow {x} = \underbrace{\left[\begin{smallmatrix}  1 \\ 0 \end{smallmatrix}\right]}_{\in U} + \underbrace{\left[\begin{smallmatrix}  0 \\ 1 \end{smallmatrix}\right]}_{\in W_1} \;  \Rightarrow \;  \operatorname {Pr}_U^{\parallel W_1}(\overrightarrow {x}) = \left[\begin{smallmatrix}  1 \\ 0 \end{smallmatrix}\right], \qquad \overrightarrow {x} = \underbrace{\left[\begin{smallmatrix}  0 \\ 0 \end{smallmatrix}\right]}_{\in U} + \underbrace{\left[\begin{smallmatrix}  1 \\ 1 \end{smallmatrix}\right]}_{\in W_2} \;  \Rightarrow \;  \operatorname {Pr}_U^{\parallel W_2}(\overrightarrow {x}) = \left[\begin{smallmatrix}  0 \\ 0 \end{smallmatrix}\right]
+\]</span></p>
+<p>The subspace <span class="math inline">\(U\)</span> is the same, but the projections are different.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<!--
+  Hover preview for @expl-... (example) cross-references.
+
+  Quarto's own html format already ships a native crossref-hover-preview
+  script (bundled tippy, no CDN, wired up for every a.quarto-xref link --
+  see site_libs/quarto-html/tippy.umd.min.js and the inline tippyHover/
+  processXRef script Quarto emits near the end of <body>). That native
+  script now covers theorem-family types too, since
+  _extensions/mn-theorems wraps them into real Quarto callouts.
+
+  Examples are the one remaining gap: mn-problems.lua's Pandoc filter
+  intercepts @expl-... citations and emits a raw `<a class="xref-callout"
+  data-tippy-ref="...">` directly, bypassing Quarto's own crossref
+  resolution entirely (needed because examples use the filter's own custom
+  numbering, not Quarto's native one) -- so they never get the
+  a.quarto-xref class Quarto's native script looks for. This file only
+  fills that one gap, reusing the SAME window.tippy Quarto's native script
+  already set up (no separate Popper/Tippy load of our own -- an earlier
+  version of this file loaded Popper+Tippy from unpkg.com via plain
+  <script src>, which registered as an anonymous AMD module on pages with
+  Quarto's RequireJS loader and broke both the popup AND, as collateral
+  damage, quarto's own native tippy setup).
+-->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (!window.tippy) return; // native script didn't run (shouldn't happen on an html-format page)
+
+  document.querySelectorAll("a.xref-callout").forEach(function (anchor) {
+    var targetId = anchor.getAttribute("data-tippy-ref");
+    var inner = targetId && document.getElementById(targetId);
+    if (!inner) return;
+
+    var outer = inner.closest(".callout-style-default") || inner;
+
+    tippy(anchor, {
+      content: function () {
+        var clone = outer.cloneNode(true);
+        var uid = "mn-xref-" + targetId;
+        clone.querySelectorAll("[id]").forEach(function (el) {
+          el.id = uid + "-" + el.id;
+        });
+        clone.querySelectorAll("[data-bs-target]").forEach(function (el) {
+          var orig = el.getAttribute("data-bs-target");
+          el.setAttribute("data-bs-target", "." + uid + "-" + orig.replace(/^\./, ""));
+        });
+        clone.querySelectorAll("[aria-controls]").forEach(function (el) {
+          el.setAttribute("aria-controls", uid + "-" + el.getAttribute("aria-controls"));
+        });
+        if (window.Quarto && window.Quarto.typesetMath) {
+          window.Quarto.typesetMath(clone);
+        }
+        return clone;
+      },
+      allowHTML: true,
+      interactive: true,
+      maxWidth: 500,
+      theme: "quarto",
+      placement: "bottom-start",
+      appendTo: function (el) { return el.parentElement; },
+    });
+  });
+});
+</script>
+
+
+
+
+</body></html>

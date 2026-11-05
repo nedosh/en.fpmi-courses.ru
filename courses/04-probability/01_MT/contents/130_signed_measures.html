@@ -1,0 +1,2078 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-10-18">
+
+<title>Signed measures, densities – FPMI Courses</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/favicon.ico" rel="icon">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-18b92d25f2a0372079463917332f47f0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-90af2ae3f5f11ccb077ed1c2d3900ada.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/quarto-contrib/mn-problems-1.0.0/mn-problems.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/mn-theorems-1.0.0/mn-theorems.css" rel="stylesheet">
+<script src="../../../../site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+div.callout-thumbs-up.callout {
+  border-left-color: #008000;
+}
+div.callout-thumbs-up.callout-style-default .callout-header {
+  background-color: rgba(0, 128, 0, 0.13);
+}
+div.callout-thumbs-up .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-thumbs-up.callout-style-default .callout-icon::before, div.callout-thumbs-up.callout-titled .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23008000" class="bi bi-exclamation-triangle" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/></svg>');
+}
+div.callout-enum-item.callout {
+  border-left-color: #008000;
+}
+div.callout-enum-item.callout-style-default .callout-header {
+  background-color: rgba(0, 128, 0, 0.13);
+}
+div.callout-enum-item .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-enum-item.callout-style-default .callout-icon::before, div.callout-enum-item.callout-titled .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23008000" class="bi bi-exclamation-triangle" viewBox="0 0 16 16"><path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/></svg>');
+}
+div.callout-todo.callout {
+  border-left-color: pink;
+}
+div.callout-todo.callout-style-default .callout-header {
+  background-color: rgb(from pink r g b / 13%);
+}
+div.callout-todo .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.callout-titled .callout-icon::before {
+  content: '📝';
+  background-image: none;
+}
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/logo.png" alt="" class="navbar-logo light-content">
+    <img src="../../../../site_libs/quarto-contrib/quarto-project/fpmi-format/img/logo.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../../../index.html">
+    <span class="navbar-title">FPMI Courses</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-courses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Courses</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-courses">    
+        <li>
+    <a class="dropdown-item" href="../../../../courses/index.html">
+ <span class="dropdown-text">All courses (37)</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../../../../courses/04-probability/index.html">
+ <span class="dropdown-text">Probability (4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/01-analysis/index.html">
+ <span class="dropdown-text">Analysis (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/02-algebra/index.html">
+ <span class="dropdown-text">Algebra (4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/03-discrete-cs/index.html">
+ <span class="dropdown-text">Discrete Mathematics and CS (9)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/05-programming-systems/index.html">
+ <span class="dropdown-text">Programming and Systems (7)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../courses/06-data-computing/index.html">
+ <span class="dropdown-text">Data and Computing (5)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-curriculum" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Curriculum</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-curriculum">    
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/I.html">
+ <span class="dropdown-text">Semester I (7)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/II.html">
+ <span class="dropdown-text">Semester II (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/III.html">
+ <span class="dropdown-text">Semester III (9)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/IV.html">
+ <span class="dropdown-text">Semester IV (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/V.html">
+ <span class="dropdown-text">Semester V (8)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../semesters/VI.html">
+ <span class="dropdown-text">Semester VI (4)</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">About</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="../../../../about.html">
+ <span class="dropdown-text">About the project</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../editorial-policy.html">
+ <span class="dropdown-text">Material status and editorial policy</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://mipt.ru/education/schools/fpmi"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:web" style="font-size: 1.25em;" aria-label="Icon web from mdi Iconify.design set." title="FPMI website"></iconify-icon></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../courses/04-probability/01_MT/contents/040_systems_of_sets.html">II. Measure Theory</a></li><li class="breadcrumb-item"><a href="../../../../courses/04-probability/01_MT/contents/130_signed_measures.html">12. Signed measures, densities</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
+<div style="font-weight: bold; font-size: 1.1em;">
+<p>Foundations of Probability and Measure Theory</p>
+</div>
+</div></div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/program.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../courses/04-probability/01_MT/contents/010_classical_geom_models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">I. Foundations of Probability</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/010_classical_geom_models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Probability space. Classical models. Independence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/020_cond_probability_indep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Probability distributions. Random variables. Expectation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/030_distributions_means.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Covariance, convergence of random variables, limit theorems</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../courses/04-probability/01_MT/contents/040_systems_of_sets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">II. Measure Theory</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/040_systems_of_sets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Systems of sets. Borel sigma-algebra</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/050_measure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Set functions on semirings and sigma-algebras. Measure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/060_outer_measure_Lebesgue.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Outer measure, Carathéodory’s extension theorem</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/070_complete_measure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Lebesgue measure, Lebesgue-Stieltjes measure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/090_convergence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. Measurable functions and their convergence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/100_Lebesgue_integral.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9. Lebesgue integral: integral with respect to a measure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/120_product_of_measures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. Product measures</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/122_Banach_Lp_spaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11. Lebesgue spaces L^p(mu)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/130_signed_measures.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">12. Signed measures, densities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../courses/04-probability/01_MT/contents/135_differentiation_AC_functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">13. Differentiating the Lebesgue integral. Absolutely continuous functions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#signed-measures" id="toc-signed-measures" class="nav-link active" data-scroll-target="#signed-measures"><span class="header-section-number">1</span> Signed measures</a>
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">1.1</span> Introduction</a></li>
+  <li><a href="#the-hahn-theorem-and-the-jordan-theorem-decomposing-a-real-measure-into-positive-and-negative-parts" id="toc-the-hahn-theorem-and-the-jordan-theorem-decomposing-a-real-measure-into-positive-and-negative-parts" class="nav-link" data-scroll-target="#the-hahn-theorem-and-the-jordan-theorem-decomposing-a-real-measure-into-positive-and-negative-parts"><span class="header-section-number">1.2</span> The Hahn theorem and the Jordan theorem: decomposing a real measure into positive and negative parts</a></li>
+  </ul></li>
+  <li><a href="#measures-obtained-via-the-integral-of-another-nonnegative-measure" id="toc-measures-obtained-via-the-integral-of-another-nonnegative-measure" class="nav-link" data-scroll-target="#measures-obtained-via-the-integral-of-another-nonnegative-measure"><span class="header-section-number">2</span> Measures obtained via the integral of another (nonnegative) measure</a>
+  <ul class="collapse">
+  <li><a href="#the-radon-nikodym-theorem-characterizing-measures-obtained-via-the-integral-of-another-measure" id="toc-the-radon-nikodym-theorem-characterizing-measures-obtained-via-the-integral-of-another-measure" class="nav-link" data-scroll-target="#the-radon-nikodym-theorem-characterizing-measures-obtained-via-the-integral-of-another-measure"><span class="header-section-number">2.1</span> The Radon-Nikodym theorem: characterizing measures obtained via the integral of another measure</a>
+  <ul class="collapse">
+  <li><a href="#the-case-of-a-nonnegative-measure-nu" id="toc-the-case-of-a-nonnegative-measure-nu" class="nav-link" data-scroll-target="#the-case-of-a-nonnegative-measure-nu"><span class="header-section-number">2.1.1</span> The case of a (nonnegative) measure <span class="math inline">\(\nu\)</span></a></li>
+  <li><a href="#the-case-of-a-real-measure-nu" id="toc-the-case-of-a-real-measure-nu" class="nav-link" data-scroll-target="#the-case-of-a-real-measure-nu"><span class="header-section-number">2.2.1</span> The case of a real measure <span class="math inline">\(\nu\)</span></a></li>
+  </ul></li>
+  <li><a href="#the-lebesgue-theorem-decomposing-a-measure-into-an-absolutely-continuous-and-a-singular-part" id="toc-the-lebesgue-theorem-decomposing-a-measure-into-an-absolutely-continuous-and-a-singular-part" class="nav-link" data-scroll-target="#the-lebesgue-theorem-decomposing-a-measure-into-an-absolutely-continuous-and-a-singular-part"><span class="header-section-number">2.3</span> The Lebesgue theorem: decomposing a measure into an absolutely continuous and a singular part</a>
+  <ul class="collapse">
+  <li><a href="#the-case-of-a-nonnegative-measure-nu-1" id="toc-the-case-of-a-nonnegative-measure-nu-1" class="nav-link" data-scroll-target="#the-case-of-a-nonnegative-measure-nu-1"><span class="header-section-number">2.3.1</span> The case of a (nonnegative) measure <span class="math inline">\(\nu\)</span></a></li>
+  <li><a href="#the-case-of-a-real-measure-nu-1" id="toc-the-case-of-a-real-measure-nu-1" class="nav-link" data-scroll-target="#the-case-of-a-real-measure-nu-1"><span class="header-section-number">2.3.2</span> The case of a real measure <span class="math inline">\(\nu\)</span></a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<!--
+  Explicit RequireJS path mapping for "plotly", used by every hand-built
+  interactive widget on this site via require(["plotly"], function(Plotly){...}).
+
+  There was never a require.config() call anywhere setting this up -- it
+  only ever worked because Plotly's own UMD bundle, loaded elsewhere on the
+  same page via a plain <script src> for a simple (non-widget) fig.show()
+  figure, self-registers as an anonymous AMD module when window.define
+  exists (Quarto's RequireJS loader, used for MathJax), and RequireJS
+  happens to attribute that anonymous module to the "plotly" name if the
+  timing/script-load-order lines up. That's pure luck, not a real mapping --
+  a page with only widget figures (no plain fig.show() figure to "donate"
+  its Plotly load) had nothing to claim from, and any change to script load
+  order/timing (e.g. removing an unrelated script elsewhere on the page)
+  can flip which pending require() call an anonymous define() gets
+  attributed to, breaking it silently. Explicit config removes the guesswork.
+
+  Two separate failure modes found in practice, both fixed here:
+
+  (A) A page with ONLY hand-built widgets (no {python} cell at all -- e.g.
+  specials/030/020_quantile_function_fig.qmd) never gets Quarto's own
+  <script src=".../requirejs@.../require.min.js"> in <head> in the first
+  place: that tag is only emitted when the page has a Jupyter code cell.
+  window.require is simply undefined there, so the widget's own
+  require(["plotly"], ...) throws "require is not defined" unconditionally
+  -- not a network flake, 100% of the time regardless of connection quality.
+  Fixed below by synchronously document.write-ing a local copy of
+  require.min.js when window.require isn't already present -- document.write
+  from an inline <script> during initial HTML parsing inserts into the parse
+  stream immediately, so by the next statement window.require is guaranteed
+  defined, still fully synchronously (no defer/async race).
+
+  (B) A page with BOTH a plain fig.show() figure AND a hand-built widget:
+  RequireJS *is* already in <head> here, so this file's require.config()
+  below does run against a real window.require. But the Jupyter-generated
+  embed script for the fig.show() figure -- which appears later in <body>,
+  wherever that Python cell sits -- unconditionally calls
+  require.undef("plotly") followed by its OWN require.config() pointing at
+  a *different* version on the *same* external CDN (observed:
+  cdn.plot.ly/plotly-2.35.2.min vs. the 3.4.0 configured here), clobbering
+  this file's mapping before the widget's own require(["plotly"], ...) ever
+  runs. Both that Jupyter-set path and this file's own local path hit the
+  same real-world failure: cdn.plot.ly answers anywhere from ~1.5s to a full
+  10s+ timeout under real network conditions (measured directly). A
+  requirejs.onError handler below catches exactly the resulting timeout on
+  the "plotly" module -- regardless of which of the two require.config()
+  calls most recently set its path -- and retries once against the local
+  bundle.
+-->
+<script>
+if (typeof window.require === "undefined") {
+  document.write('<script src="/site_libs/quarto-contrib/mn-plotly-1.0.0/require.min.js"><\/script>');
+}
+</script>
+<script>
+if (window.require && window.require.config) {
+  window.require.config({
+    paths: { plotly: "/site_libs/quarto-contrib/mn-plotly-1.0.0/plotly.min" },
+    // shim.exports: after the script loads, hand require(["plotly"],...)
+    // callers the *global* window.Plotly instead of trusting whatever (if
+    // anything) the script itself passed to define() -- Plotly's own UMD
+    // wrapper reliably sets window.Plotly regardless of AMD context (also
+    // used directly by every plain fig.show() figure on this site, whose
+    // own generated embed script never goes through RequireJS at all), but
+    // its anonymous define() call is not reliably attributed to the
+    // "plotly" request specifically when this same URL is also loaded via
+    // a separate plain <script src> elsewhere on the page (a simple,
+    // non-widget figure) -- shim sidesteps that ambiguity entirely.
+    shim: { plotly: { exports: "Plotly" } }
+  });
+  // See failure mode (B) above: a later Jupyter-generated fig.show() embed
+  // script can still call its own require.undef("plotly") +
+  // require.config({paths: {plotly: <external CDN>}}) after this runs,
+  // pointing "plotly" back at an unreliable external host. This handler
+  // fires on ANY module load timeout; when it's specifically "plotly", drop
+  // whatever path is currently registered (however it got there) and retry
+  // once against the local bundle instead of the external CDN.
+  //
+  // Deliberately never re-throws: once the retry above is issued, the
+  // ORIGINAL failed network request for the external CDN copy can still
+  // land afterwards and fire a second, by-then-harmless onError (verified:
+  // requireType "scripterror", after the retry has already resolved the
+  // widget's real require(["plotly"], callback) via RequireJS's own
+  // pending-callback bookkeeping) -- throwing there would surface a
+  // spurious uncaught exception for something already fixed. console.warn
+  // keeps that visible in devtools without it looking like a live failure.
+  window.require.onError = function (err) {
+    if (err.requireModules && err.requireModules.indexOf("plotly") !== -1) {
+      if (err.requireType === "timeout") {
+        window.require.undef("plotly");
+        window.require.config({ paths: { plotly: "/site_libs/quarto-contrib/mn-plotly-1.0.0/plotly.min" } });
+        window.require(["plotly"]);
+      } else {
+        console.warn("plotly require() error after fallback (likely a stale network request):", err);
+      }
+    } else {
+      throw err;
+    }
+  };
+}
+</script>
+
+<!--
+  window.fpmiWithMathJax(cb): same rationale as the FPMI homepage loader (_home_widgets/loader.qmd)'s
+  copy of this helper (see there for the original), extended to course
+  pages. Quarto only emits a <script defer src=".../mathjax@3/.../tex-*.js">
+  tag in <head> at all when it sees real markdown math OUTSIDE any
+  ```{=html}``` block on the page -- a hand-built widget's math lives
+  entirely inside \(...\)/\[...\] strings in JS-generated DOM content
+  (e.g. a dynamically updated status line), which Quarto's static math
+  scanner never looks inside, so a page whose ONLY math is like that (no
+  prose math of its own) gets no MathJax script at all. Confirmed on an
+  already-shipped widget (030/020_quantile_function_fig.qmd's #qf-status)
+  that had silently never rendered its \(...\) as real math since it was
+  written -- not a new bug, just never noticed because the broken math was
+  inside dynamically-generated text rather than the static page body.
+
+  Three cases this handles, in order:
+  1. window.MathJax already fully started (page had prose math elsewhere,
+     Quarto's own <script defer> already ran) -- just wait on the
+     documented startup.promise signal and fire cb.
+  2. Quarto's own MathJax <script defer> tag IS present in <head> but
+     hasn't executed/initialized yet (defer runs after DOM parsing, and
+     this include-before-body block runs earlier, during parsing) -- poll
+     briefly for window.MathJax to appear rather than racing to load a
+     SECOND copy, which would either double-load or (depending on load
+     order) silently no-op.
+  3. No MathJax script present at all (case A above) -- fetch it ourselves,
+     same URL/approach as loader.qmd.
+-->
+<script>
+window.fpmiWithMathJax = window.fpmiWithMathJax || function (cb) {
+  if (window.MathJax && window.MathJax.startup) { window.MathJax.startup.promise.then(cb); return; }
+  if (window.__fpmiMathJaxQueue) { window.__fpmiMathJaxQueue.push(cb); return; }
+  window.__fpmiMathJaxQueue = [cb];
+  function flushQueue() {
+    var q = window.__fpmiMathJaxQueue;
+    window.__fpmiMathJaxQueue = null;
+    q.forEach(function (f) { f(); });
+  }
+  var hasMathJaxTag = !!document.querySelector('script[src*="mathjax"]');
+  if (hasMathJaxTag) {
+    // Case 2: Quarto's own deferred MathJax script is already in <head> --
+    // poll for it to finish initializing instead of loading a duplicate.
+    var waited = 0;
+    var poll = setInterval(function () {
+      waited += 50;
+      if (window.MathJax && window.MathJax.startup) {
+        clearInterval(poll);
+        window.MathJax.startup.promise.then(flushQueue);
+      } else if (waited > 10000) {
+        // Should never happen (the tag is already there, defer always runs
+        // before window.onload) -- bail rather than poll forever.
+        clearInterval(poll);
+        console.warn("fpmiWithMathJax: gave up waiting for Quarto's own MathJax script to initialize");
+      }
+    }, 50);
+    return;
+  }
+  // Case 3: no MathJax anywhere on the page -- fetch it ourselves. SVG
+  // output specifically (not CHTML, despite Quarto's own injected tag
+  // using CHTML): confirmed Plotly's own $...$ annotation/tick-label math
+  // rendering hard-requires the SVG output jax and throws
+  // 'Output Jax "svg" is not defined' if only CHTML is loaded (its
+  // internal math path calls MathJax.tex2svg specifically, independent of
+  // whatever jax Quarto's page-level script configured) -- same reason
+  // the FPMI homepage loader (_home_widgets/loader.qmd)'s original copy of this helper uses tex-svg.js.
+  var s = document.createElement("script");
+  s.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js";
+  s.onload = function () {
+    window.MathJax.startup.promise.then(flushQueue);
+  };
+  document.head.appendChild(s);
+};
+</script>
+<!--
+  window.fpmiGraph: shared toolkit for the hand-built Plotly *graph diagrams*
+  (vertices + edges) used by the algorithms courses (courses/11-DM-CS/AA/...
+  specials). Plotly has no native graph/network primitives, so every widget
+  used to re-implement the same edge-polyline/marker/annotation plumbing by
+  hand -- and, since a plain `mode:"lines"` polyline can't carry an arrowhead
+  or per-edge hover, all of them ended up as staticPlot line drawings with
+  no direction on directed graphs and no hover at all. This helper gives
+  every widget, from one `spec`:
+
+    * one scatter trace PER EDGE (so an individual edge can be restyled --
+      hover-highlight, per-step emphasis, transitions -- and can have its own
+      hover text via an invisible midpoint marker), optionally curved
+      (`bend`) so a pair of opposite arcs u->v / v->u stays readable;
+    * arrowheads for `directed` edges via layout.annotations in data
+      coordinates, shortened so the head lands on the vertex rim, not under
+      the marker;
+    * a soft halo under each vertex, $...$ MathJax labels via annotations
+      (never mode:"markers+text" -- see project memory: Plotly's marker text
+      is raw SVG <text>, which can't hold MathJax output), and hover labels;
+    * hover-highlight: hovering a vertex lifts its incident edges and dims
+      the rest (plotly_hover/unhover + Plotly.restyle on the edge traces);
+    * animated transitions between algorithm steps (Plotly.animate on a
+      trace layout that stays structurally identical across steps -- the
+      trace count must not change, so per-step differences are expressed
+      purely as style: color/width/opacity/dash);
+    * a step player (prev / next / autoplay, keyboard arrows) that builds its
+      own controls, and a path tracer that grows a highlighted polyline along
+      a vertex sequence over time (Hamiltonian paths, tours, Euler walks).
+
+  Draw order inside `data`: edges (one trace each) -> edge midpoints (hover
+  only) -> halo -> vertices -> optional path trace. Trace indices are
+  returned in `built.meta` so callers never hard-code them.
+-->
+<script>
+(function () {
+  if (window.fpmiGraph) return;
+  var G = {};
+
+  // Every UI string this helper generates itself (default edge-weight hover
+  // text, the step-player's button labels) is project-agnostic: it reads
+  // `document.documentElement.lang` (set by each project's own `_quarto.yml`
+  // `lang:` field) and falls back to Russian, the language every existing
+  // call site (mnedoshivin, math-notes_CU_2, math-notes_FPMI_2) was written
+  // for -- so this stays a silent no-op everywhere except an `lang="en"`
+  // project such as mnedoshivin_en.
+  var IS_EN = (document.documentElement.lang || "").toLowerCase().indexOf("en") === 0;
+  var WEIGHT_WORD = IS_EN ? "weight" : "вес";
+
+  G.colors = {
+    vert: "#eaf2fb", vertLine: "#1e3a8a", vertText: "#0b0b0b",
+    sel: "#2a78d6", selText: "#ffffff",
+    accent: "#f5a623", accentLine: "#8a5a00",
+    done: "#a8a29e", edge: "#78716c", edgeFaded: "#d6d3d1",
+    red: "#b91c1c", redSoft: "#fca5a5", green: "#556B2F", greenSoft: "#bbf7d0",
+    bg: "#fcfcfb"
+  };
+
+  // Plotly may arrive through RequireJS (course pages, see
+  // plotly-require-config.html), through the homepage's own
+  // fpmiWithPlotly loader, or already be a global -- accept all three.
+  G.withPlotly = function (cb) {
+    if (window.Plotly && window.Plotly.newPlot) { cb(window.Plotly); return; }
+    if (window.fpmiWithPlotly) { window.fpmiWithPlotly(cb); return; }
+    if (window.require) { window.require(["plotly"], cb); return; }
+    console.warn("fpmiGraph: no Plotly loader available on this page");
+  };
+  // MathJax must exist BEFORE Plotly builds any $...$ annotation (Plotly
+  // stamps data-math="N" at build time and never retries), hence the order.
+  G.ready = function (cb) {
+    var run = function () { G.withPlotly(cb); };
+    if (window.fpmiWithMathJax) { window.fpmiWithMathJax(run); } else { run(); }
+  };
+
+  // ── geometry ───────────────────────────────────────────────────────────────
+  // Quadratic curve from p0 to p1 bulging `bend` data units to the left of
+  // the p0->p1 direction (negative bends right). n+1 points.
+  G.curve = function (p0, p1, bend, n) {
+    n = n || 16;
+    var dx = p1[0] - p0[0], dy = p1[1] - p0[1];
+    var len = Math.sqrt(dx * dx + dy * dy) || 1;
+    var nx = -dy / len, ny = dx / len;
+    var cx = (p0[0] + p1[0]) / 2 + nx * bend, cy = (p0[1] + p1[1]) / 2 + ny * bend;
+    var pts = [];
+    for (var i = 0; i <= n; i++) {
+      var t = i / n, a = (1 - t) * (1 - t), b = 2 * (1 - t) * t, c = t * t;
+      pts.push([a * p0[0] + b * cx + c * p1[0], a * p0[1] + b * cy + c * p1[1]]);
+    }
+    return pts;
+  };
+  G.circle = function (cx, cy, r, n) {
+    n = n || 64;
+    var x = [], y = [];
+    for (var i = 0; i <= n; i++) { var a = 2 * Math.PI * i / n; x.push(cx + r * Math.cos(a)); y.push(cy + r * Math.sin(a)); }
+    return { x: x, y: y };
+  };
+  // "$v_{1}$" from "v1", "$s'$" from "s'", plain "s" from "s".
+  G.texLabel = function (id) {
+    var m = /^([A-Za-z]+)(\d+)('*)$/.exec(id);
+    if (m) return "$" + m[1] + "_{" + m[2] + "}" + m[3] + "$";
+    return /^[A-Za-z]'*$/.test(id) ? "$" + id + "$" : id;
+  };
+  // Unicode subscript fallback for hover text (Plotly hover can't do MathJax).
+  var SUB = { "0": "₀", "1": "₁", "2": "₂", "3": "₃", "4": "₄", "5": "₅", "6": "₆", "7": "₇", "8": "₈", "9": "₉" };
+  G.plainLabel = function (id) {
+    var m = /^([A-Za-z]+)(\d+)('*)$/.exec(id);
+    if (!m) return id;
+    return m[1] + m[2].split("").map(function (c) { return SUB[c] || c; }).join("") + m[3];
+  };
+
+  function assign(dst) {
+    for (var i = 1; i < arguments.length; i++) { var s = arguments[i]; if (s) for (var k in s) if (Object.prototype.hasOwnProperty.call(s, k)) dst[k] = s[k]; }
+    return dst;
+  }
+  function normEdge(e) {
+    if (Array.isArray(e)) { var o = { u: e[0], v: e[1] }; if (e[2] && typeof e[2] === "object") assign(o, e[2]); else if (e[2] !== undefined) o.weight = e[2]; return o; }
+    return assign({}, e);
+  }
+
+  // ── build ──────────────────────────────────────────────────────────────────
+  // spec = {
+  //   verts: {id: [x, y]},            order: [ids] (optional, defaults to key order)
+  //   edges: [[u, v] | [u, v, weight] | {u, v, color, width, dash, opacity, bend, hover, arrow, weight}]
+  //   directed: bool,                 edge: fn(edgeObj) -> style overrides (per step)
+  //   vert: fn(id) -> {color, line, lineWidth, size, opacity, label, hover, symbol}
+  //   labels: bool|{id: text}         (default: true -> G.texLabel(id))
+  //   size: 24, halo: true, weights: bool (annotate edge weights at midpoints)
+  //   range: {x: [..], y: [..]}       (default: bbox + padding), pad: 0.8
+  //   annotations: [], shapes: []     (extra), pathTrace: bool (reserve a trace for tracePath)
+  //   height/width: layout size override
+  // }
+  G.build = function (spec) {
+    var C = G.colors;
+    var ids = spec.order || Object.keys(spec.verts);
+    var size = spec.size || 24;
+    var edges = (spec.edges || []).map(normEdge);
+    var data = [], annotations = [], meta = { edgeIdx: [], edgeStyles: [], edges: edges, ids: ids, size: size };
+
+    // range
+    var xs = ids.map(function (i) { return spec.verts[i][0]; }), ys = ids.map(function (i) { return spec.verts[i][1]; });
+    var pad = spec.pad !== undefined ? spec.pad : 0.8;
+    var xr = spec.range && spec.range.x || [Math.min.apply(null, xs) - pad, Math.max.apply(null, xs) + pad];
+    var yr = spec.range && spec.range.y || [Math.min.apply(null, ys) - pad, Math.max.apply(null, ys) + pad];
+    // Vertex radius in data units, for arrowhead shortening: estimate from
+    // the plot's pixel width (marker size is in px, the axis range in data).
+    var plotPx = spec.plotWidthPx || 460;
+    var rData = spec.vertRadius !== undefined ? spec.vertRadius : (size / 2) * (xr[1] - xr[0]) / plotPx * 1.15;
+
+    // edges
+    var midX = [], midY = [], midText = [];
+    edges.forEach(function (e, k) {
+      var st = assign({ color: C.edge, width: 1.6, dash: "solid", opacity: 1, bend: 0 }, e, spec.edge ? spec.edge(e, k) : null);
+      var p0 = spec.verts[e.u], p1 = spec.verts[e.v];
+      var pts = st.bend ? G.curve(p0, p1, st.bend) : [p0, p1];
+      var directed = st.arrow !== undefined ? st.arrow : !!spec.directed;
+      if (directed) {
+        // trim the last segment so the arrowhead (drawn separately) ends on
+        // the target vertex rim; the line itself stops there too.
+        var a = pts[pts.length - 2], b = pts[pts.length - 1];
+        var dx = b[0] - a[0], dy = b[1] - a[1], L = Math.sqrt(dx * dx + dy * dy) || 1;
+        var head = [b[0] - dx / L * rData, b[1] - dy / L * rData];
+        var tail = [head[0] - dx / L * Math.min(L, rData * 1.6), head[1] - dy / L * Math.min(L, rData * 1.6)];
+        pts = pts.slice(0, -1).concat([head]);
+        annotations.push({
+          x: head[0], y: head[1], ax: tail[0], ay: tail[1], xref: "x", yref: "y", axref: "x", ayref: "y",
+          showarrow: true, arrowhead: 2, arrowsize: 1.15, arrowwidth: st.width, arrowcolor: st.color,
+          opacity: st.opacity, text: "", standoff: 0
+        });
+      }
+      data.push({
+        x: pts.map(function (p) { return p[0]; }), y: pts.map(function (p) { return p[1]; }),
+        mode: "lines", line: { color: st.color, width: st.width, dash: st.dash }, opacity: st.opacity,
+        hoverinfo: "skip", showlegend: false, name: e.u + "-" + e.v
+      });
+      meta.edgeIdx.push(data.length - 1);
+      meta.edgeStyles.push({ color: st.color, width: st.width, dash: st.dash, opacity: st.opacity });
+      var mid = pts[Math.floor(pts.length / 2)];
+      if (pts.length === 2) mid = [(p0[0] + p1[0]) / 2, (p0[1] + p1[1]) / 2];
+      midX.push(mid[0]); midY.push(mid[1]);
+      var hover = st.hover !== undefined ? st.hover : (G.plainLabel(e.u) + (directed ? " → " : " — ") + G.plainLabel(e.v) + (st.weight !== undefined ? "<br>" + (WEIGHT_WORD) + " " + st.weight : ""));
+      midText.push(hover);
+      // st.weight (not e.weight): a per-step override may hide a faded edge's
+      // label by returning {weight: undefined}
+      if (spec.weights && st.weight !== undefined && st.opacity > 0.05) {
+        annotations.push({ x: mid[0], y: mid[1], text: String(st.weight), showarrow: false,
+          font: { size: 11, color: st.color === C.edgeFaded ? "#a8a29e" : "#44403c" }, bgcolor: "rgba(252,252,251,0.9)", borderpad: 1 });
+      }
+    });
+    // invisible edge midpoints: hover only (per-point hoverinfo so a hidden
+    // edge -- opacity 0, e.g. "not added yet" in a step player -- shows no
+    // empty tooltip)
+    data.push({ x: midX, y: midY, mode: "markers", marker: { size: 14, opacity: 0 }, hovertext: midText,
+      hoverinfo: meta.edgeStyles.map(function (s) { return s.opacity > 0 ? "text" : "skip"; }), showlegend: false, name: "edges" });
+    meta.midIdx = data.length - 1;
+
+    // vertices
+    var vx = [], vy = [], vColor = [], vLine = [], vLineW = [], vSize = [], vOp = [], vHover = [], vSym = [], haloColor = [];
+    ids.forEach(function (id) {
+      var st = assign({ color: C.vert, line: C.vertLine, lineWidth: 1.8, size: size, opacity: 1, symbol: "circle" }, spec.vert ? spec.vert(id) : null);
+      vx.push(spec.verts[id][0]); vy.push(spec.verts[id][1]);
+      vColor.push(st.color); vLine.push(st.line); vLineW.push(st.lineWidth); vSize.push(st.size); vOp.push(st.opacity); vSym.push(st.symbol);
+      vHover.push(st.hover !== undefined ? st.hover : G.plainLabel(id));
+      haloColor.push(st.opacity === 0 ? "rgba(0,0,0,0)" : (st.halo || (st.color === C.vert ? "rgba(42,120,214,0.10)" : G.rgba(st.color, 0.22))));
+      var lbl = st.label !== undefined ? st.label
+        : (spec.labels === false ? null : (spec.labels && typeof spec.labels === "object" ? spec.labels[id] : G.texLabel(id)));
+      if (lbl) {
+        annotations.push({ x: spec.verts[id][0], y: spec.verts[id][1], text: lbl, showarrow: false,
+          font: { size: st.labelSize || 13, color: st.labelColor || (st.color === C.vert || st.color === C.accent ? C.vertText : C.selText) }, opacity: st.opacity });
+      }
+    });
+    if (spec.halo !== false) {
+      data.push({ x: vx, y: vy, mode: "markers", marker: { size: vSize.map(function (s) { return s + 14; }), color: haloColor, line: { width: 0 } },
+        opacity: 1, hoverinfo: "skip", showlegend: false, name: "halo" });
+      meta.haloIdx = data.length - 1;
+    }
+    data.push({ x: vx, y: vy, mode: "markers", marker: { size: vSize, color: vColor, symbol: vSym, opacity: vOp, line: { color: vLine, width: vLineW } },
+      hovertext: vHover, hoverinfo: vOp.map(function (o) { return o > 0 ? "text" : "skip"; }), showlegend: false, name: "vertices",
+      hoverlabel: { bgcolor: "#1c1917", bordercolor: "#1c1917", font: { color: "#fff", size: 12 } } });
+    meta.vertIdx = data.length - 1;
+    if (spec.pathTrace) {
+      data.push({ x: [], y: [], mode: "lines", line: { color: C.red, width: 3.2, shape: "linear" }, hoverinfo: "skip", showlegend: false, name: "path" });
+      meta.pathIdx = data.length - 1;
+    }
+
+    var layout = {
+      xaxis: { visible: false, range: xr, fixedrange: true },
+      yaxis: { visible: false, range: yr, fixedrange: true, scaleanchor: "x" },
+      margin: { t: 8, b: 8, l: 8, r: 8 },
+      plot_bgcolor: C.bg, paper_bgcolor: C.bg, showlegend: false, hovermode: "closest",
+      annotations: annotations.concat(spec.annotations || []), shapes: spec.shapes || [],
+      transition: { duration: 420, easing: "cubic-in-out" }
+    };
+    if (spec.height) layout.height = spec.height;
+    return { data: data, layout: layout, meta: meta };
+  };
+
+  G.rgba = function (hex, a) {
+    var m = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(hex);
+    if (!m) return hex;
+    return "rgba(" + parseInt(m[1], 16) + "," + parseInt(m[2], 16) + "," + parseInt(m[3], 16) + "," + a + ")";
+  };
+
+  // ── draw (with transitions) ────────────────────────────────────────────────
+  G.config = { displayModeBar: false, displaylogo: false, scrollZoom: false, responsive: true };
+  G.draw = function (el, built, opts) {
+    if (typeof el === "string") el = document.getElementById(el);
+    opts = opts || {};
+    G.ready(function (Plotly) {
+      var canAnimate = el.data && el.data.length === built.data.length && !opts.noAnimate;
+      if (canAnimate) {
+        // Same trace structure as the previous step -> tween colors/widths/
+        // positions instead of snapping. Layout (annotations, shapes) is
+        // applied at the start of the frame.
+        Plotly.animate(el, { data: built.data, layout: built.layout },
+          { transition: { duration: opts.duration || 420, easing: "cubic-in-out" },
+            frame: { duration: opts.duration || 420, redraw: false } });
+      } else if (el.data) {
+        Plotly.react(el, built.data, built.layout, G.config);
+      } else {
+        Plotly.newPlot(el, built.data, built.layout, G.config);
+      }
+      el.__fpmiGraph = built;
+      if (!el.__fpmiHoverBound && opts.hover !== false) { G.attachHover(el); el.__fpmiHoverBound = true; }
+      if (opts.then) opts.then(Plotly);
+    });
+  };
+
+  // ── hover-highlight: lift a vertex's incident edges, dim the rest ──────────
+  G.attachHover = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    var restore = function () {
+      var b = el.__fpmiGraph; if (!b || !window.Plotly) return;
+      var s = b.meta.edgeStyles;
+      window.Plotly.restyle(el, {
+        "line.width": s.map(function (x) { return x.width; }),
+        "line.color": s.map(function (x) { return x.color; }),
+        "opacity": s.map(function (x) { return x.opacity; })
+      }, b.meta.edgeIdx);
+    };
+    el.on("plotly_hover", function (ev) {
+      var b = el.__fpmiGraph; if (!b || !ev.points || !ev.points.length) return;
+      var p = ev.points[0];
+      if (p.curveNumber !== b.meta.vertIdx) return;
+      var id = b.meta.ids[p.pointNumber];
+      var widths = [], colors = [], ops = [];
+      b.meta.edges.forEach(function (e, k) {
+        var st = b.meta.edgeStyles[k], inc = (e.u === id || e.v === id);
+        widths.push(inc ? Math.max(st.width * 1.9, 3) : st.width);
+        colors.push(inc ? (st.color === G.colors.edge || st.color === G.colors.edgeFaded ? G.colors.sel : st.color) : st.color);
+        ops.push(inc ? 1 : Math.min(st.opacity, 0.28));
+      });
+      window.Plotly.restyle(el, { "line.width": widths, "line.color": colors, "opacity": ops }, b.meta.edgeIdx);
+    });
+    el.on("plotly_unhover", restore);
+  };
+
+  // ── step player ────────────────────────────────────────────────────────────
+  // G.player({ container, count, render(i), autoplayMs, loop, start })
+  // Builds: [← Back] [Step i / N] [Next →] [▶ Auto]; arrow keys work while
+  // the controls have focus. render(i) is called for every step change.
+  // UI strings use the same IS_EN language switch declared at the top of
+  // this file. `o.label` still overrides the step word directly, same as
+  // before this change, for any call site that wants a custom label.
+  var PLAYER_STR = IS_EN
+    ? { back: "← Back", next: "Next →", auto: "▶ Auto", autoTitle: "Autoplay", pause: "⏸ Pause", step: "Step" }
+    : { back: "← Назад", next: "Вперёд →", auto: "▶ Авто", autoTitle: "Автовоспроизведение", pause: "⏸ Пауза", step: "Шаг" };
+  G.player = function (o) {
+    var box = typeof o.container === "string" ? document.getElementById(o.container) : o.container;
+    box.classList.add("fpmi-graph-controls");
+    box.setAttribute("tabindex", "0");
+    box.innerHTML =
+      '<button type="button" class="fg-prev">' + PLAYER_STR.back + '</button>' +
+      '<span class="fg-step"></span>' +
+      '<button type="button" class="fg-next">' + PLAYER_STR.next + '</button>' +
+      '<button type="button" class="fg-play" title="' + PLAYER_STR.autoTitle + '">' + PLAYER_STR.auto + '</button>';
+    var prev = box.querySelector(".fg-prev"), next = box.querySelector(".fg-next"), play = box.querySelector(".fg-play"), lbl = box.querySelector(".fg-step");
+    var cur = o.start || 0, timer = null, N = o.count;
+    function stop() { if (timer) { clearInterval(timer); timer = null; } play.textContent = PLAYER_STR.auto; play.classList.remove("active"); }
+    function go(i, fromAuto) {
+      if (!fromAuto) stop();
+      cur = Math.max(0, Math.min(N - 1, i));
+      lbl.textContent = (o.label || PLAYER_STR.step) + " " + (cur + 1) + " / " + N;
+      prev.disabled = cur === 0; next.disabled = cur === N - 1;
+      o.render(cur);
+    }
+    prev.addEventListener("click", function () { go(cur - 1); });
+    next.addEventListener("click", function () { go(cur + 1); });
+    play.addEventListener("click", function () {
+      if (timer) { stop(); return; }
+      play.textContent = PLAYER_STR.pause; play.classList.add("active");
+      if (cur === N - 1) go(0, true);
+      timer = setInterval(function () {
+        if (cur < N - 1) go(cur + 1, true);
+        else if (o.loop) go(0, true);
+        else stop();
+      }, o.autoplayMs || 1600);
+    });
+    box.addEventListener("keydown", function (ev) {
+      if (ev.key === "ArrowRight") { go(cur + 1); ev.preventDefault(); }
+      else if (ev.key === "ArrowLeft") { go(cur - 1); ev.preventDefault(); }
+    });
+    go(cur);
+    return { go: go, next: function () { go(cur + 1); }, prev: function () { go(cur - 1); }, current: function () { return cur; }, stop: stop };
+  };
+
+  // ── path tracer ────────────────────────────────────────────────────────────
+  // Grows the reserved path trace (spec.pathTrace) along `ids` over
+  // `duration` ms, with a moving tip. Returns a cancel function.
+  G.tracePath = function (el, verts, ids, opts) {
+    if (typeof el === "string") el = document.getElementById(el);
+    opts = opts || {};
+    var b = el.__fpmiGraph; if (!b || b.meta.pathIdx === undefined || !window.Plotly) return function () {};
+    var pts = ids.map(function (id) { return verts[id]; });
+    var segs = pts.length - 1, dur = opts.duration || 500 * segs, t0 = null, cancelled = false;
+    var style = { "line.color": opts.color || G.colors.red, "line.width": opts.width || 3.2 };
+    window.Plotly.restyle(el, style, [b.meta.pathIdx]);
+    function frame(ts) {
+      if (cancelled) return;
+      if (t0 === null) t0 = ts;
+      var f = Math.min(1, (ts - t0) / dur), pos = f * segs, k = Math.floor(pos), r = pos - k;
+      var x = [], y = [];
+      for (var i = 0; i <= Math.min(k, segs); i++) { x.push(pts[i][0]); y.push(pts[i][1]); }
+      if (k < segs) { x.push(pts[k][0] + (pts[k + 1][0] - pts[k][0]) * r); y.push(pts[k][1] + (pts[k + 1][1] - pts[k][1]) * r); }
+      window.Plotly.restyle(el, { x: [x], y: [y] }, [b.meta.pathIdx]);
+      if (f < 1) requestAnimationFrame(frame); else if (opts.done) opts.done();
+    }
+    requestAnimationFrame(frame);
+    return function () { cancelled = true; };
+  };
+  G.clearPath = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    var b = el.__fpmiGraph; if (!b || b.meta.pathIdx === undefined || !window.Plotly) return;
+    window.Plotly.restyle(el, { x: [[]], y: [[]] }, [b.meta.pathIdx]);
+  };
+
+  // Typeset \(...\) math in a caption/status element (after innerHTML update).
+  G.typeset = function (el) {
+    if (typeof el === "string") el = document.getElementById(el);
+    if (window.fpmiWithMathJax) window.fpmiWithMathJax(function () { if (window.MathJax && window.MathJax.typesetPromise) window.MathJax.typesetPromise([el]); else if (window.MathJax) window.MathJax.typeset([el]); });
+  };
+  G.setCaption = function (id, html) { var el = document.getElementById(id); if (!el) return; el.innerHTML = html; G.typeset(el); };
+
+  window.fpmiGraph = G;
+})();
+</script>
+<style>
+  /* Shared look for every fpmiGraph widget (see graph-helper.html). */
+  .fpmi-graph { padding: 1rem 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .fpmi-graph h2.fg-title { font-size: 16px; font-weight: 500; margin: 0 0 4px; }
+  .fpmi-graph p.fg-sub { font-size: 13px; color: #78716c; margin: 0 0 0.75rem; }
+  .fpmi-graph .fg-plot { width: 100%; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 6px 18px rgba(0,58,65,0.06); }
+  .fpmi-graph .fg-caption { font-size: 13px; color: #44403c; margin-top: 0.6rem; min-height: 1.4em; line-height: 1.5; }
+  .fpmi-graph .fg-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .fpmi-graph .fg-arrow { font-size: 26px; color: #78716c; }
+  .fpmi-graph-controls, .fpmi-graph .fg-controls { display: flex; align-items: center; gap: 10px; margin: 0.5rem 0 0.9rem; flex-wrap: wrap; outline: none; }
+  .fpmi-graph-controls button, .fpmi-graph button {
+    font-size: 13px; padding: 6px 12px; cursor: pointer; border-radius: 8px;
+    border: 1px solid #d6d3d1; background: #fff; color: #292524; transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  }
+  .fpmi-graph-controls button:hover:not(:disabled), .fpmi-graph button:hover:not(:disabled) { background: #f5f5f4; border-color: #a8a29e; }
+  .fpmi-graph-controls button:disabled, .fpmi-graph button:disabled { opacity: 0.4; cursor: default; }
+  .fpmi-graph-controls button.active, .fpmi-graph button.active { background: #eaf2fb; border-color: #2a78d6; color: #1c4a7a; font-weight: 600; box-shadow: 0 0 0 3px rgba(42,120,214,0.12); }
+  .fpmi-graph-controls .fg-step { font-size: 13px; font-weight: 600; color: #44403c; min-width: 6.5em; text-align: center; }
+  .fpmi-graph-controls:focus-within .fg-step { color: #1c4a7a; }
+  .fpmi-graph label { font-size: 13px; color: #57534e; }
+  .fpmi-graph input[type="range"] { accent-color: #2a78d6; }
+  .fpmi-graph .fg-val { font-size: 13px; font-weight: 600; min-width: 2em; display: inline-block; color: #1c4a7a; }
+  .fpmi-graph .fg-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: #57534e; margin-top: 0.4rem; }
+  .fpmi-graph .fg-legend span::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; background: var(--c, #eaf2fb); border: 1.5px solid var(--b, #1e3a8a); }
+  .fpmi-graph .fg-legend span.line::before { border-radius: 0; height: 3px; width: 18px; border: none; vertical-align: 2px; background: var(--c, #78716c); }
+</style>
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../courses/04-probability/01_MT/contents/040_systems_of_sets.html">II. Measure Theory</a></li><li class="breadcrumb-item"><a href="../../../../courses/04-probability/01_MT/contents/130_signed_measures.html">12. Signed measures, densities</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Signed measures, densities</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">18 October 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><span id="sec-ch:signed_measures"></span></p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Draft
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This text is still being edited: it may contain typos, inaccuracies, and locally unpolished passages. If you find something, please let the author know (contact details on the <a href="../../../../courses/04-probability/01_MT/overview.html#об-этом-пособии">course page</a>).</p>
+</div>
+</div>
+<section id="signed-measures" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Signed measures</h1>
+<section id="introduction" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1.1</span> Introduction</h2>
+<p>We want to understand what kinds of signed measures exist and how to decompose them into simple pieces. First we decompose into a positive/negative part (Jordan), then, relative to a reference measure, into a singular/absolutely continuous part (Lebesgue), and then for the absolutely continuous part we find a density (Radon-Nikodym).</p>
+<p>Let <span class="math inline">\((X, \mathcal{F})\)</span> be a measurable space.</p>
+<div class="callout callout-style-simple callout-mn-def no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="def-1" class="definition theorem">
+<p><span class="theorem-title"><strong>Definition 1</strong></span> We call a function <span class="math inline">\(\nu : \mathcal{F} \to [-\infty , +\infty ]\)</span> a <a href="https://en.wikipedia.org/wiki/Signed_measure"><em>real measure</em></a>, a <em>signed measure</em>, or a <em>charge</em> if</p>
+<ol type="1">
+<li><p><span class="math inline">\(\nu (\varnothing ) = 0\)</span>;</p></li>
+<li><p><span class="math inline">\(+\infty \not\in \operatorname {Im}\nu\)</span> or <span class="math inline">\(-\infty \not\in \operatorname {Im}\nu\)</span>. In other words: <span class="math inline">\(\nu\)</span> cannot take the values <span class="math inline">\(+\infty\)</span> and <span class="math inline">\(-\infty\)</span> simultaneously. That is, if <span class="math inline">\(\nu\)</span> takes the value <span class="math inline">\(+\infty\)</span> on some set, then it does not take the value <span class="math inline">\(-\infty\)</span> on any other set, and vice versa.</p></li>
+<li><p><span class="math inline">\(\nu\)</span> is countably additive: if <span class="math inline">\(E_1, E_2, \ldots \in \mathcal{F}\)</span> is a sequence of pairwise disjoint sets from the sigma-algebra, then</p>
+<p><span class="math display">\[
+  \nu \left(\bigsqcup _{n=1}^{+\infty }E_n\right) = \sum _{n=1}^{+\infty }\nu \left(E_n\right)
+\]</span></p></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<p>Condition 2 is needed so that no indeterminate form <span class="math inline">\(+\infty + (-\infty )\)</span> arises in additivity.</p>
+<p>The meaning of the word “measure” varies across the mathematical literature. As a rule, a “measure” is a countably additive function on a sigma-algebra <span class="math inline">\(\mu : \mathcal{F} \to [0,+\infty ]\)</span> such that <span class="math inline">\(\mu (\varnothing ) = 0\)</span> (this is how we defined “measure” at the very beginning). However, some authors use the word “measure” to refer to what we have just introduced under the name “real measure”; in that case they use the expression “positive measure” or “nonnegative measure” for what we defined as a “measure.” To remove this ambiguity, in this chapter <strong>we will call a “measure” a “(nonnegative) measure.”</strong> A (nonnegative) measure is a special case of a real measure (in our terminology).</p>
+<p>As a rule, we will denote a (nonnegative) measure by the letter <span class="math inline">\(\mu\)</span>, and a real measure by the letter <span class="math inline">\(\nu\)</span>.</p>
+<p>Some authors use the term “signed measure” instead of “real measure”; some authors do not allow a real measure to take the value <span class="math inline">\(+\infty , -\infty\)</span>.</p>
+<p>Let us examine countable additivity of a real measure in more detail.</p>
+<div id="expl-1" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\(E_1, E_2, \ldots \in \mathcal{F}\)</span> be an arbitrary pairwise disjoint collection of sets. Investigate the convergence of the series <span class="math inline">\(\sum_{n=1}^{+\infty }\nu (E_n)\)</span>.</p>
+<p><em>Notice that now the terms of the series <span class="math inline">\(\sum_{n=1}^{+\infty }\nu (E_n)\)</span> may be negative.</em></p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Can this series diverge? (Diverge in the sense that it has several limit points, including infinities.) No! Indeed, this series must equal <span class="math inline">\(\nu (E) \in [-\infty , +\infty ]\)</span>, where <span class="math inline">\(E =\bigsqcup_{n=1}^{+\infty }E_n\)</span>. That is, the series <span class="math inline">\(\sum_{n=1}^{+\infty }\nu (E_n)\)</span> either converges to a finite number or to one of the infinities.</p></li>
+<li><p>Suppose <span class="math inline">\(\sum_{n=1}^{+\infty }\nu (E_n)\)</span> converges to a finite number. Can it converge conditionally? Also no! Indeed, if <span class="math inline">\(p: \mathbb {N} \to \mathbb {N}\)</span> is some permutation of the natural numbers, then <span class="math inline">\(\bigsqcup_{n=1}^{+\infty }E_n = \bigsqcup_{n=1}^{+\infty }E_{p_n}\)</span>. That is, it does not matter in what order we take the union of the sets. By the definition of countable additivity we obtain</p>
+<p><span class="math display">\[
+  \sum _{n=1}^{+\infty } \nu \left(E_{n}\right)=\nu \left(\bigsqcup _{n=1}^{+\infty }E_n \right) = \nu \left( \bigsqcup _{n=1}^{+\infty }E_{p_n}\right) = \sum _{n=1}^{+\infty } \nu \left(E_{p_n}\right)
+\]</span></p>
+<p>It follows that the sum of the series <span class="math inline">\(\sum_{n=1}^{+\infty } a_n\)</span> (where <span class="math inline">\(a_n = \nu \left(E_{p_n}\right)\)</span>) does not depend on the permutation of its terms. By the <a href="https://en.wikipedia.org/wiki/Riemann_series_theorem">Riemann series theorem</a>, a series of real numbers converges (to a finite number) with its sum independent of the permutation of its terms (such convergence is called <em>unconditional</em>) if and only if it converges absolutely, i.e.&nbsp;the series of its absolute values converges.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Let us state the resulting lemma.</p>
+<div class="callout callout-style-simple callout-mn-lem no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="lem-1" class="lemma theorem">
+<p><span class="theorem-title"><strong>Lemma 1</strong></span> Let <span class="math inline">\(\nu\)</span> be a real measure on <span class="math inline">\((X,\mathcal{F})\)</span>, and let <span class="math inline">\(E_1, E_2, \ldots \in \mathcal{F}\)</span> be a pairwise disjoint collection of sets. Then the series <span class="math inline">\(\sum_{n=1}^{+\infty } \nu (E_n)\)</span> converges unconditionally (to a finite number or to one of the infinities).</p>
+<p>Moreover, if it converges to a finite number, then it converges absolutely.</p>
+</div>
+</div>
+</div>
+</div>
+<p>How can real measures be obtained? Via the Lebesgue integral with respect to some (nonnegative) measure.</p>
+<div class="callout callout-style-simple callout-mn-lem no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="lem-2" class="lemma theorem">
+<p><span class="theorem-title"><strong>Lemma 2</strong></span> Let <span class="math inline">\(\mu\)</span> be a (nonnegative) measure on <span class="math inline">\((X,\mathcal{F})\)</span>. Let <span class="math inline">\(h: X \to \overline{\mathbb {R}}\)</span> be a measurable function. Denote <span class="math display">\[
+  \nu _h(E) := \int _{E} h \;  d\mu
+\]</span> (if the integral exists).</p>
+<ul>
+<li><p>If <span class="math inline">\(h\)</span> is nonnegative (i.e.&nbsp;<span class="math inline">\(\operatorname {Im}h \subset [0, +\infty ]\)</span>), then <span class="math inline">\(\nu_h\)</span> is a (nonnegative) measure;</p></li>
+<li><p>If at least one of the functions <span class="math inline">\(h^+\)</span>, <span class="math inline">\(h^-\)</span> is integrable, then <span class="math inline">\(\nu_h\)</span> is a real measure.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p>For <span class="math inline">\(\nu_h\)</span> one also uses the notation <span class="math inline">\(\nu_h = h \;  d\mu\)</span>, to emphasize the role of <span class="math inline">\(\mu\)</span>.</p>
+<p>In what cases is <span class="math inline">\(\nu = \nu_h\)</span> for some function <span class="math inline">\(h\)</span>? See the Radon-Nikodym theorem below.</p>
+</section>
+<section id="the-hahn-theorem-and-the-jordan-theorem-decomposing-a-real-measure-into-positive-and-negative-parts" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="the-hahn-theorem-and-the-jordan-theorem-decomposing-a-real-measure-into-positive-and-negative-parts"><span class="header-section-number">1.2</span> The Hahn theorem and the Jordan theorem: decomposing a real measure into positive and negative parts</h2>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-3" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 1 (Hahn decomposition, without proof)</strong></span> Let <span class="math inline">\(\nu\)</span> be a real measure on <span class="math inline">\((X, \mathcal{F})\)</span>. Then there exists a partition of <span class="math inline">\(X\)</span> into <span class="math inline">\(X^+, X^- \in \mathcal{F}\)</span> (i.e.&nbsp;<span class="math inline">\(X = X^+ \sqcup X^-\)</span>) such that</p>
+<ul>
+<li><p><span class="math inline">\(\nu (E) \geq 0\)</span> for all <span class="math inline">\(E \in \mathcal{F}\)</span>, <span class="math inline">\(E \subset X^{+}\)</span></p></li>
+<li><p><span class="math inline">\(\nu (E) \leq 0\)</span> for all <span class="math inline">\(E \in \mathcal{F}\)</span>, <span class="math inline">\(E \subset X^{-}\)</span></p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p>Real or (nonnegative) measures <span class="math inline">\(\nu_1\)</span>, <span class="math inline">\(\nu_2\)</span> are called <em>singular</em> if they “live” on disjoint sets, i.e.&nbsp;there exists a partition of <span class="math inline">\(X\)</span> into <span class="math inline">\(X_1, X_2 \in \mathcal{F}\)</span> (<span class="math inline">\(X = X_1 \sqcup X_2\)</span>) such that</p>
+<p><span class="math display">\[
+  \nu _1 (E) = \nu _1\left(E \cap X_1\right), \quad \nu _2(E) = \nu _{2}\left(E \cap X_2\right) \qquad \text{for all } E\in \mathcal{F}
+\]</span></p>
+<div id="expl-2" class="callout callout-style-default callout-example no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Show that <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(\#_{\mathbb {Z}}\)</span> (counting measure on <span class="math inline">\(\mathbb {Z}\)</span>) are singular (nonnegative) measures on <span class="math inline">\((\mathbb {R}, \mathscr {B}\left(\mathbb {R}\right))\)</span>.</p>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Solution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\(X_1 = \mathbb {R} \setminus \left\{ \mathbb {Z}\right\}\)</span>, <span class="math inline">\(X_2 = \mathbb {Z}\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Note that if in the Hahn theorem we define</p>
+<p><span class="math display">\[
+  \nu ^+(E) := \nu (E \cap X^+), \qquad \nu ^{-}(E) := -\nu (E \cap X^-),
+\]</span></p>
+<p>then <span class="math inline">\(\nu^+\)</span> and <span class="math inline">\(\nu^-\)</span> are exactly the singular (nonnegative) measures we wanted. Moreover <span class="math inline">\(\nu = \nu^+ - \nu^-\)</span>. We have essentially proved</p>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-4" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 2 (Jordan decomposition)</strong></span> Every real measure is the difference of two (nonnegative) singular measures, at least one of which is finite. Namely, if <span class="math inline">\(\nu\)</span> is a real measure on <span class="math inline">\((X, \mathcal{F})\)</span>, then there exist (nonnegative) singular measures <span class="math inline">\(\nu^+\)</span> and <span class="math inline">\(\nu^-\)</span> such that <span class="math inline">\(\nu = \nu^+ - \nu^-\)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+<p><span class="math inline">\(\nu\)</span> may take the value <span class="math inline">\(+\infty\)</span> or <span class="math inline">\(-\infty\)</span>, but not both. Hence, among the (nonnegative) measures <span class="math inline">\(\nu^+\)</span>, <span class="math inline">\(\nu^-\)</span> at least one is finite. Moreover, they are both finite (do not take the value <span class="math inline">\(+\infty\)</span>) if and only if <span class="math inline">\(\nu\)</span> is finite (<span class="math inline">\(+\infty , -\infty \not\in \operatorname {Im}\nu\)</span>).</p>
+<p>The (nonnegative) measure <span class="math inline">\(\left|\nu \right| := \nu^+ + \nu^{-}\)</span> is called the <em>total variation measure</em> of <span class="math inline">\(\nu\)</span>.</p>
+<p>If <span class="math inline">\(d\nu = h \;  d\mu\)</span> for some measurable <span class="math inline">\(h\)</span>, then it is not hard to show that</p>
+<p><span class="math display">\[
+  d\nu ^+ = h^+ \;  d\mu , \qquad d\nu ^- = h^- \;  d\mu , \qquad d\left|\nu \right| = \left|h\right| \;  d\mu
+\]</span></p>
+<p>That is,</p>
+<p><span class="math display">\[
+  \nu ^+(E) = \int _{E} h^{+} \;  d\mu , \qquad \nu ^-(E) = \int _{E} h^{-} \;  d\mu , \qquad \left|\nu \right|(E) = \int _{E} \left|h\right| \;  d\mu
+\]</span></p>
+<p>for all <span class="math inline">\(E \in \mathcal{F}\)</span>.</p>
+<div id="prob-3" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Problem 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>On the measurable space <span class="math inline">\((\mathbb {R}, \mathscr {B}\left(\mathbb {R}\right))\)</span> let</p>
+<ul>
+<li><p><span class="math inline">\(d\nu_1 = f \;  d\lambda\)</span>, where <span class="math inline">\(f_1(x) = x^2 - 4\)</span></p></li>
+<li><p><span class="math inline">\(\nu_2 = \sum_{k=-3}^{3}(-1)^k\cdot k \cdot \delta_{k}\)</span></p></li>
+</ul>
+<p>Let <span class="math inline">\(\nu = \nu_1 + \nu_2\)</span>.</p>
+<ol type="1">
+<li><p>Find the Jordan decomposition <span class="math inline">\(\nu = \nu^+ - \nu^-\)</span> of the real measure <span class="math inline">\(\nu\)</span>.</p></li>
+<li><p>Find the integral <span class="math inline">\(\int_{[-2,0]} f \;  d\left|\nu \right|\)</span>, where <span class="math inline">\(f(x) = x^2\)</span>.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="prob-4" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Problem 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>On the measurable space <span class="math inline">\((\mathbb {R}, \mathscr {B}\left(\mathbb {R}\right))\)</span> let</p>
+<ul>
+<li><p><span class="math inline">\(d\nu_1 = h_1\;  d\lambda\)</span>, where <span class="math inline">\(h_1(x) = x^2 - 4\)</span></p></li>
+<li><p><span class="math inline">\(d\nu_2 = h_2 \;  d\lambda\)</span>, where <span class="math inline">\(h_2(x) = (x-2)^2 - 5\)</span></p></li>
+</ul>
+<p>Let <span class="math inline">\(\nu = \nu_1 + \nu_2\)</span>.</p>
+<ol type="1">
+<li><p>Find the Jordan decomposition <span class="math inline">\(\nu = \nu^+ - \nu^-\)</span> of the real measure <span class="math inline">\(\nu\)</span>.</p></li>
+<li><p>Find the integral <span class="math inline">\(\int_{[-2,0]} f \;  d\left|\nu \right|\)</span>, where <span class="math inline">\(f(x) = x^2\)</span>.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="measures-obtained-via-the-integral-of-another-nonnegative-measure" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Measures obtained via the integral of another (nonnegative) measure</h1>
+<section id="the-radon-nikodym-theorem-characterizing-measures-obtained-via-the-integral-of-another-measure" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="the-radon-nikodym-theorem-characterizing-measures-obtained-via-the-integral-of-another-measure"><span class="header-section-number">2.1</span> The Radon-Nikodym theorem: characterizing measures obtained via the integral of another measure</h2>
+<p><span class="math inline">\(\mu\)</span> will everywhere be a (nonnegative) measure, while <span class="math inline">\(\nu\)</span> will first be (nonnegative), then a real measure. Both will be <span class="math inline">\(\sigma\)</span>-finite. Without the sigma-finiteness condition, various pathological counterexamples to the theorem below arise.</p>
+<section id="the-case-of-a-nonnegative-measure-nu" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored"><span class="header-section-number">2.1.1</span> The case of a (nonnegative) measure <span class="math inline">\(\nu\)</span></h3>
+<p>Recall that if <span class="math inline">\((X,\mathcal{F}, \mu )\)</span> is a space with a (nonnegative) measure and <span class="math inline">\(h: X \to [0,+\infty ]\)</span> is a nonnegative function, then</p>
+<p><span class="math display">\[
+  \nu _h(E) := \int _E h \;  d\mu
+\]</span></p>
+<p>is also a (nonnegative) measure. Moreover, if <span class="math inline">\(\mu (E) = 0\)</span>, then <span class="math inline">\(\nu_h(E) = 0\)</span>. This property is called <em>absolute continuity</em>. Namely, if <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\nu\)</span> are two (nonnegative) measures, one says that <span class="math inline">\(\nu\)</span> is <em>absolutely continuous with respect to <span class="math inline">\(\mu\)</span></em>, or <em><span class="math inline">\(\nu\)</span> is dominated by <span class="math inline">\(\mu\)</span></em>, and writes <span class="math inline">\(\nu \ll \mu\)</span>, if <span class="math inline">\(\nu (E) = 0\)</span> for all sets of <span class="math inline">\(\mu\)</span>-measure zero.</p>
+<p>Let us connect this definition with the more familiar <span class="math inline">\(\varepsilon\)</span>-<span class="math inline">\(\delta\)</span> construction.</p>
+<div class="callout callout-style-simple callout-mn-lem no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="lem-Charge:AbContEquivLemma" class="lemma theorem">
+<p><span class="theorem-title"><strong>Lemma 3 (An equivalent condition for absolute continuity of a finite (nonnegative) measure)</strong></span> Let <span class="math inline">\(\nu\)</span> be a <strong>finite</strong> (nonnegative) measure, and <span class="math inline">\(\mu\)</span> an arbitrary (nonnegative) measure. The following conditions are equivalent:</p>
+<ol type="i">
+<li><p><span class="math inline">\(\nu \ll \mu\)</span></p></li>
+<li><p>For every <span class="math inline">\(\varepsilon &gt; 0\)</span> there exists <span class="math inline">\(\delta &gt; 0\)</span> such that <span class="math inline">\(\nu (E) &lt; \varepsilon\)</span> for all measurable <span class="math inline">\(E\)</span> such that <span class="math inline">\(\mu (E) &lt; \delta\)</span>.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<p>It turns out that in the sigma-finite case, absolute continuity is equivalent to the measure being representable via an integral!</p>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-RN:MainThm" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 3 (Radon-Nikodym)</strong></span> Let <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\nu\)</span> be (nonnegative) <span class="math inline">\(\sigma\)</span>-finite measures on <span class="math inline">\((X,\mathcal F)\)</span>. The following conditions are equivalent:</p>
+<ol type="i">
+<li><p><span class="math inline">\(\nu \ll \mu\)</span>;</p></li>
+<li><p><span class="math inline">\(d\nu = h \;  d\mu\)</span> for some nonnegative measurable <span class="math inline">\(h: X \to [0,+\infty ]\)</span></p></li>
+</ol>
+<p>Moreover, <span class="math inline">\(h\)</span> is unique up to agreement <span class="math inline">\(\mu\)</span>-a.e. That is, if <span class="math inline">\(g\)</span> is another function such that <span class="math inline">\(\nu (E) = \int_E g \;  d\mu\)</span>, then <span class="math inline">\(h = g\)</span> <span class="math inline">\(\mu\)</span>-a.e.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-proof no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Mn-proof</span>Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="mn-proof-body">
+<ol start="2" type="i">
+<li><span class="math inline">\(\Rightarrow\)</span> (i) is obvious: if <span class="math inline">\(d\nu = h\, d\mu\)</span> and <span class="math inline">\(\mu (E)=0\)</span>, then <span class="math inline">\(\nu (E) = \int_E h\, d\mu = 0\)</span>.</li>
+</ol>
+<p>Let us prove (i) <span class="math inline">\(\Rightarrow\)</span> (ii). The idea (due to J. von Neumann) is to apply the Riesz representation theorem for the Hilbert space <span class="math inline">\(L^2(\mu +\nu )\)</span> (the <a href="../../../../courses/04-probability/01_MT/contents/122_Banach_Lp_spaces.html#thm-Hilbert:RieszRepresentation">Riesz representation theorem</a>, the chapter <a href="../../../../courses/04-probability/01_MT/contents/122_Banach_Lp_spaces.html#sec-ch:hilbert">on the Hilbert space <span class="math inline">\(L^2(\mu )\)</span></a>); this is exactly the point in the course where the study of Hilbert spaces pays off.</p>
+<p><strong>Step 1 (existence, finite measures).</strong> Suppose first that <span class="math inline">\(\mu (X), \nu (X) &lt; \infty\)</span>. Then <span class="math inline">\(\mu +\nu\)</span> is a finite measure, and <span class="math inline">\(L^2(\mu +\nu )\)</span> is a Hilbert space with inner product <span class="math inline">\(\left\langle f, g \right\rangle = \int fg \;  d(\mu +\nu )\)</span> (the Riesz-Fischer theorem, the seminar on <span class="math inline">\(L^p\)</span>-spaces). Define the linear functional</p>
+<p><span class="math display">\[
+  \varphi (f) := \int f \;  d\nu , \qquad f \in L^2(\mu +\nu ).
+\]</span></p>
+<p>It is well defined: since <span class="math inline">\(\nu \ll \mu\)</span>, and hence also <span class="math inline">\(\nu \ll \mu +\nu\)</span>, functions that agree <span class="math inline">\((\mu +\nu )\)</span>-a.e. also agree <span class="math inline">\(\nu\)</span>-a.e., so the value <span class="math inline">\(\varphi (f)\)</span> does not depend on the choice of representative of the equivalence class. It is bounded: applying the Cauchy-Bunyakovsky-Schwarz inequality (theorem <a href="../../../../courses/04-probability/01_MT/contents/122_Banach_Lp_spaces.html#thm-Hilbert:CauchySchwarz">the Cauchy-Bunyakovsky-Schwarz inequality</a>) to the functions <span class="math inline">\(\left|f\right|\)</span> and <span class="math inline">\(\mathbb 1\)</span> (the latter lies in <span class="math inline">\(L^2(\mu +\nu )\)</span>, since the measure <span class="math inline">\(\mu +\nu\)</span> is finite),</p>
+<p><span class="math display">\[
+  \left|\varphi (f)\right| \;  \leq \;  \int \left|f\right| \;  d\nu \;  \leq \;  \int \left|f\right| \;  d(\mu +\nu ) \;  \leq \;  \left(\mu (X)+\nu (X)\right)^{1/2} \cdot \left\| f\right\| _{2} \;  &lt; \;  \infty
+\]</span></p>
+<p>(the step <span class="math inline">\(\int \left|f\right| \,  d\nu \leq \int \left|f\right| \,  d(\mu +\nu )\)</span> holds because <span class="math inline">\(\mu \geq 0\)</span>). Hence <span class="math inline">\(\varphi\)</span> is a bounded linear functional on <span class="math inline">\(L^2(\mu +\nu )\)</span>. By the Riesz representation theorem there is <span class="math inline">\(g \in L^2(\mu +\nu )\)</span> such that</p>
+<p><span class="math display">\[
+  \int f \;  d\nu \;  = \;  \int fg \;  d(\mu +\nu ), \qquad \forall f \in L^2(\mu +\nu ),
+\]</span></p>
+<p>that is,</p>
+<p><span class="math display">\[
+  \int f(1-g) \;  d\nu \;  = \;  \int fg \;  d\mu , \qquad \forall f \in L^2(\mu +\nu ). \tag {$*$}
+\]</span></p>
+<p>Substitute into (<span class="math inline">\(*\)</span>) <span class="math inline">\(f = \; \mathbb {1}_{g \geq 1}\)</span>: on the left <span class="math inline">\(\int_{\left\{ g\geq 1\right\} }(1-g)\, d\nu \leq 0\)</span> (since <span class="math inline">\(1-g\leq 0\)</span> on <span class="math inline">\(\left\{ g\geq 1\right\}\)</span>, <span class="math inline">\(\nu \geq 0\)</span>), on the right <span class="math inline">\(\int_{\left\{ g\geq 1\right\} } g\, d\mu \geq 0\)</span> (since <span class="math inline">\(g\geq 1&gt;0\)</span> there, <span class="math inline">\(\mu \geq 0\)</span>). Both sides are equal and are sandwiched between <span class="math inline">\(\leq 0\)</span> and <span class="math inline">\(\geq 0\)</span>, so both are zero; from the right-hand side being zero and <span class="math inline">\(g\geq 1\)</span> on <span class="math inline">\(\left\{ g\geq 1\right\}\)</span>, it follows that <span class="math inline">\(\mu (\left\{ g\geq 1\right\} )=0\)</span>. Similarly, substituting <span class="math inline">\(f=\; \mathbb {1}_{g&lt;0}\)</span>: on the left <span class="math inline">\(\int_{\left\{ g&lt;0\right\} }(1-g)\, d\nu \geq 0\)</span> (since <span class="math inline">\(1-g&gt;1&gt;0\)</span> there), on the right <span class="math inline">\(\int_{\left\{ g&lt;0\right\} }g\, d\mu \leq 0\)</span> (since <span class="math inline">\(g&lt;0\)</span> there); the same reasoning gives <span class="math inline">\(\mu (\left\{ g&lt;0\right\} )=0\)</span>.</p>
+<p>Since <span class="math inline">\(\nu \ll \mu\)</span>, from <span class="math inline">\(\mu (\left\{ g\geq 1\right\} ) = \mu (\left\{ g&lt;0\right\} ) = 0\)</span> it also follows that <span class="math inline">\(\nu (\left\{ g\geq 1\right\} ) = \nu (\left\{ g&lt;0\right\} ) = 0\)</span>. Redefine <span class="math inline">\(g\)</span>, setting it equal to <span class="math inline">\(\tfrac 12\)</span> on the set <span class="math inline">\(\left\{ g\geq 1\right\} \cup \left\{ g&lt;0\right\}\)</span> — this set has zero <span class="math inline">\((\mu +\nu )\)</span>-measure, so the identity (<span class="math inline">\(*\)</span>) does not change — and now <span class="math inline">\(0\leq g &lt; 1\)</span> everywhere on <span class="math inline">\(X\)</span>. Set</p>
+<p><span class="math display">\[
+  h := \frac{g}{1-g} \;  \geq \;  0
+\]</span></p>
+<p>(the denominator is strictly positive everywhere), and let us prove that <span class="math inline">\(d\nu =h\, d\mu\)</span>. Fix <span class="math inline">\(E\in \mathcal F\)</span> and for <span class="math inline">\(k\in \mathbb {N}\)</span> set</p>
+<p><span class="math display">\[
+  f_k(x) := \begin{cases}  \dfrac {\; \mathbb {1}_{E}(x)}{1-g(x)}, &amp;  \text{if } \dfrac {\; \mathbb {1}_{E}(x)}{1-g(x)} \leq k, \\ 0, &amp;  \text{otherwise.} \end{cases}
+\]</span></p>
+<p>The function <span class="math inline">\(f_k\)</span> is bounded by <span class="math inline">\(k\)</span>, hence <span class="math inline">\(f_k \in L^2(\mu +\nu )\)</span> (the measure <span class="math inline">\(\mu +\nu\)</span> is finite). Substituting <span class="math inline">\(f_k\)</span> into (<span class="math inline">\(*\)</span>): <span class="math inline">\(\int f_k(1-g)\, d\nu = \int f_k g \,  d\mu\)</span>. For fixed <span class="math inline">\(x\)</span> the sequence <span class="math inline">\(f_k(x)\)</span> is nondecreasing in <span class="math inline">\(k\)</span> (from <span class="math inline">\(0\)</span> up to the value <span class="math inline">\(\tfrac {\; \mathbb {1}_{E}(x)}{1-g(x)}\)</span>, at which it stays for all further <span class="math inline">\(k\)</span>); hence <span class="math inline">\(f_k(1-g) \uparrow \; \mathbb {1}_{E}\)</span> and <span class="math inline">\(f_kg \uparrow \; \mathbb {1}_{E} \cdot h\)</span> pointwise and monotonically. By Levi’s monotone convergence theorem, passing to the limit as <span class="math inline">\(k\to \infty\)</span>:</p>
+<p><span class="math display">\[
+  \nu (E) \;  = \;  \int _E 1 \;  d\nu \;  = \;  \int _E h \;  d\mu .
+\]</span></p>
+<p>Since <span class="math inline">\(E\in \mathcal F\)</span> was arbitrary, <span class="math inline">\(d\nu = h\, d\mu\)</span>. This completes Step 1.</p>
+<p><strong>Uniqueness.</strong> Let <span class="math inline">\(h,\widetilde h : X \to [0,+\infty ]\)</span> both be measurable and <span class="math inline">\(\nu (E) = \int_E h\, d\mu = \int_E \widetilde h\, d\mu\)</span> for all <span class="math inline">\(E\in \mathcal F\)</span>. Since <span class="math inline">\(\mu\)</span> is <span class="math inline">\(\sigma\)</span>-finite, there exist <span class="math inline">\(X_1\subseteq X_2\subseteq \cdots \in \mathcal F\)</span>, <span class="math inline">\(\bigcup_k X_k = X\)</span>, <span class="math inline">\(\mu (X_k)&lt;\infty\)</span>. Fix <span class="math inline">\(k\)</span> and set <span class="math inline">\(E := \left\{ h&gt;\widetilde h\right\} \cap X_k\)</span>; then <span class="math inline">\(\int_E (h-\widetilde h)\, d\mu = \nu (E)-\nu (E) = 0\)</span>, and the integrand is strictly positive on <span class="math inline">\(E\)</span> with <span class="math inline">\(\mu (E)\leq \mu (X_k)&lt;\infty\)</span> — a standard fact about the Lebesgue integral gives <span class="math inline">\(\mu (E)=0\)</span>. Similarly <span class="math inline">\(\mu (\left\{ h&lt;\widetilde h\right\} \cap X_k)=0\)</span>. Letting <span class="math inline">\(k\to \infty\)</span> (continuity of the measure from below): <span class="math inline">\(\mu (\left\{ h&gt;\widetilde h\right\} ) = \mu (\left\{ h&lt;\widetilde h\right\} ) = 0\)</span>, i.e.&nbsp;<span class="math inline">\(h=\widetilde h\)</span> <span class="math inline">\(\mu\)</span>-a.e.</p>
+<p><strong>Step 2 (existence, <span class="math inline">\(\sigma\)</span>-finite measures).</strong> Now suppose <span class="math inline">\(\mu ,\nu\)</span> are only <span class="math inline">\(\sigma\)</span>-finite. Since both are <span class="math inline">\(\sigma\)</span>-finite, one can choose (by intersecting exhausting sequences for <span class="math inline">\(\mu\)</span> and for <span class="math inline">\(\nu\)</span>) a <em>single</em> increasing sequence <span class="math inline">\(X_1\subseteq X_2\subseteq \cdots \in \mathcal F\)</span> such that <span class="math inline">\(\bigcup_k X_k = X\)</span> and <span class="math inline">\(\mu (X_k), \nu (X_k) &lt; \infty\)</span> for each <span class="math inline">\(k\)</span>. Let <span class="math inline">\(\mathcal F_k := \left\{ E \cap X_k \;  : \;  E \in \mathcal F\right\}\)</span>, and let <span class="math inline">\(\mu_k, \nu_k\)</span> be the restrictions of <span class="math inline">\(\mu , \nu\)</span> to <span class="math inline">\((X_k, \mathcal F_k)\)</span>; these are finite measures, and <span class="math inline">\(\nu_k \ll \mu_k\)</span> (immediately from <span class="math inline">\(\nu \ll \mu\)</span>). By Step 1 there is a nonnegative measurable <span class="math inline">\(h_k : X_k \to [0,+\infty )\)</span> such that <span class="math inline">\(\nu_k(E) = \int_E h_k \,  d\mu_k\)</span> for all <span class="math inline">\(E \in \mathcal F_k\)</span>. By the already-established uniqueness, for <span class="math inline">\(j&lt;k\)</span> the functions <span class="math inline">\(h_j\)</span> and <span class="math inline">\(h_k\)</span> both represent <span class="math inline">\(\nu_j = \nu_k|_{\mathcal F_j}\)</span> with respect to <span class="math inline">\(\mu_j = \mu_k|_{\mathcal F_j}\)</span>, so <span class="math inline">\(h_j = h_k\)</span> <span class="math inline">\(\mu\)</span>-a.e. on <span class="math inline">\(X_j\)</span>.</p>
+<p>Define <span class="math inline">\(h: X \to [0,+\infty )\)</span> as follows: <span class="math inline">\(h(x) := h_k(x)\)</span> for <span class="math inline">\(x \in X_k\)</span> (this definition is consistent <span class="math inline">\(\mu\)</span>-a.e. by what was just said; on the remaining set of <span class="math inline">\(\mu\)</span>-measure <span class="math inline">\(0\)</span>, define <span class="math inline">\(h\)</span> to be zero). For an arbitrary <span class="math inline">\(E \in \mathcal F\)</span>, by continuity of the measure from below (<span class="math inline">\(E = \bigcup_k (E\cap X_k)\)</span>, the sets increasing) and Levi’s monotone convergence theorem,</p>
+<p><span class="math display">\[
+  \nu (E) \;  = \;  \lim _{k\to \infty } \nu (E \cap X_k) \;  = \;  \lim _{k\to \infty }\int _{E\cap X_k} h_k \;  d\mu \;  = \;  \lim _{k\to \infty }\int _E h \cdot \; \mathbb {1}_{X_k} \;  d\mu \;  = \;  \int _E h \;  d\mu .
+\]</span></p>
+<p>Hence <span class="math inline">\(d\nu = h\, d\mu\)</span>. This completes the proof of existence, and hence of the whole theorem (uniqueness in the general <span class="math inline">\(\sigma\)</span>-finite case was already established above).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-remark no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Mn-remark</span>Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<section id="a-preview-change-of-density-on-path-space-the-cameron-martin-and-girsanov-theorems" class="level2 mn-remark-body" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="a-preview-change-of-density-on-path-space-the-cameron-martin-and-girsanov-theorems"><span class="header-section-number">2.2</span> a preview: change of density on path space — the Cameron-Martin and Girsanov theorems</h2>
+<p>The Radon-Nikodym theorem is proved for an <em>arbitrary</em> measurable space <span class="math inline">\((X,\mathcal F)\)</span>. As <span class="math inline">\(X\)</span> one may also take the space of continuous functions <span class="math inline">\(C[0,1]\)</span> with the uniform metric (see the chapter <a href="../../../../courses/04-probability/01_MT/contents/122_Banach_Lp_spaces.html#sec-ch:banach_Lp">on the Lebesgue spaces <span class="math inline">\(L^p\)</span></a>, where it was discussed that <span class="math inline">\(C[0,1]\)</span> is the natural phase space for the paths of random processes) — and then the Radon-Nikodym theorem becomes a substantive tool of the theory of random processes, not just of analysis on <span class="math inline">\(\mathbb {R}^n\)</span>.</p>
+<p>Let <span class="math inline">\(\mathbb {P}\)</span> be the <em>Wiener measure</em> on <span class="math inline">\(C[0,1]\)</span>, i.e.&nbsp;the distribution of the path of standard Brownian motion <span class="math inline">\((W_t)_{t\in [0,1]}\)</span>, <span class="math inline">\(W_0=0\)</span>. Fix a constant <span class="math inline">\(c\in \mathbb {R}\)</span> and consider the “drifted” Brownian motion <span class="math inline">\(W_t + ct\)</span>; let <span class="math inline">\(\mathbb {Q}\)</span> be its distribution (also a measure on <span class="math inline">\(C[0,1]\)</span>). The simplest special case of Girsanov’s theorem is the <em>Cameron-Martin theorem</em>: <span class="math inline">\(\mathbb {Q} \ll \mathbb {P}\)</span>, and moreover</p>
+<p><span class="math display">\[
+  \frac{d\mathbb {Q}}{d\mathbb {P}}(\omega ) = \exp \left(c\, \omega (1) - \frac{c^2}{2}\right), \qquad \omega \in C[0,1].
+\]</span></p>
+<p>In other words, to compute the probability of any event concerning the drifted Brownian motion, it suffices to take the same event for ordinary Brownian motion and multiply the integrand by the explicit, computable density <span class="math inline">\(\exp (c\, \omega (1)-c^2/2)\)</span>, which depends only on the value of the path <span class="math inline">\(\omega (1)\)</span> <em>at the final time</em>. The formula can plausibly be checked on finite-dimensional distributions: the vector <span class="math inline">\((W_{t_1},\ldots ,W_{t_n})\)</span> has a multivariate Gaussian density, and by direct computation (shifting the mean in the Gaussian density) the density of the shifted vector relative to the ordinary one indeed turns out to be the exponential of a linear function of the values.</p>
+<p>The general Girsanov theorem replaces the constant drift <span class="math inline">\(ct\)</span> by the drift <span class="math inline">\(\int_0^t \theta_s\, ds\)</span> for an arbitrary (adapted) random process <span class="math inline">\(\theta\)</span>, and the density formula turns into the exponential martingale <span class="math inline">\(\exp \left(\int_0^1 \theta_s\, dW_s - \frac12\int_0^1\theta_s^2\, ds\right)\)</span> instead of the simple <span class="math inline">\(c\, \omega (1)-c^2/2\)</span>. To make sense of this integral with respect to Brownian motion (<span class="math inline">\(dW_s\)</span>, rather than <span class="math inline">\(ds\)</span>) one needs the Itô stochastic integral — the subject of a separate course on random processes. But the principle behind this preview is exactly the one we have already proved: <strong>the Radon-Nikodym theorem, applied not to <span class="math inline">\(\mathbb {R}^n\)</span> but to path space</strong>.</p>
+</section>
+</div>
+</div>
+<p>Notation: <span class="math inline">\(h = \frac{d\nu }{d\mu }\)</span>. <span class="math inline">\(h\)</span> is called the <em>Radon-Nikodym derivative</em>.</p>
+<div class="callout callout-style-simple callout-mn-lem no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="lem-7" class="lemma theorem">
+<p><span class="theorem-title"><strong>Lemma 4 (Properties of the Radon-Nikodym derivative)</strong></span> Let <span class="math inline">\(\mu\)</span> be a (nonnegative) <span class="math inline">\(\sigma\)</span>-finite measure, and let <span class="math inline">\(\nu_1\)</span>, <span class="math inline">\(\nu_2\)</span> also be (nonnegative) <span class="math inline">\(\sigma\)</span>-finite measures. Then</p>
+<ul>
+<li><p>if <span class="math inline">\(\nu_1 \ll \mu\)</span> and <span class="math inline">\(\nu_2 \ll \mu\)</span>, then</p>
+<p><span class="math display">\[
+  \frac{d(\nu _1 + \nu _2)}{d\mu } = \frac{d\nu _1}{d\mu } + \frac{d\nu _2}{d\mu } \qquad \mu \text{-a.e.}
+\]</span></p></li>
+<li><p>if <span class="math inline">\(\nu_1 \ll \nu_2 \ll \mu\)</span>, then</p>
+<p><span class="math display">\[
+  \frac{d\nu _1}{d\mu } = \frac{d\nu _1}{d\nu _2} \cdot \frac{d\nu _2}{d\mu } \qquad \mu \text{-a.e.}
+\]</span></p></li>
+<li><p>if <span class="math inline">\(\nu_1 \ll \nu_2\)</span> and <span class="math inline">\(\nu_2 \ll \nu_1\)</span>, then</p>
+<p><span class="math display">\[
+  \frac{d\nu _2}{d\nu _1} = \left(\frac{d\nu _1}{d\nu _2}\right)^{-1} \qquad \nu _1\text{-a.e.}
+\]</span></p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="prob-5" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Problem 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Consider on <span class="math inline">\((\mathbb {R}, \mathscr {B}\left(\mathbb {R}\right))\)</span> the following (nonnegative) measures:</p>
+<ol type="1">
+<li><p><span class="math inline">\(\lambda\)</span> (Lebesgue measure on <span class="math inline">\(\mathbb {R}\)</span>);</p></li>
+<li><p><span class="math inline">\(\frac{1}{3} \cdot \lambda_{[-1,1]}\)</span> (Lebesgue measure on <span class="math inline">\([-1,1]\)</span> with a coefficient);</p></li>
+<li><p><span class="math inline">\(f \;  d\lambda\)</span>, where <span class="math inline">\(f(x) = x^{2}I_{[0,1]}(x)\)</span>;</p></li>
+<li><p><span class="math inline">\(f \;  d\lambda + 3\delta_{7}\)</span>, where <span class="math inline">\(f(x) = x^{2}I_{[0,1]}(x)\)</span>;</p></li>
+<li><p><span class="math inline">\(f \;  d\lambda\)</span>, where <span class="math inline">\(f(x) = e^{-3\left|x\right|}I_{[-1,1]}(x)\)</span>;</p></li>
+<li><p><span class="math inline">\(f \;  d\lambda\)</span>, where <span class="math inline">\(f(x) = \frac{1}{x} \cdot I_{(0,1]}(x)\)</span>;</p></li>
+<li><p><span class="math inline">\(\#_{\mathbb {N}}\)</span>;</p></li>
+<li><p><span class="math inline">\(\#_{\mathbb {Z}}\)</span>;</p></li>
+<li><p><span class="math inline">\(\#_{\mathbb {Q}}\)</span>;</p></li>
+<li><p><span class="math inline">\(\delta_0\)</span>;</p></li>
+<li><p><span class="math inline">\(7\cdot \delta_{-3} + \frac{1}{3}\delta_{2}\)</span>; Check that they are sigma-finite. Then go through all possible pairs <span class="math inline">\(\nu , \mu\)</span> among them and check whether <span class="math inline">\(\nu \perp \mu\)</span> or <span class="math inline">\(\nu \ll \mu\)</span> holds. If the latter holds, find <span class="math inline">\(\frac{d\nu }{d\mu }\)</span>.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<p>The same question makes sense not only on <span class="math inline">\(\mathbb {R}\)</span>: any measurable (in particular, continuous) injection <span class="math inline">\(\varphi : \mathbb {R}^n \to X\)</span> from a finite-dimensional space into an arbitrary measurable space <span class="math inline">\((X, \mathcal F)\)</span> allows one to <em>transport</em> a measure from <span class="math inline">\(\mathbb {R}^n\)</span> to <span class="math inline">\(X\)</span> — in exactly the same way that the distribution of a random variable transports the probability measure from <span class="math inline">\(\Omega\)</span> to <span class="math inline">\(\mathbb {R}\)</span>. The following problem carries this out for <span class="math inline">\(X = C[0,1]\)</span> (with the Borel sigma-algebra with respect to the uniform metric, the chapter <a href="../../../../courses/04-probability/01_MT/contents/122_Banach_Lp_spaces.html#sec-ch:banach_Lp">on the Lebesgue spaces <span class="math inline">\(L^p\)</span></a>) — an infinite-dimensional space — but all the computations in it are arranged so as to reduce to the already familiar one- and two-dimensional Lebesgue measure.</p>
+<div id="prob-6" class="callout callout-style-default callout-problem no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Problem</span>Problem 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\(X = C[0,1]\)</span>. Denote by <span class="math inline">\(\mathbf{0} \in X\)</span> the identically zero function, and for <span class="math inline">\(n \in \mathbb {N}\)</span> let <span class="math inline">\(f_n(x) := x^n\)</span> (so that <span class="math inline">\(f_1(x)=x\)</span>). Let <span class="math inline">\(\varphi : \mathbb {R} \to X\)</span>, <span class="math inline">\(\varphi (a) :=\)</span> (the constant function <span class="math inline">\(\equiv a\)</span>), and <span class="math inline">\(\psi : \mathbb {R}^2 \to X\)</span>, <span class="math inline">\(\psi (a,b) := \left(x \mapsto a + bx\right)\)</span> (both are continuous, and hence measurable, injections). Consider on <span class="math inline">\((X, \mathcal B)\)</span> the following (nonnegative) measures:</p>
+<ol type="1">
+<li><p><span class="math inline">\(\delta_{\mathbf0}\)</span>;</p></li>
+<li><p><span class="math inline">\(\mu_1(A) := \lambda \left(\varphi^{-1}(A) \cap [0,1]\right)\)</span> (transport of Lebesgue measure onto the line of constants);</p></li>
+<li><p><span class="math inline">\(\mu_2(A) := \lambda_2\left(\psi^{-1}(A) \cap [0,1]^2\right)\)</span> (transport of two-dimensional Lebesgue measure onto the plane of affine functions);</p></li>
+<li><p><span class="math inline">\(\mu_3(A) := \int_{\psi^{-1}(A) \cap [0,1]^2} (a+b) \;  d\lambda_2(a,b)\)</span> (the same plane, but with density <span class="math inline">\((a+b)\)</span>);</p></li>
+<li><p><span class="math inline">\(\mu_5(A) := \lambda_2\left(\psi^{-1}(A) \cap [0,\tfrac 12]^2\right)\)</span> (the same plane, but with a truncated parameter domain);</p></li>
+<li><p><span class="math inline">\(\mu_4 := \sum_{n=1}^\infty \frac{1}{2^n}\delta_{f_n}\)</span> (a weighted sum of point masses at monomials);</p></li>
+<li><p><span class="math inline">\(\#\)</span> — counting measure on the countable set <span class="math inline">\(\left\{ f_n \;  : \;  n \in \mathbb {N}\right\}  \subset X\)</span>;</p></li>
+<li><p><span class="math inline">\(\delta_g\)</span>, where <span class="math inline">\(g(x) := \sin \left(\frac{\pi x}{2}\right)\)</span>. Go through all pairs <span class="math inline">\(\nu , \mu\)</span> from this list and check whether <span class="math inline">\(\nu \perp \mu\)</span> or <span class="math inline">\(\nu \ll \mu\)</span> holds; if the latter holds, find <span class="math inline">\(\frac{d\nu }{d\mu }\)</span> — if possible not in terms of the parameters <span class="math inline">\((a,b)\)</span>, but intrinsically, via the function <span class="math inline">\(f \in X\)</span> itself (say, via <span class="math inline">\(f(0)\)</span>, <span class="math inline">\(f(1)\)</span>, or the index <span class="math inline">\(n\)</span>, if <span class="math inline">\(f=f_n\)</span>).</p></li>
+</ol>
+<p><em>To check that <span class="math inline">\(\mu_1, \mu_2, \mu_3, \mu_5\)</span> are indeed well-defined measures on <span class="math inline">\(\mathcal B\)</span>, it suffices to note that countable additivity transfers one-to-one through an injective preimage from <span class="math inline">\(\lambda\)</span> (resp. <span class="math inline">\(\lambda_2\)</span>) — this is the same fact you used when checking that the distribution of a random variable is a measure. For comparing measures “along the same <span class="math inline">\(\psi\)</span>” (the pairs <span class="math inline">\(\mu_2,\mu_3,\mu_5\)</span>), the comparison reduces to comparing densities/regions on <span class="math inline">\(\mathbb {R}^2\)</span> — just as in ordinary <span class="math inline">\(\mathbb {R}^n\)</span>. A single point <span class="math inline">\(\left\{ f\right\}\)</span> always has zero <span class="math inline">\(\mu_1,\mu_2,\mu_3,\mu_5\)</span>-measure (the preimage of a point under an injection is a point, which has <span class="math inline">\(\lambda\)</span>- or <span class="math inline">\(\lambda_2\)</span>-measure zero) — use this for all pairs involving a point mass. Also note that <span class="math inline">\(a = f(0)\)</span>, <span class="math inline">\(b = f(1)-f(0)\)</span> for <span class="math inline">\(f = \psi (a,b) = a+bx\)</span> — this allows any answer using <span class="math inline">\((a,b)\)</span> to be rewritten in terms of the values of <span class="math inline">\(f\)</span> at the points <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>.</em></p>
+</div>
+</div>
+</div>
+</section>
+<section id="the-case-of-a-real-measure-nu" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="the-case-of-a-real-measure-nu"><span class="header-section-number">2.2.1</span> The case of a real measure <span class="math inline">\(\nu\)</span></h3>
+<p>Recall that if <span class="math inline">\((X,\mathcal{F}, \mu )\)</span> is a space with a (nonnegative) measure and <span class="math inline">\(h: X \to \mathbb {R}\)</span> is a function such that at least one of <span class="math inline">\(h^+\)</span> and <span class="math inline">\(h^-\)</span> is integrable, then</p>
+<p><span class="math display">\[
+  \nu _h(E) := \int _E h \;  d\mu
+\]</span></p>
+<p>is a real measure. Moreover, if <span class="math inline">\(\mu (E) = 0\)</span>, then <span class="math inline">\(\left|\nu_h\right|(E) = \int_E \left|h\right| \;  d\mu = 0\)</span>.</p>
+<p>If <span class="math inline">\(\mu\)</span> is a nonnegative measure and <span class="math inline">\(\nu\)</span> is a real measure, one says that <span class="math inline">\(\nu\)</span> is <em>absolutely continuous with respect to <span class="math inline">\(\mu\)</span></em>, or <em><span class="math inline">\(\nu\)</span> is dominated by <span class="math inline">\(\mu\)</span></em>, and writes <span class="math inline">\(\nu \ll \mu\)</span>, if <span class="math inline">\(\left|\nu \right| \ll \mu\)</span> in the sense of the definition above, i.e.&nbsp;if <span class="math inline">\(\left|\nu \right|(E) = 0\)</span> for all sets of <span class="math inline">\(\mu\)</span>-measure zero. It is not hard to show that this is equivalent to <span class="math inline">\(\nu^+ \ll \mu\)</span> and <span class="math inline">\(\nu^- \ll \mu\)</span>.</p>
+<p>In summary, briefly</p>
+<p><span class="math display">\[
+  \nu \ll \mu \quad \stackrel{\text{def}}{\iff } \quad \left|\nu \right| \ll \mu \quad \iff \quad \begin{cases}  \nu ^+ \ll \mu \\ \nu ^- \ll \mu \end{cases}
+\]</span></p>
+<p>It turns out that, again in the sigma-finite case, absolute continuity is equivalent to the measure being representable via an integral! Indeed, if <span class="math inline">\(\nu \ll \mu\)</span>, then <span class="math inline">\(\nu^+ \ll \mu\)</span> and <span class="math inline">\(\nu^- \ll \mu\)</span>, and hence by the Radon-Nikodym theorem for the previous case there are densities <span class="math inline">\(h^+\)</span>, <span class="math inline">\(h^-\)</span>.</p>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-8" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 4 (Radon-Nikodym)</strong></span> Let <span class="math inline">\(\mu\)</span> be a <span class="math inline">\(\sigma\)</span>-finite (nonnegative) measure, <span class="math inline">\(\nu\)</span> a real <span class="math inline">\(\sigma\)</span>-finite measure, <span class="math inline">\(\nu \ll \mu\)</span>. Then there exists a measurable function <span class="math inline">\(h: X \to \overline{\mathbb {R}}\)</span> such that <span class="math display">\[
+  \nu (E) = \int _E h \;  d\mu , \qquad \forall E \in \mathcal{F}
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="the-lebesgue-theorem-decomposing-a-measure-into-an-absolutely-continuous-and-a-singular-part" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="the-lebesgue-theorem-decomposing-a-measure-into-an-absolutely-continuous-and-a-singular-part"><span class="header-section-number">2.3</span> The Lebesgue theorem: decomposing a measure into an absolutely continuous and a singular part</h2>
+<p><span class="math inline">\(\mu\)</span> will everywhere be a (nonnegative) measure, while <span class="math inline">\(\nu\)</span> will first be (nonnegative), then a real measure. Both will be <span class="math inline">\(\sigma\)</span>-finite.</p>
+<section id="the-case-of-a-nonnegative-measure-nu-1" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="the-case-of-a-nonnegative-measure-nu-1"><span class="header-section-number">2.3.1</span> The case of a (nonnegative) measure <span class="math inline">\(\nu\)</span></h3>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-9" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 5 (Lebesgue)</strong></span> Let <span class="math inline">\(\mu\)</span> be a (nonnegative) <span class="math inline">\(\sigma\)</span>-finite measure on <span class="math inline">\((X, \mathcal{F})\)</span>. Then for any (nonnegative) <span class="math inline">\(\sigma\)</span>-finite measure <span class="math inline">\(\nu\)</span> on <span class="math inline">\((X, \mathcal{F})\)</span> there exist unique (nonnegative) measures <span class="math inline">\(\nu_{a}\)</span>, <span class="math inline">\(\nu_{s}\)</span> such that <span class="math inline">\(\nu = \nu_{a} + \nu_{s}\)</span> and <span class="math display">\[
+  \nu _a \ll \mu , \qquad \nu _s \perp \mu
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-case-of-a-real-measure-nu-1" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="the-case-of-a-real-measure-nu-1"><span class="header-section-number">2.3.2</span> The case of a real measure <span class="math inline">\(\nu\)</span></h3>
+<p>Now let <span class="math inline">\(\nu\)</span> be a real <span class="math inline">\(\sigma\)</span>-finite measure. Let <span class="math inline">\(\nu = \nu^+ - \nu^-\)</span> be its Jordan decomposition, consisting of <span class="math inline">\(\sigma\)</span>-finite (nonnegative) measures. Each of <span class="math inline">\(\nu^+\)</span> and <span class="math inline">\(\nu^-\)</span> can be decomposed, by the Lebesgue theorem above, into an absolutely continuous and a singular component with respect to <span class="math inline">\(\mu\)</span>:</p>
+<p><span class="math display">\[
+  \nu ^+ = \nu ^+_a + \nu ^+_{s}, \qquad \nu ^- = \nu ^-_a + \nu ^-_{s}
+\]</span></p>
+<p>Let</p>
+<p><span class="math display">\[
+  \nu _a := \nu ^+_a - \nu ^-_a, \qquad \nu _{s} := \nu ^+_{s} - \nu ^-_{s}
+\]</span></p>
+<p>What can be said about the real measures <span class="math inline">\(\nu_a\)</span>, <span class="math inline">\(\nu_{s}\)</span>?</p>
+<ul>
+<li><p><span class="math inline">\(\left|\nu_a\right| = \nu^+_a + \nu^-_a \ll \mu\)</span>. That is, the real measure <span class="math inline">\(\nu_a\)</span> is absolutely continuous with respect to the (nonnegative) measure <span class="math inline">\(\mu\)</span>.</p></li>
+<li><p><span class="math inline">\(\nu^+_{s}\)</span>, <span class="math inline">\(\nu^-_{s}\)</span> are (nonnegative) measures, singular with respect to <span class="math inline">\(\mu\)</span>. That is, there exist <span class="math inline">\(A_1, B_1, A_2, B_2\in \mathcal{F}\)</span>: <span class="math inline">\(X = A_1 \sqcup B_1 = A_2 \sqcup B_2\)</span>, with <span class="math inline">\(\nu^+_{s}\)</span> “living” on <span class="math inline">\(A_1\)</span> (in the sense that <span class="math inline">\(\nu^+_{s}(E) = \nu^+_{s}(E \cap A_1)\)</span> for any <span class="math inline">\(E \in \mathcal{F}\)</span>), <span class="math inline">\(\nu^-_{s}\)</span> “living” on <span class="math inline">\(A_2\)</span>, <span class="math inline">\(\mu\)</span> “living” on <span class="math inline">\(B_1\)</span> and <span class="math inline">\(B_2\)</span>. Hence <span class="math inline">\(\mu\)</span> “lives” on <span class="math inline">\(B_1 \cap B_2\)</span>, and <span class="math inline">\(\nu_{s} = \nu^+_{s} - \nu^-_{s}\)</span> “lives” on <span class="math inline">\(A_1 \cup A_2\)</span>. Moreover</p>
+<p><span class="math display">\[
+  X = \left(A_1 \cup A_2\right) \sqcup \left(B_1 \cap B_2\right)
+\]</span></p>
+<p>In summary, <span class="math inline">\(\nu_{s}\)</span> and <span class="math inline">\(\mu\)</span> are singular.</p></li>
+</ul>
+<div class="callout callout-style-simple callout-mn-thm no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<div id="thm-10" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 6 (Lebesgue)</strong></span> Let <span class="math inline">\(\mu\)</span> be a (nonnegative) <span class="math inline">\(\sigma\)</span>-finite measure on <span class="math inline">\((X, \mathcal{F})\)</span>. Then for any real <span class="math inline">\(\sigma\)</span>-finite measure <span class="math inline">\(\nu\)</span> on <span class="math inline">\((X, \mathcal{F})\)</span> there exist unique real measures <span class="math inline">\(\nu_{a}\)</span>, <span class="math inline">\(\nu_{s}\)</span> such that <span class="math inline">\(\nu = \nu_{a} + \nu_{s}\)</span> and <span class="math display">\[
+  \nu _a \ll \mu , \qquad \nu _s \perp \mu
+\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-mn-remark no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Mn-remark</span>Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="mn-remark-body">
+<p>Everything we have discussed in this chapter is abstract and applies to arbitrary measurable spaces. The application of this theory to the concrete case <span class="math inline">\(X=\mathbb {R}\)</span> with Lebesgue measure — the relationship between absolute continuity of measures and absolute continuity of functions, and differentiation of a distribution’s density — is deferred to a separate chapter <a href="../../../../courses/04-probability/01_MT/contents/135_differentiation_AC_functions.html#sec-ch:differentiation">on differentiation of the Lebesgue integral</a>, since that is also where all the analytic machinery naturally belongs (the Hardy-Littlewood maximal function, the Lebesgue differentiation theorem) needed for an honest proof.</p>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<!--
+  Hover preview for @expl-... (example) cross-references.
+
+  Quarto's own html format already ships a native crossref-hover-preview
+  script (bundled tippy, no CDN, wired up for every a.quarto-xref link --
+  see site_libs/quarto-html/tippy.umd.min.js and the inline tippyHover/
+  processXRef script Quarto emits near the end of <body>). That native
+  script now covers theorem-family types too, since
+  _extensions/mn-theorems wraps them into real Quarto callouts.
+
+  Examples are the one remaining gap: mn-problems.lua's Pandoc filter
+  intercepts @expl-... citations and emits a raw `<a class="xref-callout"
+  data-tippy-ref="...">` directly, bypassing Quarto's own crossref
+  resolution entirely (needed because examples use the filter's own custom
+  numbering, not Quarto's native one) -- so they never get the
+  a.quarto-xref class Quarto's native script looks for. This file only
+  fills that one gap, reusing the SAME window.tippy Quarto's native script
+  already set up (no separate Popper/Tippy load of our own -- an earlier
+  version of this file loaded Popper+Tippy from unpkg.com via plain
+  <script src>, which registered as an anonymous AMD module on pages with
+  Quarto's RequireJS loader and broke both the popup AND, as collateral
+  damage, quarto's own native tippy setup).
+-->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (!window.tippy) return; // native script didn't run (shouldn't happen on an html-format page)
+
+  document.querySelectorAll("a.xref-callout").forEach(function (anchor) {
+    var targetId = anchor.getAttribute("data-tippy-ref");
+    var inner = targetId && document.getElementById(targetId);
+    if (!inner) return;
+
+    var outer = inner.closest(".callout-style-default") || inner;
+
+    tippy(anchor, {
+      content: function () {
+        var clone = outer.cloneNode(true);
+        var uid = "mn-xref-" + targetId;
+        clone.querySelectorAll("[id]").forEach(function (el) {
+          el.id = uid + "-" + el.id;
+        });
+        clone.querySelectorAll("[data-bs-target]").forEach(function (el) {
+          var orig = el.getAttribute("data-bs-target");
+          el.setAttribute("data-bs-target", "." + uid + "-" + orig.replace(/^\./, ""));
+        });
+        clone.querySelectorAll("[aria-controls]").forEach(function (el) {
+          el.setAttribute("aria-controls", uid + "-" + el.getAttribute("aria-controls"));
+        });
+        if (window.Quarto && window.Quarto.typesetMath) {
+          window.Quarto.typesetMath(clone);
+        }
+        return clone;
+      },
+      allowHTML: true,
+      interactive: true,
+      maxWidth: 500,
+      theme: "quarto",
+      placement: "bottom-start",
+      appendTo: function (el) { return el.parentElement; },
+    });
+  });
+});
+</script>
+
+
+
+
+</body></html>
